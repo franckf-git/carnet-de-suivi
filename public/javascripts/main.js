@@ -70,6 +70,7 @@ const recuperationAPIaide = async (intitule) => {
 }
 
 /* statistiques sur l'utilisation du site */
+/*
 const listCookies = document.cookie.split('; ')
 const cookiesSansValeurs = []
 listCookies.forEach(element => {
@@ -83,6 +84,7 @@ if (!cookiesSansValeurs.includes('uuidStatsAnonym')) {
   document.cookie = `uuidStatsAnonym=${uuid}`
 }
 envoiInfosAnomyniseesSurUtilisation()
+*/
 
 /* accès aux api internes (TEST) */
 const lienNavBar = document.querySelector('#apisecure')
