@@ -1,0 +1,16 @@
+module.exports = {
+  DOMAIN: 'localhost.localdomain',
+  PORT: process.env.PORT || 3000,
+  ENV: process.env.NODE_ENV || 'production',
+  SECRET_SESSION: 'toRandomize',
+  SQLITE_AIDE: './basededonnees/aide.sqlite',
+  SQLITE_CORE: './basededonnees/core.sqlite',
+  SQLITE_STATS: './basededonnees/statistiques.sqlite'
+}
+
+module.exports.MAIL = {
+  SMTP: '',
+  PORT: 465,
+  USER: '',
+  PASS: ''
+}

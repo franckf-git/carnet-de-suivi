@@ -1,0 +1,47 @@
+{
+  "name": "carnet-de-suivi",
+  "version": "1.0.0",
+  "description": "carnet-de-suivi",
+  "private": true,
+  "scripts": {
+    "start": "redis-server & node ./bin/www",
+    "prod": "redis-server & NODE_ENV=production node ./bin/www",
+    "dev": "redis-server & NODE_ENV=development nodemon ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/franckf/carnet-de-suivi.git"
+  },
+  "author": "franckf",
+  "keywords": [],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/franckf/carnet-de-suivi/issues"
+  },
+  "homepage": "https://gitlab.com/franckf/carnet-de-suivi#readme",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "compression": "^1.7.4",
+    "connect-redis": "^4.0.4",
+    "cron": "^1.8.2",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-session": "^1.17.1",
+    "helmet": "^3.22.0",
+    "http-errors": "~1.6.3",
+    "knex": "^0.20.15",
+    "morgan": "~1.9.1",
+    "nodemailer": "^6.4.6",
+    "redis": "^3.0.2",
+    "sanitize-filename": "^1.6.3",
+    "sanitize-html": "^1.23.0",
+    "sqlite3": "^4.1.1",
+    "uuid": "^7.0.3",
+    "validator": "^13.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3",
+    "standard": "^14.3.3"
+  }
+}

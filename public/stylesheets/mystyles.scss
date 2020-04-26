@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+// Définir les couleurs
+$newprimary: #b04027;
+$newprimary-light: #e76f51;
+$newprimary-dark: #7a0a00;
+$newsecondary: #51c9e7;
+$newsecondary-light: #8bfcff;
+$newsecondary-dark: #0098b5;
+
+// Modifier les variables globales
+// $white: $white;
+// $black: $black;
+// $light: $beige-light;
+// $dark: $darky;
+$primary: $newprimary;
+// $link: $purple;
+$info: $newsecondary;
+// $success: $success;
+// $warning: $warning;
+// $danger: $danger;
+// $shades
+// $black-bis: $black-bis;
+// $black-ter: $black-ter;
+// $grey-darker: $grey-darker;
+// $grey-dark: $grey-dark;
+// $grey-light: $grey-light;
+// $grey-lighter: $grey-lighter;
+// $white-ter: $white-ter;
+// $white-bis: $white-bis;
+
+// Modifier les variables de composents
+// $body-background-color: $darky;
+
+@import "./node_modules/bulma/bulma.sass";

@@ -1,0 +1,51 @@
+<% include ./../../views/header %>
+
+<section class="section">
+  <div class="container has-text-centered">
+    <div class="columns is-centered">
+      <div class="column is-5 is-4-desktop">
+        <% include ./../../views/messages/erreurs %>
+        <form action="/enregistrement" method="post">
+          <a href="/connexion">J'ai déjà un compte</a>
+          <div class="field">
+            <div class="control">
+              <input class="input" type="text" name="pseudo" placeholder="Nom d'utilisateur" value=<% if ( typeof pseudo != 'undefined' ) { %> "<%= pseudo %>" <% } else { %> "" <% } %> required>
+            </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input class="input" type="email" name="email" placeholder="Email" value=<% if ( typeof email != 'undefined' ) { %> "<%= email %>" <% } else { %> "" <% } %> required>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="password" name="motdepasse" placeholder="Mot de passe" value=<% if ( typeof motdepasse != 'undefined' ) { %> "<%= motdepasse %>" <% } else { %> "" <% } %> required>
+                </div>
+                </div>
+                <div class="field">
+                  <div class="control">
+                    <input class="input" type="password" name="motdepasseconfirm" placeholder="Confirmez le mot de passe" value=<% if ( typeof motdepasseconfirm != 'undefined' ) { %> "<%= motdepasseconfirm %>" <% } else { %> "" <% } %> required>
+                  </div>
+                  </div>
+                  <div class="field">
+                    <button class="button is-primary is-fullwidth">S'enregistrer</button>
+                  </div>
+        </form>
+        <div class="container">
+          <br>
+          <a class="icon is-large has-text-primary" id="aide" data-value="enregistrement">
+            <i class="far fa-3x fa-question-circle"></i>
+          </a>
+        </div>
+        <div class="container">
+          <br>
+          <a class="icon is-large has-text-secondary" id="aide" data-value="entrez l intitule de votre aide en base">
+            <i class="far fa-3x fa-question-circle"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% include ./../../views/footer %>

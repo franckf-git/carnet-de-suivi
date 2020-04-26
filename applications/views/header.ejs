@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title><%= typeof titre != 'undefined' ? titre : 'Template' %></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="franckf">
+  <link rel="stylesheet" href="/stylesheets/main.css" />
+  <link rel="icon" href="/images/favicon.ico">
+  <script src="/javascripts/main.js" type="module" defer></script>
+</head>
+
+<body>
+  <div class="container is-fluid">
+
+    <button class="button button-backtotop">
+      <a href="#" title="Retour en Haut"><span class="icon is-large has-text-primary"><i class="fas fa-2x fa-chevron-circle-up"></i></span></a>
+    </button>
+
+    <section>
+      <div class="notification notification-cookie">
+        <p class="subtitle">En acceptant ou en poursuivant la navigation sur ce site, vous acceptez les Conditions
+          Générales d"Utilisations et les cookies nécessaires au bon fonctionnement de celui-ci.
+          <a href="/cgu">En savoir plus.</a>
+        </p>
+        <button class="button button-cookie is-primary">J'accepte les cookies et les CGU</button>
+      </div>
+    </section>
+
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <img src="/images/logo-texte-small.jpg" width="110" height="30">
+          </a>
+          <a class="navbar-burger burger" role="button" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+        <div class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="/presentation">Presentation</a>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">Support</a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item navbar-item-dropdown" href="/faq">FAQ</a>
+                <a class="navbar-item navbar-item-dropdown" href="/documentation">Documentation</a>
+              </div>
+            </div>
+          </div>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-light" href="/connexion">Se connecter</a>
+                <a class="button is-primary" href="/enregistrement">S'enregistrer</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown burger-dropdown">
+          <div class="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a class="dropdown-item is-size-3" href="/presentation">Presentation</a>
+              <a class="dropdown-item is-size-3" href="/faq">FAQ</a>
+              <a class="dropdown-item is-size-3" href="/documentation">Documentation</a>
+              <hr class="dropdown-divider">
+              <a class="dropdown-item is-size-3" href="/connexion">Se connecter</a>
+              <a class="dropdown-item is-size-3 has-background-primary has-text-white" href="/enregistrement">S'enregistrer</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title><%= typeof title != 'undefined' ? title : 'Template' %></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="franckf">
+  <link rel="stylesheet"
+    href="http://<%= typeof domaine != 'undefined' ? domaine : 'Erreur domaine du site manquant' %>/stylesheets/main.css" />
+  <link rel="icon"
+    href="http://<%= typeof domaine != 'undefined' ? domaine : 'Erreur domaine du site manquant' %>/images/favicon.ico">
+  <script
+    src="http://<%= typeof domaine != 'undefined' ? domaine : 'Erreur domaine du site manquant' %>/javascripts/main.js"
+    type="module" defer></script>
+</head>
+
+<body>
+  <div class="container is-fluid">
+
+    <section class="section">
+      <div class="container has-text-centered">
+        <h2 class="title is-spaced">Merci de votre enregistrement <%= typeof email != 'undefined' ? email : 'Template' %> !</h2>
+        <p class="subtitle">Bienvenue. Validez votre adresse et connectez vous pour profitez de notre application.</p>
+        <div class="buttons is-centered">
+          <a class="button is-primary" href="<%= typeof urluuid != 'undefined' ? urluuid : 'Erreur URL manquante' %>">Valider mon adresse mail</a>
+        </div>
+        <p class="has-text-grey">Ce lien ne sera actif que 3 jours.</p>
+      </div>
+    </section>
+
+    <footer class="footer has-background-grey-light">
+      <div class="container">
+        <nav class="level">
+          <p class="level-item has-text-centered">
+            <a class="link is-info" href="http://<%= typeof domaine != 'undefined' ? domaine : 'Erreur domaine du site manquant' %>/presentation">Presentation</a>
+          </p>
+          <p class="level-item has-text-centered">
+            <a class="link is-info" href="http://<%= typeof domaine != 'undefined' ? domaine : 'Erreur domaine du site manquant' %>/legals">Mentions Légales</a>
+          </p>
+          <p class="level-item has-text-centered">
+            <img src="http://<%= typeof domaine != 'undefined' ? domaine : 'Erreur domaine du site manquant' %>/images/logo-texte-small.jpg" width="110" height="30">
+          </p>
+            <p class="level-item has-text-centered">
+              <a class="link is-info" href="http://<%= typeof domaine != 'undefined' ? domaine : 'Erreur domaine du site manquant' %>/faq">FAQ</a>
+            </p>
+            <p class="level-item has-text-centered">
+              <a class="link is-info" href="http://<%= typeof domaine != 'undefined' ? domaine : 'Erreur domaine du site manquant' %>/documentation">Documentation</a>
+            </p>
+        </nav>
+        <p class="subtitle has-text-centered is-6">&copy; 2020 Template</p>
+      </div>
+    </footer>
+
+  </div>
+</body>
+
+</html>
