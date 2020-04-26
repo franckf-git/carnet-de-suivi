@@ -10,3 +10,23 @@
   right: 20px;
   z-index: 99;
 }
+
+
+/* Polices personnalisée */
+@font-face {
+  font-family: "comfortaa";
+  src: url('./../fonts/Comfortaa-Regular.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: "opensans";
+  src: url('./../fonts/OpenSans-Regular.ttf') format("truetype");
+}
+
+.is-font-primary {
+  font-family: comfortaa !important;
+}
+
+.is-font-secondary {
+  font-family: opensans !important;
+}
