@@ -1,8 +1,6 @@
 /* Imports framework et icones */
 /* http://bulma.io/ */
 @import "./bulma.css";
-/* https://fontawesome.com/ */
-@import "./fontawesome-free-5.13.0-web/css/all.min.css";
 
 /* Custom css */
 .button-backtotop {
