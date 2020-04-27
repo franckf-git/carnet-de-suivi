@@ -1,28 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-  <title>Template</title>
+  <title>Lien Invalide</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="franckf">
-  <link rel="stylesheet" href="/stylesheets/main.css" />
-  <link rel="icon" href="/images/favicon.ico">
-  <script src="/javascripts/main.js" type="module" defer></script>
+  <link rel="stylesheet" href="./../stylesheets/main.css" />
+  <link rel="shortcut icon" href="./../images/icone.svg" type="image/svg+xml">
+  <script src="./../javascripts/main.js" type="module" defer></script>
 </head>
 
 <body>
   <div class="container is-fluid">
 
-    <button class="button button-backtotop">
-      <a href="#" title="Retour en Haut"><span class="icon is-large has-text-primary"><i class="fas fa-2x fa-chevron-circle-up"></i></span></a>
-    </button>
+    <span class="button-backtotop">
+      <a href="#" title="Retour en Haut">
+        <figure class="image is-32x32">
+          <!--https://fontawesome.com/license-->
+          <img src="./../images/chevron-circle-up-solid.svg">
+        </figure>
+      </a>
+    </span>
 
     <section>
       <div class="notification notification-cookie">
         <p class="subtitle">En acceptant ou en poursuivant la navigation sur ce site, vous acceptez les Conditions
-          Générales d"Utilisations et les cookies nécessaires au bon fonctionnement de celui-ci.
+          Générales d'Utilisations et les cookies nécessaires au bon fonctionnement de celui-ci.
           <a href="/cgu">En savoir plus.</a>
         </p>
         <button class="button button-cookie is-primary">J'accepte les cookies et les CGU</button>
@@ -33,7 +38,7 @@
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="/">
-            <img src="/images/logo-texte-small.jpg" width="110" height="30">
+            <img src="./../images/logo.svg" width="180">
           </a>
           <a class="navbar-burger burger" role="button" aria-label="menu" aria-expanded="false">
             <span aria-hidden="true"></span>
@@ -41,16 +46,14 @@
             <span aria-hidden="true"></span>
           </a>
         </div>
+        <div class="navbar-menu burger-dropdown">
+          <div class="navbar-start">
+            <a class="navbar-item is-size-4" href="/connexion">Se connecter</a>
+            <a class="navbar-item is-size-4 has-background-primary has-text-white" href="/enregistrement">S'enregistrer</a>
+          </div>
+        </div>
         <div class="navbar-menu">
           <div class="navbar-start">
-            <a class="navbar-item" href="/presentation">Presentation</a>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">Support</a>
-              <div class="navbar-dropdown">
-                <a class="navbar-item navbar-item-dropdown" href="/faq">FAQ</a>
-                <a class="navbar-item navbar-item-dropdown" href="/documentation">Documentation</a>
-              </div>
-            </div>
           </div>
           <div class="navbar-end">
             <div class="navbar-item">
@@ -61,55 +64,40 @@
             </div>
           </div>
         </div>
-        <div class="dropdown burger-dropdown">
-          <div class="dropdown-menu" role="menu">
-            <div class="dropdown-content">
-              <a class="dropdown-item is-size-3" href="/presentation">Presentation</a>
-              <a class="dropdown-item is-size-3" href="/faq">FAQ</a>
-              <a class="dropdown-item is-size-3" href="/documentation">Documentation</a>
-              <hr class="dropdown-divider">
-              <a class="dropdown-item is-size-3" href="/connexion">Se connecter</a>
-              <a class="dropdown-item is-size-3 has-background-primary has-text-white" href="/enregistrement">S'enregistrer</a>
-            </div>
-          </div>
-        </div>
-      </div>
     </nav>
+
+    <div class="notification is-danger has-text-centered">
+      <button class="delete delete-notif"></button>
+      <strong>ATTENTION carnet-de-suivi.net est une application toujours en cours de developpement - pour tests uniquement</strong>
+    </div>
 
     <section class="section">
       <div class="container has-text-centered">
-        <h2 class="title"><span class="has-text-danger">Aïe.</span></h2>
+        <h2 class="title"><span class="has-text-primary">Aïe.</span></h2>
         <h3 class="subtitle">Ce lien n'est pas valide ou à déjà été utilisé. Essayez de procéder à nouveau.</h3>
         <div class="buttons is-centered">
-          <a class="button is-light" href="/connexion">J'ai déjà un compte</a>
-          <a class="button is-secondary" href="/enregistrement">Je n'ai pas encore de compte</a>
-          <a class="button is-primary" href="/motdepasseoublie">J'ai oublié mon de passe</a>
+          <a class="button is-info" href="/connexion">J'ai déjà un compte</a>
+          <a class="button is-primary" href="/enregistrement">Je n'ai pas encore de compte</a>
+          <a class="button is-light" href="/motdepasseoublie">J'ai oublié mon de passe</a>
         </div>
       </div>
     </section>
 
     <footer class="footer has-background-grey-light">
-      <div class="container">
-        <nav class="level">
-          <p class="level-item has-text-centered">
-            <a class="link is-info" href="/presentation">Presentation</a>
-          </p>
-          <p class="level-item has-text-centered">
-            <a class="link is-info" href="/legals">Mentions Légales</a>
-          </p>
-          <p class="level-item has-text-centered">
-            <img src="/images/logo-texte-small.jpg" width="110" height="30">
-          </p>
-            <p class="level-item has-text-centered">
-              <a class="link is-info" href="/faq">FAQ</a>
-            </p>
-            <p class="level-item has-text-centered">
-              <a class="link is-info" href="/documentation">Documentation</a>
-            </p>
-        </nav>
-        <p class="subtitle has-text-centered is-6">&copy; 2020 Template</p>
+      <div class="content has-text-centered">
+        <div class="columns">
+          <div class="column"><a class="link is-info" href="/cgu">Conditions Générales d'Utilisations</a></div>
+          <div class="column">
+            <a class="link is-info" href="https://gitlab.com/franckf/carnet-de-suivi">Code Libre et Disponible</a>
+          </div>
+        </div>
+        <p>
+          2020 carnet-de-suivi.net
+        </p>
+        <hr>
       </div>
     </footer>
+
 
   </div>
 </body>

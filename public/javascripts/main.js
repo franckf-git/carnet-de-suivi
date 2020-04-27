@@ -85,11 +85,3 @@ if (!cookiesSansValeurs.includes('uuidStatsAnonym')) {
 }
 envoiInfosAnomyniseesSurUtilisation()
 */
-
-/* accès aux api internes (TEST) */
-const lienNavBar = document.querySelector('#apisecure')
-lienNavBar.addEventListener('mouseenter', async () => {
-  const data = await fetch('/apisecure')
-  const message = await data.json()
-  console.log(message)
-})
