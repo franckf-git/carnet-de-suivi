@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <title><%= typeof titre != 'undefined' ? titre : 'Carnet de Suivi' %></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="franckf">
+  <link rel="stylesheet" href="./stylesheets/main.css" />
+  <link rel="shortcut icon" href="./images/icone.svg" type="image/svg+xml">
+  <script src="./javascripts/main.js" type="module" defer></script>
+</head>
+
+<body>
+  <div class="container is-fluid">
+
+    <span class="button-backtotop">
+      <a href="#" title="Retour en Haut">
+        <figure class="image is-32x32">
+          <!--https://fontawesome.com/license-->
+          <img src="./images/chevron-circle-up-solid.svg">
+        </figure>
+      </a>
+    </span>
+
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+              <img src="./images/logo.svg" width="180">
+            </a>
+          <a class="navbar-burger burger" role="button" aria-label="menu" aria-expanded="false">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu burger-dropdown">
+          <div class="navbar-start is-hidden">
+            <a class="navbar-item is-size-4" href="/deconnexion">Se déconnecter</a>
+          </div>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-light" href="/deconnexion">Se déconnecter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
