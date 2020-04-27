@@ -38,7 +38,7 @@
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="/">
-            <img src="/images/logo-texte-small.jpg" width="110" height="30">
+            <img src="./images/logo.svg" width="180">
           </a>
           <a class="navbar-burger burger" role="button" aria-label="menu" aria-expanded="false">
             <span aria-hidden="true"></span>
@@ -48,15 +48,6 @@
         </div>
         <div class="navbar-menu">
           <div class="navbar-start">
-            <a class="navbar-item" href="/presentation">Presentation</a>
-            <a class="navbar-item" id="apisecure" href="/apisecure">apisecure</a>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">Support</a>
-              <div class="navbar-dropdown">
-                <a class="navbar-item navbar-item-dropdown" href="/faq">FAQ</a>
-                <a class="navbar-item navbar-item-dropdown" href="/documentation">Documentation</a>
-              </div>
-            </div>
           </div>
           <div class="navbar-end">
             <div class="navbar-item">
@@ -70,10 +61,6 @@
         <div class="dropdown burger-dropdown">
           <div class="dropdown-menu" role="menu">
             <div class="dropdown-content">
-              <a class="dropdown-item is-size-3" href="/presentation">Presentation</a>
-              <a class="dropdown-item is-size-3" href="/faq">FAQ</a>
-              <a class="dropdown-item is-size-3" href="/documentation">Documentation</a>
-              <hr class="dropdown-divider">
               <a class="dropdown-item is-size-3" href="/connexion">Se connecter</a>
               <a class="dropdown-item is-size-3 has-background-primary has-text-white" href="/enregistrement">S'enregistrer</a>
             </div>
@@ -82,85 +69,89 @@
       </div>
     </nav>
 
-    <section class="hero is-large has-background-grey-light">
+    <div class="notification is-danger has-text-centered">
+      <strong>ATTENTION carnet-de-suivi.net est une application toujours en cours de developpement - pour tests uniquement</strong>
+    </div>
+
+    <section class="hero has-background-grey-light">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h1 class="title is-spaced">Template</h1>
-          <h2 class="subtitle is-font-secondary">Le modèle qui est bien pour faire des bons sites en nodeJS.</h2>
-          <div class="buttons is-centered">
-            <a class="button is-light" href="/connexion">Se connecter</a>
-            <a class="button is-primary" href="/enregistrement">S'enregistrer</a>
-          </div>
+          <figure class="image">
+            <img src="./images/illustrations/landing_page.svg">
+          </figure>
+            <div class="buttons is-centered">
+              <a class="button is-light" href="/connexion">Se connecter</a>
+              <a class="button is-primary" href="/enregistrement">S'enregistrer</a>
+            </div>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container has-text-centered">
-        <h2 class="title">Optimisé, standardisé et clair.</h2>
-        <div class="block">
-          <span class="icon is-large has-text-info"><i class="fas fa-3x fa-fingerprint"></i></span>
-          <span class="icon is-large has-text-primary"><i class="fab fa-3x fa-node-js"></i></span>
-          <span class="icon is-large has-text-secondary"><i class="fas fa-3x fa-server"></i></span>
-        </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, provident optio veniam dicta minima omnis
-          soluta possimus praesentium in necessitatibus?</p>
+        <h2 class="subtitle">Une application en ligne pour évaluer les maternelles.</h2>
+        <p class="is-font-secondary">
+          Nous vous proposons une application en ligne, libre et developpée spécifiquement,
+          pour le carnet de suivi des apprentissages des élèves de Cycle 1.<br>
+          Construisez quotidiennement votre recueil d'observations pour les 5 domaines d'apprentissage.
+        </p>
       </div>
     </section>
+
+    <hr>
 
     <section class="section">
       <div class="container has-text-centered">
         <div class="columns is-multiline">
           <div class="column is-6 is-4-desktop">
-            <h4 class="title is-spaced is-4">Lorem 1.</h4>
-            <p class="subtitle is-6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, molestias?</p>
+            <h4 class="subtitle is-spaced is-4">Un carnet quotidien</h4>
+            <p class="is-6 is-font-secondary">Enregistrez au jour le jour les progrès des élèves sur
+              votre smartphone.</p>
           </div>
           <div class="column is-6 is-4-desktop">
-            <h4 class="title is-spaced is-4">Lorem 2.</h4>
-            <p class="subtitle is-6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, molestias?</p>
+            <h4 class="subtitle is-spaced is-4">Communication parents</h4>
+            <p class="is-6 is-font-secondary">Partagez les activitées avec les parents et échangez avec eux (à
+              venir).</p>
           </div>
           <div class="column is-6 is-4-desktop">
-            <h4 class="title is-spaced is-4">Lorem 3.</h4>
-            <p class="subtitle is-6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, molestias?</p>
+            <h4 class="subtitle is-spaced is-4">Indicateurs de progrès</h4>
+            <p class="is-6 is-font-secondary">Utilisez les indicateurs de progrès recommandés ou utiliser
+              les vôtres.</p>
           </div>
           <div class="column is-6 is-4-desktop">
-            <h4 class="title is-spaced is-4">Lorem 4.</h4>
-            <p class="subtitle is-6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, molestias?</p>
+            <h4 class="subtitle is-spaced is-4">Export du carnet</h4>
+            <p class="is-6 is-font-secondary">Téléchargez le carnet de suivi et les progrès de chaque élève (à
+              venir).</p>
           </div>
           <div class="column is-6 is-4-desktop">
-            <h4 class="title is-spaced is-4">Lorem 5.</h4>
-            <p class="subtitle is-6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, molestias?</p>
+            <h4 class="subtitle is-spaced is-4">Travail en équipe</h4>
+            <p class="is-6 is-font-secondary">Invitez vos collègues à venir faire des activité avec votre classes (à
+              venir).</p>
           </div>
           <div class="column is-6 is-4-desktop">
-            <h4 class="title is-spaced is-4">Lorem 6.</h4>
-            <p class="subtitle is-6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, molestias?</p>
+            <h4 class="subtitle is-spaced is-4">Code ouvert et libre</h4>
+            <p class="is-6 is-font-secondary">Une appliquation en toute transparence et ouverte aux contributions (à
+              venir).</p>
           </div>
         </div>
       </div>
     </section>
 
     <footer class="footer has-background-grey-light">
-      <div class="container">
-        <nav class="level">
-          <p class="level-item has-text-centered">
-            <a class="link is-info" href="/presentation">Presentation</a>
-          </p>
-          <p class="level-item has-text-centered">
-            <a class="link is-info" href="/legals">Mentions Légales</a>
-          </p>
-          <p class="level-item has-text-centered">
-            <img src="/images/logo-texte-small.jpg" width="110" height="30">
-          </p>
-            <p class="level-item has-text-centered">
-              <a class="link is-info" href="/faq">FAQ</a>
-            </p>
-            <p class="level-item has-text-centered">
-              <a class="link is-info" href="/documentation">Documentation</a>
-            </p>
-        </nav>
-        <p class="subtitle has-text-centered is-6">&copy; 2020 Template</p>
+      <div class="content has-text-centered">
+        <div class="columns">
+          <div class="column"><a class="link is-info" href="/cgu">Conditions Générales d'Utilisations</a></div>
+          <div class="column">
+            <a class="link is-info" href="https://gitlab.com/franckf/carnet-de-suivi">Code Libre et Disponible</a>
+          </div>
+        </div>
+        <p>
+          2020 carnet-de-suivi.net
+        </p>
+        <hr>
       </div>
     </footer>
+
 
   </div>
 </body>
