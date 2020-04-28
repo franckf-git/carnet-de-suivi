@@ -47,3 +47,26 @@ exports.enregistrementInfosBDD = async (infos) => {
     console.error(error)
   }
 }
+
+exports.nettoyageStatistiquesBDD = async () => {
+  try {
+    const dateDuJour = new Date()
+    const offset = (24 * 60 * 60 * 1000) * 90 * 3
+    const statsExpire = dateDuJour.setTime(dateDuJour.getTime() - offset)
+    const dateStatsExpire = new Date(statsExpire)
+
+    if (process.env.NODE_ENV === 'development') {
+      // en environnement de dev on est sur sqlite3 qui gère différement les dates - on doit donc passer par une cmd brute
+      await statistiques.raw(
+        "DELETE FROM infosUtilisation WHERE ouverture < datetime('now','-3 month', 'localtime')")
+    } else {
+      await statistiques('infosUtilisation')
+        .where('ouverture', '<', dateStatsExpire)
+        .del()
+    }
+
+    return true
+  } catch (error) {
+    console.error(error)
+  }
+}
