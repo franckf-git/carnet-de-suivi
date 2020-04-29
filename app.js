@@ -61,7 +61,7 @@ app.use('/observation', require('./applications/fonctionalites/observation/'))
 app.use('/eleves', require('./applications/fonctionalites/eleves/'))
 app.use('/parents', require('./applications/fonctionalites/parents/'))
 app.use('/partage', require('./applications/fonctionalites/partage/'))
-app.use('/exports', require('./applications/fonctionalites/exports/'))
+app.use('/exportcsa', require('./applications/fonctionalites/exportcsa/'))
 app.use('/suivis', require('./applications/fonctionalites/suivis/'))
 
 // catch 404 and forward to error handler

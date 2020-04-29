@@ -2,8 +2,8 @@
 const express = require('express')
 const router = express.Router()
 const { siAuthentifie } = require('./../../middlewares/cookiesSessions')
-const { acceuil } = require('./../controller')
+const { observation } = require('./../controller')
 
-router.get('/', siAuthentifie, acceuil)
+router.get('/', siAuthentifie, observation)
 
 module.exports = router
