@@ -11,7 +11,8 @@ const debug = require('debug')(`${config.DOMAIN}:server`)
 const { initialisationBDDAuthentification } = require('./../applications/authentification/initialisationBDD')
 const { initialisationBDDStatistiques } = require('./../applications/statistiques/initialisationBDD')
 const { initialisationBDDAide } = require('./../applications/aide/initialisationBDD')
-const { nettoyageLiensMailsetMdpOublies, nettoyageStatistiques } = require('./../applications/utils/crontab')
+const { nettoyageLiensMailsetMdpOublies, nettoyageStatistiques, sauvegardeBasedeDonnees } = require(
+  './../applications/utils/crontab')
 /**
  * Get port from environment and store in Express.
  */
@@ -33,6 +34,7 @@ initialisationBDDAide()
 
 nettoyageLiensMailsetMdpOublies()
 nettoyageStatistiques()
+sauvegardeBasedeDonnees()
 
 /**
  * Create HTTP server.

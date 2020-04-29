@@ -67,9 +67,8 @@ fontawesome-free-5.13.0-web
 config/index.js
 
 # SQlite file for bdd
-basededonnees/aide.sqlite
-basededonnees/core.sqlite
-basededonnees/statistiques.sqlite
+basededonnees/*.sqlite
+basededonnees/dumps/*.sql
 
 # Dump Redis
 dump.rdb
