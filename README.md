@@ -44,6 +44,7 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 - [] intégration des points de suivis au carnet de suivi (option ou imposé ?)
 - [] ajout de multimédia aux observations (photo, audio, video)
 - [] tableau de bord classe
+- [] compte demo/test
 
 ## Todo technique
 
