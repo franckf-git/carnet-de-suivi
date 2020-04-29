@@ -44,6 +44,9 @@
             <a class="navbar-item is-size-4" href="/deconnexion">Se déconnecter</a>
           </div>
           <div class="navbar-end">
+            <div class="navbar-item has-text-primary">
+              <% if ( typeof pseudo != 'undefined' ) { %> <%= pseudo %> <% } else { %> <% } %>
+            </div>
             <div class="navbar-item">
               <div class="buttons">
                 <a class="button is-light" href="/deconnexion">Se déconnecter</a>
