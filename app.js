@@ -52,10 +52,17 @@ app.use('/enregistrement', require('./applications/authentification/enregistreme
 app.use('/motdepasseoublie', require('./applications/authentification/motdepasseoublie'))
 app.use('/confirmationmail', require('./applications/authentification/confirmationmail'))
 app.use('/reinitialisationmotdepasse', require('./applications/authentification/reinitialisationmotdepasse'))
-app.use('/acceuil', require('./applications/fonctionalites/acceuil'))
 app.use('/statsutilisation', require('./applications/statistiques/statsutilisation'))
 app.use('/aide', require('./applications/aide/api'))
+// ROUTES siAuthentifie
+app.use('/acceuil', require('./applications/fonctionalites/acceuil'))
 app.use('/apisecure', require('./applications/apisecure/api'))
+app.use('/observation', require('./applications/fonctionalites/observation/'))
+app.use('/eleves', require('./applications/fonctionalites/eleves/'))
+app.use('/parents', require('./applications/fonctionalites/parents/'))
+app.use('/partage', require('./applications/fonctionalites/partage/'))
+app.use('/exports', require('./applications/fonctionalites/exports/'))
+app.use('/suivis', require('./applications/fonctionalites/suivis/'))
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => next(createError(404)))
