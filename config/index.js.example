@@ -5,7 +5,8 @@ module.exports = {
   SECRET_SESSION: 'toRandomize',
   SQLITE_AIDE: './basededonnees/aide.sqlite',
   SQLITE_CORE: './basededonnees/core.sqlite',
-  SQLITE_STATS: './basededonnees/statistiques.sqlite'
+  SQLITE_STATS: './basededonnees/statistiques.sqlite',
+  SQLITE_OBSERVATIONS: './basededonnees/observations.sqlite'
 }
 
 module.exports.MAIL = {

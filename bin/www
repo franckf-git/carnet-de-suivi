@@ -11,6 +11,7 @@ const debug = require('debug')(`${config.DOMAIN}:server`)
 const { initialisationBDDAuthentification } = require('./../applications/authentification/initialisationBDD')
 const { initialisationBDDStatistiques } = require('./../applications/statistiques/initialisationBDD')
 const { initialisationBDDAide } = require('./../applications/aide/initialisationBDD')
+const { initialisationBDDObservations } = require('./../applications/fonctionalites/initialisationBDD')
 const { nettoyageLiensMailsetMdpOublies, nettoyageStatistiques, sauvegardeBasedeDonnees } = require(
   './../applications/utils/crontab')
 /**
@@ -27,6 +28,7 @@ app.set('port', port)
 initialisationBDDAuthentification()
 initialisationBDDStatistiques()
 initialisationBDDAide()
+initialisationBDDObservations()
 
 /**
  * Crontab
