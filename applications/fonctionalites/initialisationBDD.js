@@ -10,6 +10,7 @@ exports.initialisationBDDObservations = () => {
             .primary()
             .index()
           table.integer('idUtilisateur')
+            .index()
           table.string('nom')
           table.boolean('actif')
             .defaultTo(1)
