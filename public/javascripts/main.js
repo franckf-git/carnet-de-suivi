@@ -152,10 +152,14 @@ const ajouterBoutonsEditionEleve = (champs) => {
   Désactiver
   </a>
   <a class="button is-warning is-hidden-tablet">
-  S
+  <figure class="image is-16x16">
+  <img src="/images/icones/save-regular.svg">
+  </figure>
   </a>
   <a class="button is-danger is-hidden-tablet">
-  D
+  <figure class="image is-16x16">
+  <img src="/images/icones/trash-alt-regular.svg">
+  </figure>
   </a>
 `
 }
