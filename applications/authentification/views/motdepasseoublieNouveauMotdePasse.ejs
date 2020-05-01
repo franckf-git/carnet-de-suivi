@@ -10,17 +10,21 @@
           method="post">
           <div class="field">
             <div class="control">
-              <input class="input" type="password" name="motdepasse" placeholder="Mot de passe" value=<% if ( typeof motdepasse != 'undefined' ) { %> "<%= motdepasse %>" <% } else { %> "" <% } %> required>
-                </div>
+              <input class="input" type="password" name="motdepasse" placeholder="Mot de passe"
+                value=<% if ( typeof motdepasse != 'undefined' ) { %> "<%= motdepasse %>" <% } else { %> "" <% } %>
+                required>
             </div>
-            <div class="field">
-              <div class="control">
-                <input class="input" type="password" name="motdepasseconfirm" placeholder="Confirmez le mot de passe" value=<% if ( typeof motdepasseconfirm != 'undefined' ) { %> "<%= motdepasseconfirm %>" <% } else { %> "" <% } %> required>
-                  </div>
-              </div>
-              <div class="field">
-                <button class="button is-primary is-fullwidth">Enregistrer ce mot de passe</button>
-              </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input" type="password" name="motdepasseconfirm" placeholder="Confirmez le mot de passe"
+                value=<% if ( typeof motdepasseconfirm != 'undefined' ) { %> "<%= motdepasseconfirm %>"
+                <% } else { %> "" <% } %> required>
+            </div>
+          </div>
+          <div class="field">
+            <button class="button is-primary is-fullwidth">Enregistrer ce mot de passe</button>
+          </div>
         </form>
       </div>
     </div>

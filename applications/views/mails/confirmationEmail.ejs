@@ -5,7 +5,8 @@
     <h2 class="title is-spaced">Merci de votre enregistrement <%= typeof email != 'undefined' ? email : '' %> !</h2>
     <p class="subtitle">Bienvenue. Validez votre adresse et connectez vous pour profitez de notre application.</p>
     <div class="buttons is-centered">
-      <a class="button is-primary" href="<%= typeof urluuid != 'undefined' ? urluuid : 'Erreur URL manquante' %>">Valider mon adresse mail</a>
+      <a class="button is-primary"
+        href="<%= typeof urluuid != 'undefined' ? urluuid : 'Erreur URL manquante' %>">Valider mon adresse mail</a>
     </div>
     <p class="has-text-grey">Ce lien ne sera actif que 3 jours.</p>
   </div>

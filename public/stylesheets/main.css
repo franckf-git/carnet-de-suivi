@@ -13,7 +13,7 @@
   z-index: 99;
 }
 
-/* Polices personnalisée */
+/* Polices personnalisées */
 @font-face {
   font-family: "comfortaa";
   src: url('./../fonts/Comfortaa-Regular.ttf') format("truetype");

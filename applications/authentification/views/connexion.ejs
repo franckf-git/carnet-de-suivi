@@ -9,18 +9,21 @@
           <a href="/enregistrement">Je n'ai pas encore de compte</a>
           <div class="field">
             <div class="control">
-              <input class="input" type="email" name="email" placeholder="Email" value=<% if ( typeof email != 'undefined' ) { %> "<%= email %>" <% } else { %> "" <% } %> required>
-              </div>
+              <input class="input" type="email" name="email" placeholder="Email"
+                value=<% if ( typeof email != 'undefined' ) { %> "<%= email %>" <% } else { %> "" <% } %> required>
             </div>
-            <div class="field">
-              <div class="control">
-                <input class="input" type="password" name="motdepasse" placeholder="Mot de passe" value=<% if ( typeof motdepasse != 'undefined' ) { %> "<%= motdepasse %>" <% } else { %> "" <% } %> required>
-              </div>
-              </div>
-              <div class="field">
-                <button class="button is-primary is-fullwidth">Se connecter</button>
-              </div>
-              <a href="/motdepasseoublie">J'ai oublié mon de passe</a>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input" type="password" name="motdepasse" placeholder="Mot de passe"
+                value=<% if ( typeof motdepasse != 'undefined' ) { %> "<%= motdepasse %>" <% } else { %> "" <% } %>
+                required>
+            </div>
+          </div>
+          <div class="field">
+            <button class="button is-primary is-fullwidth">Se connecter</button>
+          </div>
+          <a href="/motdepasseoublie">J'ai oublié mon de passe</a>
         </form>
       </div>
     </div>
