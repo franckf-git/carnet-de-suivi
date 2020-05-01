@@ -34,11 +34,12 @@
           </header>
           <section class="modal-card-body">
             <p class="control is-expanded">
-              <input class="input input-eleve is-font-secondary" name="nom" type="text" value="<%= eleve.nom %>">
+              <input class="input is-font-secondary" name="nom" type="text" id="input-eleve" value="<%= eleve.nom %>">
             </p>
+            <p class="help is-danger is-hidden" id="alertenom">Le nom doit comporter au moins 3 lettres.</p>
           </section>
           <footer class="modal-card-foot">
-            <button class="button is-success is-fullwidth" name="sauver">Sauver</button>
+            <button class="button is-success is-fullwidth" id="buttonSauver" name="sauver">Sauver</button>
             <button class="button is-danger is-fullwidth" name="desactivation">Désactiver</button>
           </footer>
           <p class="is-italic has-text-danger">Désactiver un élève ne supprime pas son carnet.</p>
