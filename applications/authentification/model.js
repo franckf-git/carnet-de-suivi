@@ -88,6 +88,17 @@ exports.recuperationEmailUtilisateurParUUIDBdd = async (uuidEnAttenteDeValidatio
   }
 }
 
+exports.miseaJourDerniereConnexion = async (id) => {
+  try {
+    const timeStamp = new Date().toISOString()
+    await core('utilisateurs')
+      .update({ derniereConnexion: timeStamp })
+      .where({ id })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 exports.checkEmail = async (emailATester) => {
   try {
     const emailATesterNormaliser = validator.normalizeEmail(emailATester)

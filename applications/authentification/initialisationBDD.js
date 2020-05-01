@@ -18,6 +18,8 @@ exports.initialisationBDDAuthentification = () => {
             .defaultTo(0)
           table.timestamp('enregistrement')
             .defaultTo(core.fn.now())
+          table.timestamp('derniereConnexion')
+            .defaultTo(core.fn.now())
         })
       }
     })

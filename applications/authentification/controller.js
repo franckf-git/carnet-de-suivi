@@ -6,7 +6,8 @@ const {
   uuidUtilisePourConfirmer,
   uuidUtilisePourReinitialiser,
   recuperationIdUtilisateurBdd,
-  recuperationEmailUtilisateurParUUIDBdd
+  recuperationEmailUtilisateurParUUIDBdd,
+  miseaJourDerniereConnexion
 } = require(
   './model')
 const { verificationChampsFormulaire } = require('./controllerErreurs')
@@ -62,6 +63,7 @@ exports.connexionUtilisateur = async (req, res, next) => {
     }
 
     const recuperationIdUtilisateur = await recuperationIdUtilisateurBdd(champsFormulaire.email)
+    await miseaJourDerniereConnexion(recuperationIdUtilisateur)
     req.session.utilisateur = recuperationIdUtilisateur
     res.redirect('/acceuil')
   } catch (error) {
