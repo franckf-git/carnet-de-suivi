@@ -89,3 +89,78 @@ if (!cookiesSansValeurs.includes('uuidStatsAnonym')) {
 }
 envoiInfosAnomyniseesSurUtilisation()
 */
+
+/* Gestion des eleves */
+
+/* Ajout eleve */
+
+const buttonAjouterEleve = document.querySelectorAll('.demanderAjoutEleve')
+
+buttonAjouterEleve.forEach(button => {
+  button.addEventListener('click', () => ajouterChampsNouvelEleve())
+})
+
+const ajouterChampsNouvelEleve = () => {
+  const emplacementPourFormulaire = document.querySelector('#formAjoutEleve')
+  const formulaireNouvelEleve = document.createElement('div')
+  emplacementPourFormulaire.after(formulaireNouvelEleve)
+  formulaireNouvelEleve.setAttribute('class', 'box has-background-info')
+  formulaireNouvelEleve.innerHTML = `
+    <div class="field is-grouped">
+      <p class="control is-expanded">
+        <input class="input" type="text" placeholder="Prénom de l'élève">
+      </p>
+      <p class="control">
+        <a class="button is-light">
+          Ajouter
+        </a>
+      </p>
+    </div>
+`
+}
+
+/* Edition eleve existant */
+
+const champsEleves = document.querySelectorAll('.input')
+
+champsEleves.forEach(champsEleve => {
+  champsEleve.addEventListener('focus', () => {
+    const boxEleve = champsEleve.parentElement.parentElement.parentElement
+    const ligneEleve = champsEleve.parentElement.parentElement
+    boxEleve.classList.remove('has-background-grey-lighter')
+    boxEleve.classList.add('has-background-info')
+    ajouterBoutonsEditionEleve(ligneEleve)
+  })
+  champsEleve.addEventListener('focusout', () => {
+    const boxEleve = champsEleve.parentElement.parentElement.parentElement
+    boxEleve.classList.add('has-background-grey-lighter')
+    boxEleve.classList.remove('has-background-info')
+    retirerBoutonsEditionEleve()
+  })
+})
+
+const ajouterBoutonsEditionEleve = (champs) => {
+  const boutons = document.createElement('p')
+  champs.appendChild(boutons)
+  boutons.setAttribute('class', 'control')
+  boutons.setAttribute('id', 'boutonsEditionEleve')
+  boutons.innerHTML = `
+  <a class="button is-warning is-hidden-mobile">
+  Sauver
+  </a>
+  <a class="button is-danger is-hidden-mobile">
+  Désactiver
+  </a>
+  <a class="button is-warning is-hidden-tablet">
+  S
+  </a>
+  <a class="button is-danger is-hidden-tablet">
+  D
+  </a>
+`
+}
+
+const retirerBoutonsEditionEleve = () => {
+  const boutonsEditionEleve = document.querySelector('#boutonsEditionEleve')
+  boutonsEditionEleve.remove()
+}
