@@ -22,7 +22,7 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 
 ## Fonctionnalitées PMV
 
-- [] ajouter des élèves
+- [x] ajouter des élèves
 - [] créer une observation (référentiel)
 - [] créer une observation (champs libre)
 - [] exporter le carnet de suivi par élève (pdf)
@@ -38,7 +38,7 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 - [] partager mes élèves à un prof
 - [] voir et évaluer les élèves partagés avec moi (module séparé)
 - [] transmettre des élèves désactivés à un collègue (changement de classe)
-- [] supprimer des élèves (préciser qu'il s'agit d'une desactivation le carnet est toujours disponible)
+- [x] supprimer des élèves (préciser qu'il s'agit d'une desactivation le carnet est toujours disponible)
 - [] supprimer des observations (ou les editer ?)
 - [] import onde
 - [] exporter le carnet de suivi des élèves supprimés
