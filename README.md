@@ -31,11 +31,14 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 
 - [] permettre de proposer des fonctionnalités par "karma"
 - [] partie communautaire (forum ou message board interne)
-- [] gestion des parents (invitation à créer un compte spécial ou envoi de mails ?)
+- [] gestion des parents (invitation à créer un compte spécial ou envoi de mails ? lien pour PDF ?)
+- [] interface parent simplifiée
 - [] recherche de profs de la même école (par UAI ou code décidé en avance)
 - [] partager mes élèves à un prof
 - [] voir et évaluer les élèves partagés avec moi (module séparé)
-- [] supprimer des élèves
+- [] transmettre des élèves désactivés à un collègue (changement de classe)
+- [] supprimer des élèves (préciser qu'il s'agit d'une desactivation le carnet est toujours disponible)
+- [] supprimer des observations (ou les editer ?)
 - [] import onde
 - [] exporter le carnet de suivi des élèves supprimés
 - [] exporter le carnet de suivi en mode économe (noir et blanc, sans photo)
@@ -43,7 +46,9 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 - [] les parents voient le dernier point de suivi par défaut
 - [] intégration des points de suivis au carnet de suivi (option ou imposé ?)
 - [] ajout de multimédia aux observations (photo, audio, video)
-- [] tableau de bord classe
+- [] ajout de photos aux domaines / sousdomaines
+- [] tableau de bord classe (avec filtres domaines / sousdomaines)
+- [] tableau de bord eleve (avec filtres domaines / sousdomaines)
 - [] compte demo/test
 
 ## Todo technique
