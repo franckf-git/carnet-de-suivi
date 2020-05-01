@@ -13,50 +13,25 @@
       </div>
     </div>
 
-    <hr>
-
     <div class="box has-background-info">
       <div class="control">
         <input class="input" type="text" placeholder="Prénom de l'élève">
       </div>
     </div>
 
+    <hr>
+
+    <% if ( typeof listeEleves[0] === 'undefined') { %>
+    <h3 class="subtitle is-italic">Vous n'avez pas encore d'élèves.</h3>
+    <% } else { %>
+    <% listeEleves.forEach(eleve => { %>
     <div class="box has-background-grey-lighter">
       <div class="control">
-        <input class="input" type="text" value="Dormeur">
+        <input class="input" type="text" value="<%= eleve.nom %>">
       </div>
     </div>
-
-    <div class="box has-background-grey-lighter">
-      <div class="control">
-        <input class="input" type="text" value="Prof">
-      </div>
-    </div>
-
-    <div class="box has-background-grey-lighter">
-      <div class="control">
-        <input class="input" type="text" value="Atchoum">
-      </div>
-    </div>
-
-    <div class="box has-background-grey-lighter">
-      <div class="control">
-        <input class="input" type="text" value="Grincheux">
-      </div>
-    </div>
-
-    <div class="box has-background-grey-lighter">
-      <div class="control">
-        <input class="input" type="text" value="Timide">
-      </div>
-    </div>
-
-
-    <div class="box has-background-grey-lighter">
-      <div class="control">
-        <input class="input" type="text" value="Joyeux">
-      </div>
-    </div>
+    <% }); %>
+    <% } %>
 
   </div>
 </section>

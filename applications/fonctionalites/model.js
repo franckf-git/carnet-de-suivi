@@ -18,7 +18,7 @@ exports.recuperationElevesParIdUtilisateur = async (idUtilisateur) => {
   try {
     const recherche = await observations('eleves')
       .select()
-      .where({ idUtilisateur })
+      .where({ idUtilisateur, actif: 1 })
     const listeEleves = recherche
     return listeEleves
   } catch (error) {

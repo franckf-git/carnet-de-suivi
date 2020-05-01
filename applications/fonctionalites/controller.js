@@ -18,7 +18,6 @@ exports.eleves = async (req, res, next) => {
     const idUtilisateur = req.session.utilisateur
     const listeEleves = await recuperationElevesParIdUtilisateur(idUtilisateur)
     const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
-    console.log(listeEleves)
     res.render('./applications/fonctionalites/views/eleves', { pseudo, titre, listeEleves })
   } catch (error) {
     console.error(error)
