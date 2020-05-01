@@ -19,6 +19,7 @@ exports.recuperationElevesParIdUtilisateur = async (idUtilisateur) => {
     const recherche = await observations('eleves')
       .select()
       .where({ idUtilisateur, actif: 1 })
+      .orderBy('nom')
     const listeEleves = recherche
     return listeEleves
   } catch (error) {
