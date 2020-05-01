@@ -118,7 +118,7 @@ const buttonsSauver = document.querySelectorAll('#buttonSauver')
 
 champsEleves.forEach(element => {
   element.addEventListener('keyup', () => {
-    if (element.value.length < 3) {
+    if (element.value.length < 3 || element.value.length > 32) {
       alertesNom.forEach(item => item.classList.remove('is-hidden'))
       buttonsSauver.forEach(item => item.setAttribute('disabled', true))
     } else {
