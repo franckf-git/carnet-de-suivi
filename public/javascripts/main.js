@@ -121,50 +121,12 @@ const ajouterChampsNouvelEleve = () => {
 
 /* Edition eleve existant */
 
-const champsEleves = document.querySelectorAll('.input')
+const ligneEleves = document.querySelectorAll('.box-eleve')
 
-champsEleves.forEach(champsEleve => {
-  champsEleve.addEventListener('focus', () => {
-    const boxEleve = champsEleve.parentElement.parentElement.parentElement
-    const ligneEleve = champsEleve.parentElement.parentElement
-    boxEleve.classList.remove('has-background-grey-lighter')
-    boxEleve.classList.add('has-background-info')
-    ajouterBoutonsEditionEleve(ligneEleve)
-  })
-  champsEleve.addEventListener('focusout', () => {
-    const boxEleve = champsEleve.parentElement.parentElement.parentElement
-    boxEleve.classList.add('has-background-grey-lighter')
-    boxEleve.classList.remove('has-background-info')
-    retirerBoutonsEditionEleve()
+ligneEleves.forEach(ligneEleve => {
+  ligneEleve.addEventListener('click', () => {
+    const idEleve = ligneEleve.getAttribute('id')
+    const modal = document.getElementById(`modal-eleve ${idEleve}`)
+    modal.classList.add('is-active')
   })
 })
-
-const ajouterBoutonsEditionEleve = (champs) => {
-  const boutons = document.createElement('p')
-  champs.appendChild(boutons)
-  boutons.setAttribute('class', 'control')
-  boutons.setAttribute('id', 'boutonsEditionEleve')
-  boutons.innerHTML = `
-  <a class="button is-warning is-hidden-mobile">
-  Sauver
-  </a>
-  <a class="button is-danger is-hidden-mobile">
-  Désactiver
-  </a>
-  <a class="button is-warning is-hidden-tablet">
-  <figure class="image is-16x16">
-  <img src="/images/icones/save-regular.svg">
-  </figure>
-  </a>
-  <a class="button is-danger is-hidden-tablet">
-  <figure class="image is-16x16">
-  <img src="/images/icones/trash-alt-regular.svg">
-  </figure>
-  </a>
-`
-}
-
-const retirerBoutonsEditionEleve = () => {
-  const boutonsEditionEleve = document.querySelector('#boutonsEditionEleve')
-  boutonsEditionEleve.remove()
-}

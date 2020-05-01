@@ -21,13 +21,31 @@
     <h3 class="subtitle is-italic">Vous n'avez pas encore d'élèves.</h3>
     <% } else { %>
     <% listeEleves.forEach(eleve => { %>
-    <div class="box has-background-grey-lighter">
-      <div class="field is-grouped">
-        <p class="control is-expanded">
-          <input class="input" type="text" value="<%= eleve.nom %>">
-        </p>
-      </div>
+    <div class="box box-eleve has-background-grey-lighter is-font-secondary" id="<%= eleve.id %>">
+      <%= eleve.nom %>
     </div>
+
+    <div class="modal" id="modal-eleve <%= eleve.id %>">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <form action="/eleves/edition/<%= eleve.id %>" method="post">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Edition de l'élève</p>
+          </header>
+          <section class="modal-card-body">
+            <p class="control is-expanded">
+              <input class="input input-eleve is-font-secondary" type="text" value="<%= eleve.nom %>">
+            </p>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success" name="sauver">Sauver</button>
+            <button class="button is-danger" name="desactivation">Désactiver</button>
+          </footer>
+        </form>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
     <% }); %>
     <% } %>
 
