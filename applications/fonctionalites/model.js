@@ -46,3 +46,11 @@ exports.desactivationEleve = async (id) => {
     console.error(error)
   }
 }
+
+exports.ajoutEleveBDD = async (nom, idUtilisateur) => {
+  try {
+    await observations('eleves').insert({ nom, idUtilisateur })
+  } catch (error) {
+    console.error(error)
+  }
+}

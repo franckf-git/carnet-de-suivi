@@ -93,31 +93,11 @@ envoiInfosAnomyniseesSurUtilisation()
 /* Gestion des eleves */
 
 /* Ajout eleve */
-
 const buttonAjouterEleve = document.querySelectorAll('.demanderAjoutEleve')
-
+const formAjoutEleve = document.querySelector('#formAjoutEleve')
 buttonAjouterEleve.forEach(button => {
-  button.addEventListener('click', () => ajouterChampsNouvelEleve())
+  button.addEventListener('click', () => formAjoutEleve.classList.add('is-active'))
 })
-
-const ajouterChampsNouvelEleve = () => {
-  const emplacementPourFormulaire = document.querySelector('#formAjoutEleve')
-  const formulaireNouvelEleve = document.createElement('div')
-  emplacementPourFormulaire.after(formulaireNouvelEleve)
-  formulaireNouvelEleve.setAttribute('class', 'box has-background-info')
-  formulaireNouvelEleve.innerHTML = `
-    <div class="field is-grouped">
-      <p class="control is-expanded">
-        <input class="input" type="text" placeholder="Prénom de l'élève">
-      </p>
-      <p class="control">
-        <a class="button is-light">
-          Ajouter
-        </a>
-      </p>
-    </div>
-`
-}
 
 /* Edition eleve existant */
 

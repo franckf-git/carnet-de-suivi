@@ -3,8 +3,10 @@ const {
   recuperationElevesParIdUtilisateur,
   recuperationPseudoParIdUtilisateur,
   miseajourEleve,
-  desactivationEleve
+  desactivationEleve,
+  ajoutEleveBDD
 } = require('./model')
+const { nettoyageTotal } = require('./../utils')
 
 exports.acceuil = async (req, res, next) => {
   try {
@@ -38,6 +40,17 @@ exports.editionEleves = async (req, res, next) => {
     } else if (req.body.desactivation === '') {
       await desactivationEleve(id)
     }
+    res.redirect('/eleves')
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+exports.ajoutEleve = async (req, res, next) => {
+  try {
+    const nom = nettoyageTotal(req.body.nom)
+    const idUtilisateur = nettoyageTotal(req.session.utilisateur)
+    await ajoutEleveBDD(nom, idUtilisateur)
     res.redirect('/eleves')
   } catch (error) {
     console.error(error)
