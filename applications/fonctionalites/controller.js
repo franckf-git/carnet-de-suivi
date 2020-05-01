@@ -4,7 +4,7 @@ const { recuperationElevesParIdUtilisateur, recuperationPseudoParIdUtilisateur }
 exports.acceuil = async (req, res, next) => {
   try {
     const titre = 'Bonjour'
-    const id = req.session.user
+    const id = req.session.utilisateur
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
     res.render('./applications/fonctionalites/views/acceuil', { pseudo, titre })
   } catch (error) {
@@ -15,7 +15,7 @@ exports.acceuil = async (req, res, next) => {
 exports.eleves = async (req, res, next) => {
   try {
     const titre = 'Gestion des élèves'
-    const idUtilisateur = req.session.user
+    const idUtilisateur = req.session.utilisateur
     const listeEleves = await recuperationElevesParIdUtilisateur(idUtilisateur)
     const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
     console.log(listeEleves)
@@ -28,7 +28,7 @@ exports.eleves = async (req, res, next) => {
 exports.exportcsa = async (req, res, next) => {
   try {
     const titre = 'Export du carnet de suivi'
-    const id = req.session.user
+    const id = req.session.utilisateur
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
     res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
   } catch (error) {
@@ -39,7 +39,7 @@ exports.exportcsa = async (req, res, next) => {
 exports.observation = async (req, res, next) => {
   try {
     const titre = 'Créer une observation'
-    const id = req.session.user
+    const id = req.session.utilisateur
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
     res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
   } catch (error) {
@@ -50,7 +50,7 @@ exports.observation = async (req, res, next) => {
 exports.parents = async (req, res, next) => {
   try {
     const titre = 'Gestion des parents'
-    const id = req.session.user
+    const id = req.session.utilisateur
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
     res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
   } catch (error) {
@@ -61,7 +61,7 @@ exports.parents = async (req, res, next) => {
 exports.partage = async (req, res, next) => {
   try {
     const titre = 'Partage d\'élèves'
-    const id = req.session.user
+    const id = req.session.utilisateur
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
     res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
   } catch (error) {
@@ -72,7 +72,7 @@ exports.partage = async (req, res, next) => {
 exports.suivis = async (req, res, next) => {
   try {
     const titre = 'Points de suivi'
-    const id = req.session.user
+    const id = req.session.utilisateur
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
     res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
   } catch (error) {

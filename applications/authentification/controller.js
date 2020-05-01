@@ -62,7 +62,7 @@ exports.connexionUtilisateur = async (req, res, next) => {
     }
 
     const recuperationIdUtilisateur = await recuperationIdUtilisateurBdd(champsFormulaire.email)
-    req.session.user = recuperationIdUtilisateur
+    req.session.utilisateur = recuperationIdUtilisateur
     res.redirect('/acceuil')
   } catch (error) {
     console.error(error)

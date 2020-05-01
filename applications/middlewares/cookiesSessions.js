@@ -1,7 +1,7 @@
 'use strict'
 
 exports.siAuthentifie = async (req, res, next) => {
-  if (req.session.user && req.session.cookie) {
+  if (req.session.utilisateur && req.session.cookie) {
     return next()
   } else {
     res.redirect('/connexion')
@@ -9,7 +9,7 @@ exports.siAuthentifie = async (req, res, next) => {
 }
 
 exports.dejaAuthentifie = async (req, res, next) => {
-  if (req.session.user && req.session.cookie) {
+  if (req.session.utilisateur && req.session.cookie) {
     res.redirect('/acceuil')
   } else {
     return next()
@@ -17,7 +17,7 @@ exports.dejaAuthentifie = async (req, res, next) => {
 }
 
 exports.siAuthentifieAPI = async (req, res, next) => {
-  if (req.session.user && req.session.cookie) {
+  if (req.session.utilisateur && req.session.cookie) {
     return next()
   } else {
     res.status(401)
