@@ -24,6 +24,24 @@ exports.eleves = async (req, res, next) => {
   }
 }
 
+exports.editionEleves = async (req, res, next) => {
+  try {
+    const { id } = req.params
+    if (req.body.sauver === '') {
+      const { nom } = req.body
+      console.log(nom);
+
+    } else if (req.body.desactivation === '') {
+      console.log(id);
+
+    }
+
+    res.redirect('/eleves');
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 exports.exportcsa = async (req, res, next) => {
   try {
     const titre = 'Export du carnet de suivi'
