@@ -29,6 +29,7 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 
 ## Fonctionnalitées à venir
 
+- [] message premiere fois avec tuto rapide
 - [] permettre de proposer des fonctionnalités par "karma"
 - [] partie communautaire (forum ou message board interne)
 - [] gestion des parents (invitation à créer un compte spécial ou envoi de mails ? lien pour PDF ?)
