@@ -1,5 +1,10 @@
 'use strict'
-const { recuperationElevesParIdUtilisateur, recuperationPseudoParIdUtilisateur } = require('./model')
+const {
+  recuperationElevesParIdUtilisateur,
+  recuperationPseudoParIdUtilisateur,
+  miseajourEleve,
+  desactivationEleve
+} = require('./model')
 
 exports.acceuil = async (req, res, next) => {
   try {
@@ -29,14 +34,11 @@ exports.editionEleves = async (req, res, next) => {
     const { id } = req.params
     if (req.body.sauver === '') {
       const { nom } = req.body
-      console.log(nom);
-
+      await miseajourEleve(id, nom)
     } else if (req.body.desactivation === '') {
-      console.log(id);
-
+      await desactivationEleve(id)
     }
-
-    res.redirect('/eleves');
+    res.redirect('/eleves')
   } catch (error) {
     console.error(error)
   }

@@ -26,3 +26,23 @@ exports.recuperationElevesParIdUtilisateur = async (idUtilisateur) => {
     console.error(error)
   }
 }
+
+exports.miseajourEleve = async (id, nom) => {
+  try {
+    await observations('eleves')
+      .update({ nom })
+      .where({ id })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+exports.desactivationEleve = async (id) => {
+  try {
+    await observations('eleves')
+      .update({ actif: 0 })
+      .where({ id })
+  } catch (error) {
+    console.error(error)
+  }
+}
