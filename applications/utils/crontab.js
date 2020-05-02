@@ -19,6 +19,7 @@ exports.sauvegardeBasedeDonnees = () => {
     dumpBDD('core')
     dumpBDD('statistiques')
     dumpBDD('observations')
+    dumpBDD('referentiel')
   })
   job.start()
 }
