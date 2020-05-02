@@ -35,10 +35,10 @@ exports.initialisationBDDReferentiel = () => {
         })
       }
     })
-  referentiel.schema.hasTable('sousdomaines')
+  referentiel.schema.hasTable('objectifs')
     .then((exists) => {
       if (!exists) {
-        return referentiel.schema.createTable('sousdomaines', (table) => {
+        return referentiel.schema.createTable('objectifs', (table) => {
           table.increments()
             .primary()
             .index()
@@ -46,22 +46,22 @@ exports.initialisationBDDReferentiel = () => {
             .index()
           table.foreign('idDomaine')
             .references('domaines.id')
-          table.string('sousdomaine')
+          table.string('objectif')
         })
       }
     })
-  referentiel.schema.hasTable('observables')
+  referentiel.schema.hasTable('attendus')
     .then((exists) => {
       if (!exists) {
-        return referentiel.schema.createTable('observables', (table) => {
+        return referentiel.schema.createTable('attendus', (table) => {
           table.increments()
             .primary()
             .index()
-          table.integer('idSousDomaine')
+          table.integer('idObjectif')
             .index()
-          table.foreign('idSousDomaine')
-            .references('sousdomaines.id')
-          table.string('observable')
+          table.foreign('idObjectif')
+            .references('objectifs.id')
+          table.string('attendu')
         })
       }
     })
