@@ -60,6 +60,7 @@ exports.verificationPresenceEleves = async (idUtilisateur) => {
     const recherche = await observations('eleves')
       .select()
       .where({ idUtilisateur, actif: 1 })
+      .limit(1)
     if (typeof recherche[0] === 'undefined') {
       return false
     } else {
