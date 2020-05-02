@@ -4,7 +4,8 @@ const {
   recuperationPseudoParIdUtilisateur,
   miseajourEleve,
   desactivationEleve,
-  ajoutEleveBDD
+  ajoutEleveBDD,
+  verificationPresenceEleves
 } = require('./model')
 const { nettoyageTotal } = require('./../utils')
 
@@ -73,7 +74,11 @@ exports.observation = async (req, res, next) => {
     const titre = 'Créer une observation'
     const id = req.session.utilisateur
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
-    res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
+    const elevesPresents = await verificationPresenceEleves(id)
+    if (!elevesPresents) {
+      return res.render('./applications/fonctionalites/views/elevesAbsents', { pseudo, titre })
+    }
+    res.render('./applications/fonctionalites/views/observation', { pseudo, titre })
   } catch (error) {
     console.error(error)
   }

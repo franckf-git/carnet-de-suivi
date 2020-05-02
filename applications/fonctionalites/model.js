@@ -54,3 +54,18 @@ exports.ajoutEleveBDD = async (nom, idUtilisateur) => {
     console.error(error)
   }
 }
+
+exports.verificationPresenceEleves = async (idUtilisateur) => {
+  try {
+    const recherche = await observations('eleves')
+      .select()
+      .where({ idUtilisateur, actif: 1 })
+    if (typeof recherche[0] === 'undefined') {
+      return false
+    } else {
+      return true
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
