@@ -69,6 +69,7 @@ config/index.js
 # SQlite file for bdd
 basededonnees/*.sqlite
 basededonnees/dumps/*.sql
+!basededonnees/referentiel.sqlite
 
 # Dump Redis
 dump.rdb

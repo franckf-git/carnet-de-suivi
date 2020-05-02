@@ -6,7 +6,8 @@ module.exports = {
   SQLITE_AIDE: './basededonnees/aide.sqlite',
   SQLITE_CORE: './basededonnees/core.sqlite',
   SQLITE_STATS: './basededonnees/statistiques.sqlite',
-  SQLITE_OBSERVATIONS: './basededonnees/observations.sqlite'
+  SQLITE_OBSERVATIONS: './basededonnees/observations.sqlite',
+  SQLITE_REFERENTIEL: './basededonnees/referentiel.sqlite'
 }
 
 module.exports.MAIL = {
