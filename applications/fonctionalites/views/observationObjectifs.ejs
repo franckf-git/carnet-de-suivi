@@ -1,0 +1,15 @@
+<% include ./../../views/headerConnecte %>
+
+<section class="section">
+    <div class="container has-text-centered">
+
+        <% objectifsDuDomaine.forEach(objectif => { %>
+        <div class="box is-font-secondary" id="<%= objectif.id %>">
+            <%= objectif.objectif %>
+        </div>
+        <% }); %>
+
+    </div>
+</section>
+
+<% include ./../../views/footer %>
