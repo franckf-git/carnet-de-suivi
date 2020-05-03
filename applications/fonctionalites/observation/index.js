@@ -12,4 +12,12 @@ router.get('/artistique', siAuthentifie, observation)
 router.get('/construire', siAuthentifie, observation)
 router.get('/explore', siAuthentifie, observation)
 
+router.post('/', siAuthentifie, async (req, res, next) => {
+    try {
+        console.log(req.body);
+    } catch (error) {
+        console.error(error)
+    }
+})
+
 module.exports = router

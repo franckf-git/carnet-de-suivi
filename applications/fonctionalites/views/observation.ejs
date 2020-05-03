@@ -2,10 +2,35 @@
 
 <section class="section">
     <div class="container has-text-centered">
-        <h1 class="title has-text-centered">Choisissez un domaine :</h1>
+
+        <section class="section">
+            <div class="container">
+                <h1 class="subtitle has-text-centered">Entrez votre nouvelle activité :</h1>
+                <form id="titreActivite" action="/observation" method="post">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-font-secondary" type="text" id="champsTitre" name="titre"
+                                placeholder="Titre de l'activité (obligatoire)" required>
+                        </div>
+                        <p class="help is-danger" id="alerteLongeur">Le titre doit comporter au moins 3 lettres et 40
+                            maximum.
+                        </p>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <textarea class="textarea is-font-secondary" name="description"
+                                placeholder="Description (optionnel)"></textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" id="valeurDomaine" name="domaine">
+                </form>
+            </div>
+        </section>
+
+        <h1 class="subtitle has-text-centered">Et choisissez un domaine d'évaluation :</h1>
         <div class="columns is-multiline">
             <div class="column is-6 is-4-desktop">
-                <a class="card has-text-centered" href="/observation/oral">
+                <a class="card has-text-centered" id="domaine" data-value="1">
                     <div class="card-header-title is-centered has-background-grey-light">
                         <figure class="image is-128x128">
                             <img src="./images/illustrations/undraw_happy_music_g6wc.svg">
@@ -20,7 +45,7 @@
                 </a>
             </div>
             <div class="column is-6 is-4-desktop">
-                <a class="card has-text-centered" href="/observation/ecrit">
+                <a class="card has-text-centered" id="domaine" data-value="2">
                     <div class="card-header-title is-centered has-background-grey-lighter">
                         <figure class="image is-128x128">
                             <img src="./images/illustrations/undraw_book_lover_mkck.svg">
@@ -35,7 +60,7 @@
                 </a>
             </div>
             <div class="column is-6 is-4-desktop">
-                <a class="card has-text-centered" href="/observation/physique">
+                <a class="card has-text-centered" id="domaine" data-value="3">
                     <div class="card-header-title is-centered has-background-grey-light">
                         <figure class="image is-128x128">
                             <img src="./images/illustrations/undraw_physique.svg">
@@ -50,7 +75,7 @@
                 </a>
             </div>
             <div class="column is-6 is-4-desktop">
-                <a class="card has-text-centered" href="/observation/artistique">
+                <a class="card has-text-centered" id="domaine" data-value="4">
                     <div class="card-header-title is-centered has-background-grey-lighter">
                         <figure class="image is-128x128">
                             <img src="./images/illustrations/undraw_making_art_759c.svg">
@@ -65,7 +90,7 @@
                 </a>
             </div>
             <div class="column is-6 is-4-desktop">
-                <a class="card has-text-centered" href="/observation/construire">
+                <a class="card has-text-centered" id="domaine" data-value="5">
                     <div class="card-header-title is-centered has-background-grey-light">
                         <figure class="image is-128x128">
                             <img src="./images/illustrations/undraw_game_world_0o6q.svg">
@@ -80,7 +105,7 @@
                 </a>
             </div>
             <div class="column is-6 is-4-desktop">
-                <a class="card has-text-centered" href="/observation/explore">
+                <a class="card has-text-centered" id="domaine" data-value="6">
                     <div class="card-header-title is-centered has-background-grey-lighter">
                         <figure class="image is-128x128">
                             <img src="./images/illustrations/undraw_true_love_cy8x.svg">
