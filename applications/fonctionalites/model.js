@@ -1,6 +1,7 @@
 'use strict'
 const core = require('./../../config/basededonnees/core')
 const observations = require('./../../config/basededonnees/observations')
+const referentiel = require('./../../config/basededonnees/referentiel')
 
 exports.recuperationPseudoParIdUtilisateur = async (id) => {
   try {
@@ -66,6 +67,23 @@ exports.verificationPresenceEleves = async (idUtilisateur) => {
     } else {
       return true
     }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+exports.enregistrementNouvelleObservationDomaineBDD = async (idUtilisateur, titre, description, idDomaine) => {
+  try {
+    await observations('observations').insert({ idUtilisateur, titre, description, idDomaine })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+exports.recuperationObjectifsDuDomaine = async (idDomaine) => {
+  try {
+    const recherche = await referentiel('objectifs').select().where({ idDomaine })
+    return recherche
   } catch (error) {
     console.error(error)
   }

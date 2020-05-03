@@ -5,7 +5,9 @@ const {
   miseajourEleve,
   desactivationEleve,
   ajoutEleveBDD,
-  verificationPresenceEleves
+  verificationPresenceEleves,
+  enregistrementNouvelleObservationDomaineBDD,
+  recuperationObjectifsDuDomaine
 } = require('./model')
 const { nettoyageTotal } = require('./../utils')
 
@@ -50,7 +52,7 @@ exports.editionEleves = async (req, res, next) => {
 exports.ajoutEleve = async (req, res, next) => {
   try {
     const nom = nettoyageTotal(req.body.nom)
-    const idUtilisateur = nettoyageTotal(req.session.utilisateur)
+    const idUtilisateur = req.session.utilisateur
     await ajoutEleveBDD(nom, idUtilisateur)
     res.redirect('/eleves')
   } catch (error) {
@@ -79,6 +81,25 @@ exports.domaine = async (req, res, next) => {
       return res.render('./applications/fonctionalites/views/elevesAbsents', { pseudo, titre })
     }
     res.render('./applications/fonctionalites/views/observationDomaine', { pseudo, titre })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+exports.nouvelleObservationDomaine = async (req, res, next) => {
+  try {
+    const idUtilisateur = req.session.utilisateur
+    const titreActivite = nettoyageTotal(req.body.titre)
+    const description = nettoyageTotal(req.body.description)
+    const domaine = nettoyageTotal(req.body.domaine)
+    await enregistrementNouvelleObservationDomaineBDD(idUtilisateur,
+      titreActivite,
+      description,
+      domaine)
+    const objectifsDuDomaine = await recuperationObjectifsDuDomaine(domaine)
+    const titre = 'Choisir les objectifs'
+    const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
+    res.render('./applications/fonctionalites/views/observationObjectifs', { pseudo, titre, objectifsDuDomaine })
   } catch (error) {
     console.error(error)
   }
