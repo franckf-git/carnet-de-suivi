@@ -69,7 +69,7 @@ exports.exportcsa = async (req, res, next) => {
   }
 }
 
-exports.observation = async (req, res, next) => {
+exports.domaine = async (req, res, next) => {
   try {
     const titre = 'Créer une observation'
     const id = req.session.utilisateur
@@ -78,7 +78,7 @@ exports.observation = async (req, res, next) => {
     if (!elevesPresents) {
       return res.render('./applications/fonctionalites/views/elevesAbsents', { pseudo, titre })
     }
-    res.render('./applications/fonctionalites/views/observation', { pseudo, titre })
+    res.render('./applications/fonctionalites/views/observationDomaine', { pseudo, titre })
   } catch (error) {
     console.error(error)
   }
