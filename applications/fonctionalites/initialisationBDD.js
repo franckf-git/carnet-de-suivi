@@ -19,6 +19,24 @@ exports.initialisationBDDObservations = () => {
         })
       }
     })
+  observations.schema.hasTable('observations')
+    .then((exists) => {
+      if (!exists) {
+        return observations.schema.createTable('observations', (table) => {
+          table.increments()
+            .primary()
+            .index()
+          table.integer('idUtilisateur')
+            .index()
+          table.integer('idDomaine')
+            .index()
+          table.string('titre')
+          table.string('description')
+          table.timestamp('creation')
+            .defaultTo(observations.fn.now())
+        })
+      }
+    })
 }
 
 const referentiel = require('./../../config/basededonnees/referentiel')
