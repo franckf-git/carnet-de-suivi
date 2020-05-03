@@ -1,8 +1,21 @@
 const envoiInfosAnomyniseesSurUtilisation = () => {
+  const listCookies = document.cookie.split('; ')
+  const cookiesSansValeurs = []
+  listCookies.forEach(element => {
+    const search = element.split('=')[0]
+    cookiesSansValeurs.push(search)
+  })
+  if (!cookiesSansValeurs.includes('uuidStatsAnonym')) {
+    const uuid = Math.random()
+      .toString(16)
+      .slice(2)
+    document.cookie = `uuidStatsAnonym=${uuid}`
+  }
+
   const intervalSec = 15
 
   // retourne la valeur d'un cookie passé en argument - source w3schools.com
-  function getCookie (cname) {
+  function getCookie(cname) {
     var name = cname + '='
     var decodedCookie = decodeURIComponent(document.cookie)
     var ca = decodedCookie.split(';')
