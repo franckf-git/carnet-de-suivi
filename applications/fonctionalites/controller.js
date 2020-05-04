@@ -7,7 +7,8 @@ const {
   ajoutEleveBDD,
   verificationPresenceEleves,
   enregistrementNouvelleObservationDomaineBDD,
-  recuperationObjectifsDuDomaine
+  recuperationObjectifsDuDomaine,
+  recuperationAttendusDelObjectif
 } = require('./model')
 const { nettoyageTotal } = require('./../utils')
 
@@ -96,10 +97,24 @@ exports.nouvelleObservationDomaine = async (req, res, next) => {
       titreActivite,
       description,
       domaine)
+
     const objectifsDuDomaine = await recuperationObjectifsDuDomaine(domaine)
+    const creationArborescenceReferentiel = async (objectifsDuDomaine) => {
+      // on utilise map car forEach ne fonctionne pas avec await
+      const arborescenceItems = await objectifsDuDomaine.map(async (objectif) => {
+        const idObjectif = objectif.id
+        const attendusDelObjectif = await recuperationAttendusDelObjectif(idObjectif)
+        const arborescenceItem = { objectif, attendusDelObjectif }
+        return arborescenceItem
+      })
+      const arborescenceReferentiel = await Promise.all(arborescenceItems)
+      return arborescenceReferentiel
+    }
+    const arborescenceReferentiel = await creationArborescenceReferentiel(objectifsDuDomaine)
+
     const titre = 'Choisir les objectifs'
     const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
-    res.render('./applications/fonctionalites/views/observationObjectifs', { pseudo, titre, objectifsDuDomaine, nouvelleEntreeDomaine })
+    res.render('./applications/fonctionalites/views/observationObjectifs', { pseudo, titre, arborescenceReferentiel, nouvelleEntreeDomaine })
   } catch (error) {
     console.error(error)
   }

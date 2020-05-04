@@ -88,3 +88,12 @@ exports.recuperationObjectifsDuDomaine = async (idDomaine) => {
     console.error(error)
   }
 }
+
+exports.recuperationAttendusDelObjectif = async (idObjectif) => {
+  try {
+    const recherche = await referentiel('attendus').select().where({ idObjectif })
+    return recherche
+  } catch (error) {
+    console.error(error)
+  }
+}
