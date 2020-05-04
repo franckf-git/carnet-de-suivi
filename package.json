@@ -36,7 +36,7 @@
     "redis": "^3.0.2",
     "sanitize-filename": "^1.6.3",
     "sanitize-html": "^1.23.0",
-    "sqlite3": "^4.1.1",
+    "sqlite3": "^4.2.0",
     "uuid": "^7.0.3",
     "validator": "^13.0.0"
   },
