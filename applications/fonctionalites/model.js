@@ -74,7 +74,7 @@ exports.verificationPresenceEleves = async (idUtilisateur) => {
 
 exports.enregistrementNouvelleObservationDomaineBDD = async (idUtilisateur, titre, description, idDomaine) => {
   try {
-    await observations('observations').insert({ idUtilisateur, titre, description, idDomaine })
+    return await observations('observations').insert({ idUtilisateur, titre, description, idDomaine })
   } catch (error) {
     console.error(error)
   }

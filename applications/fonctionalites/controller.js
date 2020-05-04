@@ -92,14 +92,14 @@ exports.nouvelleObservationDomaine = async (req, res, next) => {
     const titreActivite = nettoyageTotal(req.body.titre)
     const description = nettoyageTotal(req.body.description)
     const domaine = nettoyageTotal(req.body.domaine)
-    await enregistrementNouvelleObservationDomaineBDD(idUtilisateur,
+    const nouvelleEntreeDomaine = await enregistrementNouvelleObservationDomaineBDD(idUtilisateur,
       titreActivite,
       description,
       domaine)
     const objectifsDuDomaine = await recuperationObjectifsDuDomaine(domaine)
     const titre = 'Choisir les objectifs'
     const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
-    res.render('./applications/fonctionalites/views/observationObjectifs', { pseudo, titre, objectifsDuDomaine })
+    res.render('./applications/fonctionalites/views/observationObjectifs', { pseudo, titre, objectifsDuDomaine, nouvelleEntreeDomaine })
   } catch (error) {
     console.error(error)
   }
