@@ -120,6 +120,17 @@ exports.nouvelleObservationDomaine = async (req, res, next) => {
   }
 }
 
+exports.nouvelleObservationObjetAtt = async (req, res, next) => {
+  try {
+
+    const titre = 'Evaluer vos élèves'
+    const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
+    res.render('./applications/fonctionalites/views/observationEvaluation', { pseudo, titre })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 exports.parents = async (req, res, next) => {
   try {
     const titre = 'Gestion des parents'
