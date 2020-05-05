@@ -17,21 +17,27 @@
                         Evaluer avec cet attendu
                     </button>
                 </a>
-                <p class="has-text-primary">
-                    ou utilisez un élément du référentiel officiel :
-                </p>
-                <% objectif.attendusDelObjectif.forEach(attendu => { %>
-                <a class="navbar-item" id="<%= attendu.id %>">
-                    <%= attendu.attendu %>
-                </a>
                 <input type="hidden" value="<%= objectif.objectif.id %>" name="idOjectif">
                 <input type="hidden" value="<%= nouvelleEntreeDomaine %>" name="idObservation">
             </form>
+            <p class="has-text-primary">
+                ou utilisez un élément du référentiel officiel :
+            </p>
+            <% objectif.attendusDelObjectif.forEach(attendu => { %>
+            <a class="navbar-item has-text-left" data-value="<%= attendu.id %>" id="attenduReferentiel">
+                <%= attendu.attendu %>
+            </a>
+            <hr class="navbar-divider">
             <% }); %>
         </div>
         <hr>
         <% }); %>
 
 </section>
+
+<form id="choixAttendus" action="/observation/evaluation/" method="post">
+    <input type="hidden" name="idAttendu" id="choixAttendu">
+    <input type="hidden" value="<%= nouvelleEntreeDomaine %>" name="idObservation">
+</form>
 
 <% include ./../../views/footer %>
