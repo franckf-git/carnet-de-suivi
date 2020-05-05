@@ -6,6 +6,7 @@ import envoiInfosAnomyniseesSurUtilisation from './statistiques.js'
 import fermetureNotifs from './fermetureNotifs.js'
 import formulaireTitreObservable from './formulaireTitreObservable.js'
 import gestionEleves from './gestionEleves.js'
+import ouvertureAccordions from './ouvertureAccordions.js'
 import retourEnHaut from './retourEnHaut.js'
 
 acceptationCGU()
@@ -16,4 +17,5 @@ controllerModals()
 fermetureNotifs()
 formulaireTitreObservable()
 gestionEleves()
+ouvertureAccordions()
 retourEnHaut()

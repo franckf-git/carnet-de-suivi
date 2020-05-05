@@ -1,16 +1,33 @@
 <% include ./../../views/headerConnecte %>
 
-<section class="section">
-    <div class="container has-text-centered">
-        <p><%= nouvelleEntreeDomaine %></p>
 
-        <% objectifsDuDomaine.forEach(objectif => { %>
-        <div class="box is-font-secondary" id="<%= objectif.id %>">
-            <%= objectif.objectif %>
+<section class="section">
+
+    <div class="container has-text-centered">
+        <h1 class="subtitle">Choisissez votre objectif et ce qui est attendu des élèves :</h1>
+        <p class="is-hidden"><%= nouvelleEntreeDomaine %></p>
+
+        <% arborescenceReferentiel.forEach(objectif => { %>
+        <button class="accordion has-background-grey-lighter"><%= objectif.objectif.objectif %></button>
+        <div class="panel">
+            <a class="navbar-item">
+                <input class="input is-font-secondary" type="text" placeholder="Votre attendu personnalisé">
+                <a class="button is-info">
+                    Evaluer avec cet attendu
+                </a>
+            </a>
+            <p class="has-text-primary">
+                ou utilisez un élément du référentiel officiel :
+            </p>
+            <% objectif.attendusDelObjectif.forEach(attendu => { %>
+            <a class="navbar-item">
+                <%= attendu.attendu %>
+            </a>
+            <% }); %>
         </div>
+        <hr>
         <% }); %>
 
-    </div>
 </section>
 
 <% include ./../../views/footer %>

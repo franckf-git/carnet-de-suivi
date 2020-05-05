@@ -39,3 +39,20 @@
 * {
   font-family: comfortaa !important;
 }
+
+/* element personnalisé Accordeon https://www.w3schools.com/howto/howto_js_accordion.asp */
+.accordion {
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+/* transition: 0.4s;*/
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+} 
