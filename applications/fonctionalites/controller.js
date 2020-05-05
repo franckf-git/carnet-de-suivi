@@ -122,6 +122,8 @@ exports.nouvelleObservationDomaine = async (req, res, next) => {
 
 exports.nouvelleObservationObjetAtt = async (req, res, next) => {
   try {
+    const idUtilisateur = req.session.utilisateur
+    console.log(req.body);
 
     const titre = 'Evaluer vos élèves'
     const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)

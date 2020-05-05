@@ -5,24 +5,28 @@
 
     <div class="container has-text-centered">
         <h1 class="subtitle">Choisissez votre objectif et ce qui est attendu des élèves :</h1>
-        <p class="is-hidden"><%= nouvelleEntreeDomaine %></p>
 
         <% arborescenceReferentiel.forEach(objectif => { %>
         <button class="accordion has-background-grey-lighter"><%= objectif.objectif.objectif %></button>
         <div class="panel">
-            <a class="navbar-item">
-                <input class="input is-font-secondary" type="text" placeholder="Votre attendu personnalisé">
-                <a class="button is-info">
-                    Evaluer avec cet attendu
+            <form action="/observation/evaluation" method="post">
+                <a class="navbar-item">
+                    <input class="input is-font-secondary" type="text" name="attenduPersonalise"
+                        placeholder="Votre attendu personnalisé" required>
+                    <button class="button is-info" type="submit">
+                        Evaluer avec cet attendu
+                    </button>
                 </a>
-            </a>
-            <p class="has-text-primary">
-                ou utilisez un élément du référentiel officiel :
-            </p>
-            <% objectif.attendusDelObjectif.forEach(attendu => { %>
-            <a class="navbar-item">
-                <%= attendu.attendu %>
-            </a>
+                <p class="has-text-primary">
+                    ou utilisez un élément du référentiel officiel :
+                </p>
+                <% objectif.attendusDelObjectif.forEach(attendu => { %>
+                <a class="navbar-item" id="<%= attendu.id %>">
+                    <%= attendu.attendu %>
+                </a>
+                <input type="hidden" value="<%= objectif.objectif.id %>" name="idOjectif">
+                <input type="hidden" value="<%= nouvelleEntreeDomaine %>" name="idObservation">
+            </form>
             <% }); %>
         </div>
         <hr>
