@@ -20,6 +20,9 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 
 ---
 
+## Bugs (aka feature)
+- [] les retours à la ligne ne sont pas pris en compte dans la description de l'activité
+
 ## Fonctionnalitées PMV
 
 - [x] ajouter des élèves
@@ -62,3 +65,5 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 - [] tests unitaires
 - [] api de maintenance/administration (dump, stats, changement de niveau de logs)
 - [] application mobile
+- [] refactorisation et normalisation du JS côté client
+- [] repasser sur les ENV pour mettre l'application - production ready -
