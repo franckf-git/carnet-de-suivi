@@ -124,16 +124,17 @@ exports.nouvelleObservationDomaine = async (req, res, next) => {
 exports.nouvelleObservationChoixAttendu = async (req, res, next) => {
   try {
     const idUtilisateur = req.session.utilisateur
+    let { attenduPersonnalise } = req.body
     const {
-      attenduPersonnalise,
       idObjectif,
       idObservation,
       idAttendu
     } = req.body
 
     if (typeof attenduPersonnalise !== 'undefined') {
+      attenduPersonnalise = nettoyageTotal(attenduPersonnalise)
       const idAttenduPersonnalise = await nouvelAttenduPersonnalise(idUtilisateur, attenduPersonnalise, idObjectif)
-      await miseaJourObservationAvecAttendu(idObservation, idAttenduPersonnalise, 0)
+      await miseaJourObservationAvecAttendu(idObservation, idAttenduPersonnalise[0], 0)
     } else {
       await miseaJourObservationAvecAttendu(idObservation, idAttendu, 1)
     }

@@ -112,7 +112,7 @@ exports.nouvelAttenduPersonnalise = async (idUtilisateur, attenduPersonnalise, i
 
 exports.miseaJourObservationAvecAttendu = async (idObservation, idAttendu, referentielOfficiel) => {
   try {
-    return await observations('observations').update({ idAttendu, referentielOfficiel }).where({ idObservation })
+    return await observations('observations').update({ idAttendu, referentielOfficiel }).where({ id: idObservation })
   } catch (error) {
     console.error(error)
   }
