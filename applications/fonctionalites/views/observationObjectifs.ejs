@@ -11,14 +11,14 @@
         <div class="panel">
             <form action="/observation/evaluation" method="post">
                 <a class="navbar-item">
-                    <input class="input is-font-secondary" type="text" name="attenduPersonalise"
+                    <input class="input is-font-secondary" type="text" name="attenduPersonnalise"
                         placeholder="Votre attendu personnalisé" required>
                     <button class="button is-info" type="submit">
                         Evaluer avec cet attendu
                     </button>
                 </a>
-                <input type="hidden" value="<%= objectif.objectif.id %>" name="idOjectif">
-                <input type="hidden" value="<%= nouvelleEntreeDomaine %>" name="idObservation">
+                <input type="hidden" value="<%= objectif.objectif.id %>" name="idObjectif">
+                <input type="hidden" value="<%= nouvelleEntreeObservation %>" name="idObservation">
             </form>
             <p class="has-text-primary">
                 ou utilisez un élément du référentiel officiel :
@@ -37,7 +37,7 @@
 
 <form id="choixAttendus" action="/observation/evaluation/" method="post">
     <input type="hidden" name="idAttendu" id="choixAttendu">
-    <input type="hidden" value="<%= nouvelleEntreeDomaine %>" name="idObservation">
+    <input type="hidden" value="<%= nouvelleEntreeObservation %>" name="idObservation">
 </form>
 
 <% include ./../../views/footer %>
