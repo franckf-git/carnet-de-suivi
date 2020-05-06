@@ -10,7 +10,9 @@ const {
   recuperationObjectifsDuDomaine,
   recuperationAttendusDelObjectif,
   nouvelAttenduPersonnalise,
-  miseaJourObservationAvecAttendu
+  miseaJourObservationAvecAttendu,
+  recuperationTitreActivite,
+  recuperationAttenduEvalue
 } = require('./model')
 const { nettoyageTotal } = require('./../utils')
 
@@ -140,10 +142,12 @@ exports.nouvelleObservationChoixAttendu = async (req, res, next) => {
     }
 
     const listeEleves = await recuperationElevesParIdUtilisateur(idUtilisateur)
+    const titreActivite = await recuperationTitreActivite(idObservation)
+    const attenduEvalue = await recuperationAttenduEvalue(idObservation)
 
     const titre = 'Evaluer vos élèves'
     const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
-    res.render('./applications/fonctionalites/views/observationEvaluation', { pseudo, titre, idObservation, listeEleves })
+    res.render('./applications/fonctionalites/views/observationEvaluation', { pseudo, titre, titreActivite, attenduEvalue, idObservation, listeEleves })
   } catch (error) {
     console.error(error)
   }

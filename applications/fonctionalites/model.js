@@ -117,3 +117,29 @@ exports.miseaJourObservationAvecAttendu = async (idObservation, idAttendu, refer
     console.error(error)
   }
 }
+
+exports.recuperationTitreActivite = async (idObservation) => {
+  try {
+    const recherche = await observations('observations').select('titre').where({ id: idObservation })
+    return recherche[0].titre
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+exports.recuperationAttenduEvalue = async (idObservation) => {
+  try {
+    const recherche = await observations('observations').select('idAttendu', 'referentielOfficiel').where({ id: idObservation })
+    const idAttendu = recherche[0].idAttendu
+    const referentielOfficiel = recherche[0].referentielOfficiel
+    if (referentielOfficiel) {
+      const attendu = await referentiel('attendus').select('attendu').where({ id: idAttendu })
+      return attendu[0].attendu
+    } else {
+      const attendu = await observations('attendusPersonnalises').select('attendu').where({ id: idAttendu })
+      return attendu[0].attendu
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
