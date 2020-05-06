@@ -1,0 +1,45 @@
+<% include ./../../views/headerConnecte %>
+
+<section class="section">
+    <div class="container has-text-centered">
+
+        <h1 class="subtitle"><%= titreActivite %></h1>
+
+        <div class="is-hidden"><%= idObservation %></div>
+
+        <% listeEleves.forEach(eleve => { %>
+        <div class="box box-eleve has-background-grey-lighter is-font-secondary" id="<%= eleve.id %>">
+            <%= eleve.nom %>
+            <span class="tag is-info is-pulled-right">OK</span>
+        </div>
+
+        <div class="modal" id="modal-eleve <%= eleve.id %>">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <form action="" method="post">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Evaluation de <%= eleve.nom %></p>
+                    </header>
+                    <section class="modal-card-body">
+                        <p><%= attenduEvalue %></p>
+                        <div class="columns">
+                            <div class="column"><button class="button is-success">bien</button></div>
+                            <div class="column"><button class="button is-info">pasbien</button></div>
+                            <div class="column"><button class="button is-danger">mauvais</button></div>
+                        </div>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button class="button is-fullwidth">Précédent</button>
+                        <button class="button is-primary is-fullwidth">Suivant</button>
+                    </footer>
+                </form>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+        <% }); %>
+
+    </div>
+</section>
+
+<% include ./../../views/footer %>
