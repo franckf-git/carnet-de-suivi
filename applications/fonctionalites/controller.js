@@ -6,9 +6,11 @@ const {
   desactivationEleve,
   ajoutEleveBDD,
   verificationPresenceEleves,
-  enregistrementNouvelleObservationDomaineBDD,
+  enregistrementNouvelleObservationBDD,
   recuperationObjectifsDuDomaine,
-  recuperationAttendusDelObjectif
+  recuperationAttendusDelObjectif,
+  nouvelAttenduPersonnalise,
+  miseaJourObservationAvecAttendu
 } = require('./model')
 const { nettoyageTotal } = require('./../utils')
 
@@ -93,10 +95,9 @@ exports.nouvelleObservationDomaine = async (req, res, next) => {
     const titreActivite = nettoyageTotal(req.body.titre)
     const description = nettoyageTotal(req.body.description)
     const domaine = nettoyageTotal(req.body.domaine)
-    const nouvelleEntreeDomaine = await enregistrementNouvelleObservationDomaineBDD(idUtilisateur,
+    const nouvelleEntreeObservation = await enregistrementNouvelleObservationBDD(idUtilisateur,
       titreActivite,
-      description,
-      domaine)
+      description)
 
     const objectifsDuDomaine = await recuperationObjectifsDuDomaine(domaine)
     const creationArborescenceReferentiel = async (objectifsDuDomaine) => {
@@ -114,20 +115,34 @@ exports.nouvelleObservationDomaine = async (req, res, next) => {
 
     const titre = 'Choisir les objectifs'
     const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
-    res.render('./applications/fonctionalites/views/observationObjectifs', { pseudo, titre, arborescenceReferentiel, nouvelleEntreeDomaine })
+    res.render('./applications/fonctionalites/views/observationObjectifs', { pseudo, titre, arborescenceReferentiel, nouvelleEntreeObservation })
   } catch (error) {
     console.error(error)
   }
 }
 
-exports.nouvelleObservationObjetAtt = async (req, res, next) => {
+exports.nouvelleObservationChoixAttendu = async (req, res, next) => {
   try {
     const idUtilisateur = req.session.utilisateur
-    console.log(req.body);
+    const {
+      attenduPersonnalise,
+      idObjectif,
+      idObservation,
+      idAttendu
+    } = req.body
+
+    if (typeof attenduPersonnalise !== 'undefined') {
+      const idAttenduPersonnalise = await nouvelAttenduPersonnalise(idUtilisateur, attenduPersonnalise, idObjectif)
+      await miseaJourObservationAvecAttendu(idObservation, idAttenduPersonnalise, 0)
+    } else {
+      await miseaJourObservationAvecAttendu(idObservation, idAttendu, 1)
+    }
+
+    const listeEleves = await recuperationElevesParIdUtilisateur(idUtilisateur)
 
     const titre = 'Evaluer vos élèves'
     const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
-    res.render('./applications/fonctionalites/views/observationEvaluation', { pseudo, titre })
+    res.render('./applications/fonctionalites/views/observationEvaluation', { pseudo, titre, idObservation, listeEleves })
   } catch (error) {
     console.error(error)
   }

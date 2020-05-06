@@ -72,9 +72,9 @@ exports.verificationPresenceEleves = async (idUtilisateur) => {
   }
 }
 
-exports.enregistrementNouvelleObservationDomaineBDD = async (idUtilisateur, titre, description, idDomaine) => {
+exports.enregistrementNouvelleObservationBDD = async (idUtilisateur, titre, description, idAttendu) => {
   try {
-    return await observations('observations').insert({ idUtilisateur, titre, description, idDomaine })
+    return await observations('observations').insert({ idUtilisateur, titre, description, idAttendu })
   } catch (error) {
     console.error(error)
   }
@@ -93,6 +93,26 @@ exports.recuperationAttendusDelObjectif = async (idObjectif) => {
   try {
     const recherche = await referentiel('attendus').select().where({ idObjectif })
     return recherche
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+exports.nouvelAttenduPersonnalise = async (idUtilisateur, attenduPersonnalise, idObjectif) => {
+  try {
+    return await observations('attendusPersonnalises').insert({
+      idUtilisateur,
+      idObjectif,
+      attendu: attenduPersonnalise
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+exports.miseaJourObservationAvecAttendu = async (idObservation, idAttendu, referentielOfficiel) => {
+  try {
+    return await observations('observations').update({ idAttendu, referentielOfficiel }).where({ idObservation })
   } catch (error) {
     console.error(error)
   }
