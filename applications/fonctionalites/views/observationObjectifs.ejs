@@ -18,7 +18,7 @@
                     </button>
                 </a>
                 <input type="hidden" value="<%= objectif.objectif.id %>" name="idObjectif">
-                <input type="hidden" value="<%= nouvelleEntreeObservation %>" name="idObservation">
+                <input type="hidden" value="<%= idObservation %>" name="idObservation">
             </form>
             <p class="has-text-primary">
                 ou utilisez un élément du référentiel officiel :
@@ -37,7 +37,7 @@
 
 <form id="choixAttendus" action="/observation/evaluation/" method="post">
     <input type="hidden" name="idAttendu" id="choixAttendu">
-    <input type="hidden" value="<%= nouvelleEntreeObservation %>" name="idObservation">
+    <input type="hidden" value="<%= idObservation %>" name="idObservation">
 </form>
 
 <% include ./../../views/footer %>
