@@ -103,4 +103,15 @@ exports.initialisationBDDReferentiel = () => {
         })
       }
     })
+  referentiel.schema.hasTable('criteres')
+    .then((exists) => {
+      if (!exists) {
+        return referentiel.schema.createTable('criteres', (table) => {
+          table.increments()
+            .primary()
+            .index()
+          table.string('critere')
+        })
+      }
+    })
 }
