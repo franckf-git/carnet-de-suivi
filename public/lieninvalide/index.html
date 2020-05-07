@@ -1,102 +1,104 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<head>
-  <title>Lien Invalide</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="franckf">
-  <link rel="stylesheet" href="./../stylesheets/main.css" />
-  <link rel="shortcut icon" href="./../images/icone.svg" type="image/svg+xml">
-  <script src="./../javascripts/main.js" type="module" defer></script>
-</head>
+  <head>
+    <title>Lien Invalide</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="carnet-de-suivi.net une application en ligne pour évaluer les maternelles">
+    <meta name="author" content="franckf">
+    <link rel="stylesheet" href="./../stylesheets/main.css" />
+    <link rel="shortcut icon" href="./../images/icone.svg" type="image/svg+xml">
+    <script src="./../javascripts/main.js" type="module" defer></script>
+  </head>
 
-<body>
-  <div class="container is-fluid">
+  <body>
+    <div class="container is-fluid">
 
-    <span class="button-backtotop">
-      <a href="#" title="Retour en Haut">
-        <figure class="image is-32x32">
-          <!--https://fontawesome.com/license-->
-          <img src="./../images/icones/chevron-circle-up-solid.svg">
-        </figure>
-      </a>
-    </span>
+      <span class="button-backtotop">
+        <a href="#" title="Retour en Haut">
+          <figure class="image is-32x32">
+            <!--https://fontawesome.com/license-->
+            <img src="./../images/icones/chevron-circle-up-solid.svg">
+          </figure>
+        </a>
+      </span>
 
-    <section>
-      <div class="notification notification-cookie">
-        <p class="subtitle">En acceptant ou en poursuivant la navigation sur ce site, vous acceptez les Conditions
-          Générales d'Utilisations et les cookies nécessaires au bon fonctionnement de celui-ci.
-          <a href="/cgu">En savoir plus.</a>
-        </p>
-        <button class="button button-cookie is-primary">J'ai bien compris</button>
-      </div>
-    </section>
+      <section>
+        <div class="notification notification-cookie">
+          <p class="subtitle">En acceptant ou en poursuivant la navigation sur ce site, vous acceptez les Conditions
+            Générales d'Utilisations et les cookies nécessaires au bon fonctionnement de celui-ci.
+            <a href="/cgu">En savoir plus.</a>
+          </p>
+          <button class="button button-cookie is-primary">J'ai bien compris</button>
+        </div>
+      </section>
 
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="/">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="/">
               <img src="./../images/logo.svg" width="180">
             </a>
-          <a class="navbar-burger burger" role="button" aria-label="menu" aria-expanded="false">
+            <a class="navbar-burger burger" role="button" aria-label="menu" aria-expanded="false">
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
             </a>
-        </div>
-        <div class="navbar-menu burger-dropdown">
-          <div class="navbar-start is-hidden">
-            <a class="navbar-item is-size-4" href="/connexion">Se connecter</a>
-            <a class="navbar-item is-size-4 has-background-primary has-text-white" href="/enregistrement">S'enregistrer</a>
           </div>
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <a class="button is-light" href="/connexion">Se connecter</a>
-                <a class="button is-primary" href="/enregistrement">S'enregistrer</a>
+          <div class="navbar-menu burger-dropdown">
+            <div class="navbar-start is-hidden">
+              <a class="navbar-item is-size-4" href="/connexion">Se connecter</a>
+              <a class="navbar-item is-size-4 has-background-primary has-text-white"
+                href="/enregistrement">S'enregistrer</a>
+            </div>
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <a class="button is-light" href="/connexion">Se connecter</a>
+                  <a class="button is-primary" href="/enregistrement">S'enregistrer</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </nav>
+
+      <div class="notification is-danger has-text-centered">
+        <button class="delete delete-notif"></button>
+        <strong>ATTENTION carnet-de-suivi.net est une application toujours en cours de developpement - pour tests
+          uniquement</strong>
       </div>
-    </nav>
 
-    <div class="notification is-danger has-text-centered">
-      <button class="delete delete-notif"></button>
-      <strong>ATTENTION carnet-de-suivi.net est une application toujours en cours de developpement - pour tests uniquement</strong>
-    </div>
-
-    <section class="section">
-      <div class="container has-text-centered">
-        <h2 class="title"><span class="has-text-primary">Aïe.</span></h2>
-        <h3 class="subtitle">Ce lien n'est pas valide ou à déjà été utilisé. Essayez de procéder à nouveau.</h3>
-        <div class="buttons is-centered">
-          <a class="button is-info" href="/connexion">J'ai déjà un compte</a>
-          <a class="button is-primary" href="/enregistrement">Je n'ai pas encore de compte</a>
-          <a class="button is-light" href="/motdepasseoublie">J'ai oublié mon de passe</a>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer has-background-grey-light">
-      <div class="content has-text-centered">
-        <div class="columns">
-          <div class="column"><a class="link is-info" href="/cgu">Conditions Générales d'Utilisation</a></div>
-          <div class="column">
-            <a class="link is-info" href="https://gitlab.com/franckf/carnet-de-suivi">Code Libre et Disponible</a>
+      <section class="section">
+        <div class="container has-text-centered">
+          <h2 class="title"><span class="has-text-primary">Aïe.</span></h2>
+          <h3 class="subtitle">Ce lien n'est pas valide ou à déjà été utilisé. Essayez de procéder à nouveau.</h3>
+          <div class="buttons is-centered">
+            <a class="button is-info" href="/connexion">J'ai déjà un compte</a>
+            <a class="button is-primary" href="/enregistrement">Je n'ai pas encore de compte</a>
+            <a class="button is-light" href="/motdepasseoublie">J'ai oublié mon de passe</a>
           </div>
         </div>
-        <p>
-          2020 carnet-de-suivi.net
-        </p>
-        <hr>
-      </div>
-    </footer>
+      </section>
+
+      <footer class="footer has-background-grey-light">
+        <div class="content has-text-centered">
+          <div class="columns">
+            <div class="column"><a class="link is-info" href="/cgu">Conditions Générales d'Utilisation</a></div>
+            <div class="column">
+              <a class="link is-info" href="https://gitlab.com/franckf/carnet-de-suivi">Code Libre et Disponible</a>
+            </div>
+          </div>
+          <p>
+            2020 carnet-de-suivi.net
+          </p>
+          <hr>
+        </div>
+      </footer>
 
 
-  </div>
-</body>
+    </div>
+  </body>
 
 </html>
