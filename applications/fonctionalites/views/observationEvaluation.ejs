@@ -25,7 +25,8 @@
                         <div class="columns ">
                             <% criteres.forEach(critere => { %>
                             <div class="column">
-                                <button class="button" id="<%= critere.id %>"><%= critere.critere %></button>
+                                <button class="button <%= critere.couleur %>"
+                                    id="<%= critere.id %>"><%= critere.critere %></button>
                             </div>
                             <% }); %>
                         </div>

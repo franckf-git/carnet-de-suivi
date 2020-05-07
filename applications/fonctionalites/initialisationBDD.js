@@ -111,6 +111,7 @@ exports.initialisationBDDReferentiel = () => {
             .primary()
             .index()
           table.string('critere')
+          table.string('couleur')
         })
       }
     })
