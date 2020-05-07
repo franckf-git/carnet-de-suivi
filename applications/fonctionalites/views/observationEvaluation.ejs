@@ -18,14 +18,16 @@
             <div class="modal-card">
                 <form action="" method="post">
                     <header class="modal-card-head">
-                        <p class="modal-card-title">Evaluation de <%= eleve.nom %></p>
+                        <p><%= attenduEvalue %></p>
                     </header>
                     <section class="modal-card-body">
-                        <h4 class="subtitle is-4"><%= attenduEvalue %></h4>
-                        <div class="columns">
-                            <div class="column"><button class="button is-success">bien</button></div>
-                            <div class="column"><button class="button is-info">pasbien</button></div>
-                            <div class="column"><button class="button is-danger">mauvais</button></div>
+                        <h4 class="subtitle"><%= eleve.nom %></h4>
+                        <div class="columns ">
+                            <% criteres.forEach(critere => { %>
+                            <div class="column">
+                                <button class="button" id="<%= critere.id %>"><%= critere.critere %></button>
+                            </div>
+                            <% }); %>
                         </div>
                     </section>
                     <footer class="modal-card-foot">
