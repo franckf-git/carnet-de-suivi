@@ -22,13 +22,14 @@
                     </header>
                     <section class="modal-card-body">
                         <h4 class="subtitle"><%= eleve.nom %></h4>
-                        <div class="columns ">
+                        <div class="columns">
                             <% criteres.forEach(critere => { %>
                             <div class="column">
                                 <button class="button <%= critere.couleur %>"
                                     id="<%= critere.id %>"><%= critere.critere %></button>
+                                <% }); %>
                             </div>
-                            <% }); %>
+                            <!-- cette ^ div qui ferme la colone est mal placée mais permet un affichage propre donc on laisse -->
                         </div>
                     </section>
                     <footer class="modal-card-foot">
