@@ -10,28 +10,27 @@
    aria-hidden="true"
    focusable="false"
    data-prefix="fas"
-   data-icon="plus-circle"
-   class="svg-inline--fa fa-plus-circle fa-w-16"
+   data-icon="chevron-circle-up"
+   class="svg-inline--fa fa-chevron-circle-up fa-w-16"
    role="img"
    viewBox="0 0 512 512"
    version="1.1"
-   id="svg4"
-   sodipodi:docname="plus-circle-solid.svg"
+   id="svg60"
+   sodipodi:docname="chevron-circle-up-solid-primary.svg"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
   <metadata
-     id="metadata10">
+     id="metadata66">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
-     id="defs8" />
+     id="defs64" />
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -42,19 +41,19 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1047"
-     id="namedview6"
+     inkscape:window-height="1061"
+     id="namedview62"
      showgrid="false"
-     inkscape:zoom="0.4609375"
-     inkscape:cx="-492.47458"
+     inkscape:zoom="1.7167969"
+     inkscape:cx="142.41638"
      inkscape:cy="256"
      inkscape:window-x="0"
-     inkscape:window-y="33"
+     inkscape:window-y="19"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg4" />
+     inkscape:current-layer="svg60" />
   <path
      fill="currentColor"
-     d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"
-     id="path2"
-     style="fill:#48c774;fill-opacity:1" />
+     d="M8 256C8 119 119 8 256 8s248 111 248 248-111 248-248 248S8 393 8 256zm231-113.9L103.5 277.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L256 226.9l101.6 101.6c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L273 142.1c-9.4-9.4-24.6-9.4-34 0z"
+     id="path58"
+     style="fill:#b04027;fill-opacity:1" />
 </svg>
