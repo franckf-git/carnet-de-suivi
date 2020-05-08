@@ -6,7 +6,8 @@
   "scripts": {
     "start": "redis-server & node ./bin/www",
     "prod": "redis-server & NODE_ENV=production node ./bin/www",
-    "dev": "redis-server & NODE_ENV=development nodemon ./bin/www"
+    "dev": "redis-server & NODE_ENV=development nodemon ./bin/www",
+    "checkupdate": "npm audit ; npm outdated ; npm shrinkwrap"
   },
   "repository": {
     "type": "git",
