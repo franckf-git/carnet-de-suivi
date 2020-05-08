@@ -3,7 +3,6 @@
 const createError = require('http-errors')
 const express = require('express')
 const path = require('path')
-const logger = require('morgan')
 const helmet = require('helmet')
 const compression = require('compression')
 const session = require('express-session')
@@ -19,7 +18,6 @@ app.set('views', path.join(__dirname, './'))
 app.set('view engine', 'ejs')
 
 // middlewares
-app.use(logger('dev', { skip: (req, res) => { return res.statusCode < 400 } }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(helmet())

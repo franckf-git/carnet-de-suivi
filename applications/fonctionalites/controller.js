@@ -16,6 +16,7 @@ const {
   recuperationCriteres
 } = require('./model')
 const { nettoyageTotal } = require('./../utils')
+const logger = require('./../utils/logger')
 
 exports.acceuil = async (req, res, next) => {
   try {
@@ -120,7 +121,7 @@ exports.nouvelleObservationDomaine = async (req, res, next) => {
     const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
     res.render('./applications/fonctionalites/views/observationObjectifs', { pseudo, titre, arborescenceReferentiel, idObservation })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
