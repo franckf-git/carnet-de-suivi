@@ -12,7 +12,7 @@ WORKDIR /home/node/app
 
 COPY package*.json ./
 
-RUN npm install --production --silent
+RUN npm ci --production --silent
 
 COPY . .
 
