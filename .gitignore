@@ -70,6 +70,7 @@ config/index.js
 basededonnees/*.sqlite
 basededonnees/dumps/*.sql
 !basededonnees/referentiel.sqlite
+!basededonnees/aide.sqlite
 
 # Dump Redis
 dump.rdb

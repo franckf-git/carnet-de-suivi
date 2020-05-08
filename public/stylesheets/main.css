@@ -17,6 +17,15 @@
   cursor: pointer;
 }
 
+/* position du button aide */
+#aide {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 99;
+}
+
+
 /* Polices personnalisées */
 @font-face {
   font-family: "comfortaa";
