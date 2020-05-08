@@ -1,5 +1,5 @@
 // Modals (docs officiel)
-const modals = () => {
+export function modals() {
   var rootEl = document.documentElement
   var $modals = document.querySelectorAll('.modal')
   var $modalButtons = document.querySelectorAll('.modal-button')
@@ -23,13 +23,13 @@ const modals = () => {
     })
   }
 
-  function openModal (target) {
+  function openModal(target) {
     var $target = document.getElementById(target)
     rootEl.classList.add('is-clipped')
     $target.classList.add('is-active')
   }
 
-  function closeModals () {
+  function closeModals() {
     rootEl.classList.remove('is-clipped')
     $modals.forEach(function ($el) {
       $el.classList.remove('is-active')
@@ -43,5 +43,3 @@ const modals = () => {
     }
   })
 }
-
-export default modals

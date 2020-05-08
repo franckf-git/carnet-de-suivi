@@ -1,4 +1,4 @@
-const retourEnHaut = () => {
+export function retourEnHaut() {
     /* Boutton retour en haut apparait au scroll */
     window.onscroll = () => {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -10,5 +10,3 @@ const retourEnHaut = () => {
         }
     }
 }
-
-export default retourEnHaut

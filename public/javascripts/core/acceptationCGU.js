@@ -1,4 +1,4 @@
-const acceptationCGU = () => {
+export function acceptationCGU() {
     /* Fenetre d'information des cookies ET la laisser fermée si validée */
     const acceptationCGU = document.querySelector('.notification-cookie')
     const buttonCookie = document.querySelector('.button-cookie')
@@ -14,5 +14,3 @@ const acceptationCGU = () => {
         }
     }
 }
-
-export default acceptationCGU

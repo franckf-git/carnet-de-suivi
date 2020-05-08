@@ -1,4 +1,4 @@
-const formulaireTitreObservable = () => {
+export function formulaireTitreObservable() {
     /* Envoi du titre de l activité et du choix du domaine */
     const bouttonsDomaine = document.querySelectorAll('#domaine')
     const champsTitre = document.querySelector('#champsTitre')
@@ -32,7 +32,4 @@ const formulaireTitreObservable = () => {
             document.forms.choixAttendus.submit()
         })
     })
-
 }
-
-export default formulaireTitreObservable

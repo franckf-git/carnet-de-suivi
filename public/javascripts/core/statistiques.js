@@ -1,4 +1,4 @@
-const envoiInfosAnomyniseesSurUtilisation = () => {
+export function envoiInfosAnomyniseesSurUtilisation() {
   const listCookies = document.cookie.split('; ')
   const cookiesSansValeurs = []
   listCookies.forEach(element => {
@@ -78,5 +78,3 @@ const envoiInfosAnomyniseesSurUtilisation = () => {
     setInterval(() => cycle(), intervalSec * 1000)
   }
 }
-
-export default envoiInfosAnomyniseesSurUtilisation

@@ -1,18 +1,18 @@
-import acceptationCGU from './acceptationCGU.js'
-import aideEnPage from './aideEnPage.js'
-import burgerMobile from './burgerMobile.js'
-import controllerModals from './modals.js'
-import envoiInfosAnomyniseesSurUtilisation from './statistiques.js'
-import fermetureNotifs from './fermetureNotifs.js'
-import formulaireTitreObservable from './formulaireTitreObservable.js'
-import gestionEleves from './gestionEleves.js'
-import ouvertureAccordions from './ouvertureAccordions.js'
-import retourEnHaut from './retourEnHaut.js'
+import { acceptationCGU } from './core/acceptationCGU.js'
+import { aideEnPage } from './core/aideEnPage.js'
+import { burgerMobile } from './core/burgerMobile.js'
+import { modals } from './core/modals.js'
+import { envoiInfosAnomyniseesSurUtilisation } from './core/statistiques.js'
+import { fermetureNotifs } from './core/fermetureNotifs.js'
+import { formulaireTitreObservable } from './application/formulaireTitreObservable.js'
+import { gestionEleves } from './application/gestionEleves.js'
+import { ouvertureAccordions } from './application/ouvertureAccordions.js'
+import { retourEnHaut } from './core/retourEnHaut.js'
 
 acceptationCGU()
 aideEnPage()
 burgerMobile()
-controllerModals()
+modals()
 // envoiInfosAnomyniseesSurUtilisation()
 fermetureNotifs()
 formulaireTitreObservable()

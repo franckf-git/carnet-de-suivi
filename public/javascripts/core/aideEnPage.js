@@ -1,4 +1,4 @@
-const aideEnPage = () => {
+export function aideEnPage() {
     /* affichage des aides dans la page */
     const aideButtons = document.querySelectorAll('#aide')
     aideButtons.forEach(element => {
@@ -25,5 +25,3 @@ const aideEnPage = () => {
         }
     }
 }
-
-export default aideEnPage

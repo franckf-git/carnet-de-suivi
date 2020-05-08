@@ -1,4 +1,4 @@
-const burgerMobile = () => {
+export function burgerMobile() {
     /* Menu en mobile */
     const burger = document.querySelector('.burger')
     const menuDeroulant = () => {
@@ -13,5 +13,3 @@ const burgerMobile = () => {
     }
     burger.addEventListener('click', menuDeroulant)
 }
-
-export default burgerMobile

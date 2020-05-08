@@ -1,4 +1,4 @@
-const ouvertureAccordions = () => {
+export function ouvertureAccordions() {
     const accordions = document.querySelectorAll('.accordion')
     const panels = document.querySelectorAll('.panel')
     accordions.forEach(ligneObjectif => {
@@ -25,5 +25,3 @@ const ouvertureAccordions = () => {
         })
     })
 }
-
-export default ouvertureAccordions

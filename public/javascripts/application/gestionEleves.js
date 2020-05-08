@@ -1,4 +1,4 @@
-const gestionEleves = () => {
+export function gestionEleves() {
     /* Gestion des eleves */
 
     /* Ajout eleve */
@@ -37,5 +37,3 @@ const gestionEleves = () => {
         })
     })
 }
-
-export default gestionEleves
