@@ -22,6 +22,7 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 
 ## Bugs (aka feature)
 - [] les retours à la ligne ne sont pas pris en compte dans la description de l'activité
+- [] titre activité : sanitize "<"
 
 ## Fonctionnalitées PMV
 
@@ -45,6 +46,7 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 - [] supprimer des observations (ou les editer ?)
 - [] import onde
 - [] exporter le carnet de suivi des élèves supprimés
+- [] exporter le carnet de suivi en mode parent / administration / tableau de bord
 - [] exporter le carnet de suivi en mode économe (noir et blanc, sans photo)
 - [] ajout des points de suivi
 - [] les parents voient le dernier point de suivi par défaut
