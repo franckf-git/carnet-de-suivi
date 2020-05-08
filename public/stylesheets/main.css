@@ -20,12 +20,14 @@
 /* Polices personnalisées */
 @font-face {
   font-family: "comfortaa";
-  src: url('./../fonts/Comfortaa-Regular.ttf') format("truetype");
+  src: local('Arial'), url('./../fonts/Comfortaa-Regular.ttf') format("truetype");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "opensans";
-  src: url('./../fonts/OpenSans-Regular.ttf') format("truetype");
+  src: local('Arial'), url('./../fonts/OpenSans-Regular.ttf') format("truetype");
+  font-display: swap;
 }
 
 .is-font-primary {
