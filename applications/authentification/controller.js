@@ -13,6 +13,7 @@ const {
 const { verificationChampsFormulaire } = require('./controllerErreurs')
 const { envoiMailConfirmation, envoiMailReinitialisation } = require('./envoiMails')
 const { nettoyageTotal } = require('./../utils')
+const logger = require('./../utils/logger')
 
 exports.enregistreNouveauUtilisateur = async (req, res, next) => {
   try {
@@ -33,7 +34,7 @@ exports.enregistreNouveauUtilisateur = async (req, res, next) => {
     await envoiMailConfirmation(champsFormulaire.email)
     res.render('./applications/authentification/views/enregistrementTermine', { titre: 'Merci' })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -45,7 +46,7 @@ exports.confirmationEmail = async (req, res, next) => {
     await uuidUtilisePourConfirmer(uuid)
     res.render('./applications/authentification/views/enregistrementEmailConfirme', { titre: 'Merci', email })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -67,7 +68,7 @@ exports.connexionUtilisateur = async (req, res, next) => {
     req.session.utilisateur = recuperationIdUtilisateur
     res.redirect('/acceuil')
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -85,7 +86,7 @@ exports.reinitialisationMotDePasse = async (req, res, next) => {
     await envoiMailReinitialisation(champsFormulaire.email)
     res.render('./applications/authentification/views/motdepasseoublieTermine', { titre: 'Merci' })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -109,6 +110,6 @@ exports.nouveauMotDePasse = async (req, res, next) => {
     res.render(
       './applications/authentification/views/motdepasseoublieNouveauMotdePasseTermine', { titre: 'Merci' })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }

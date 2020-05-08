@@ -1,6 +1,7 @@
 'use strict'
 const statistiques = require('./../../config/basededonnees/statistiques')
 const { nettoyageTotal } = require('./../utils')
+const logger = require('./../utils/logger')
 
 exports.enregistrementInfosBDD = async (infos) => {
   try {
@@ -44,7 +45,7 @@ exports.enregistrementInfosBDD = async (infos) => {
         .where({ uuid: infosClean.uuid })
     }
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -67,6 +68,6 @@ exports.nettoyageStatistiquesBDD = async () => {
 
     return true
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }

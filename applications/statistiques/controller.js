@@ -1,5 +1,6 @@
 'use strict'
 const { enregistrementInfosBDD } = require('./model')
+const logger = require('./../utils/logger')
 
 exports.enregistrementInfos = async (req, res, next) => {
   try {
@@ -9,6 +10,6 @@ exports.enregistrementInfos = async (req, res, next) => {
     const aSauvegarder = { ip, remoteAddress, ...infosClient }
     await enregistrementInfosBDD(aSauvegarder)
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }

@@ -20,7 +20,7 @@ export function aideEnPage() {
                 return data
             }
         } catch (error) {
-            console.error(error)
+            logger.error(error)
             return 'Il semble y avoir eu une erreur ou cette aide n\'est pas encore disponible.'
         }
     }

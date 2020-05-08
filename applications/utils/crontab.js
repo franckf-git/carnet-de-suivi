@@ -3,6 +3,7 @@ const { CronJob } = require('cron')
 const { exec } = require('child_process')
 const { nettoyageLiensMailsetMdpOubliesBDD } = require('./../authentification/model')
 const { nettoyageStatistiquesBDD } = require('./../statistiques/model')
+const logger = require('./logger')
 
 exports.sauvegardeBasedeDonnees = () => {
   const job = new CronJob('0 45 23 * * *', () => {
@@ -12,7 +13,7 @@ exports.sauvegardeBasedeDonnees = () => {
           `sqlite3 basededonnees/${basededonnees}.sqlite .dump > basededonnees/dumps/${basededonnees}_$(date +%Y-%m-%d).sql`
         )
       } catch (error) {
-        console.log(`error: ${error.message}`)
+        logger.error(`error: ${error.message}`)
       }
     }
     dumpBDD('aide')

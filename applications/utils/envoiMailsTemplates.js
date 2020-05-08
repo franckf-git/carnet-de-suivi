@@ -4,6 +4,7 @@ const path = require('path')
 const nodeMailer = require('nodemailer')
 const config = require('./../../config')
 const { MAIL } = require('./../../config')
+const logger = require('./logger')
 
 exports.envoiMailTemplate = async (choixTemplateAEnvoyer, options) => {
   try {
@@ -32,10 +33,10 @@ exports.envoiMailTemplate = async (choixTemplateAEnvoyer, options) => {
 
     await connecteurBoiteMail.sendMail(mailOptions, (error, data) => {
       if (error) {
-        console.error(error)
+        logger.error(error)
       }
     })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }

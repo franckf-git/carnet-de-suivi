@@ -3,6 +3,7 @@ const uuid = require('uuid')
 const config = require('./../../config')
 const { entreeConfirmationMail, entreeReinitialisationMDP } = require('./model')
 const { envoiMailTemplate } = require('./../utils/envoiMailsTemplates')
+const logger = require('./../utils/logger')
 
 exports.envoiMailConfirmation = async (emailAConfirmer) => {
   try {
@@ -21,7 +22,7 @@ exports.envoiMailConfirmation = async (emailAConfirmer) => {
     await entreeConfirmationMail(emailAConfirmer, uuidConfirmationMail)
     await envoiMailTemplate('confirmationEmail', options)
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -42,6 +43,6 @@ exports.envoiMailReinitialisation = async (emailAReinitialiser) => {
     await entreeReinitialisationMDP(emailAReinitialiser, uuidReinitialisationMotdePasse)
     await envoiMailTemplate('reinitialisationMotdePasse', options)
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }

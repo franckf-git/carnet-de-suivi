@@ -1,5 +1,6 @@
 'use strict'
 const aide = require('./../../config/basededonnees/aide')
+const logger = require('./../utils/logger')
 
 exports.recuperationContenuAideBDD = async (intitule) => {
   try {
@@ -8,6 +9,6 @@ exports.recuperationContenuAideBDD = async (intitule) => {
       .where({ intitule })
     return aAfficherDansLaPage[0].texte
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }

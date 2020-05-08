@@ -2,6 +2,7 @@
 const core = require('./../../config/basededonnees/core')
 const bcrypt = require('bcrypt')
 const validator = require('validator')
+const logger = require('./../utils/logger')
 
 const idUtilisateurDepuisEmail = async (email) => {
   const emailNormaliser = validator.normalizeEmail(email)
@@ -24,7 +25,7 @@ exports.enregistreNouveauUtilisateurBDD = async (infosFormulaire) => {
         motdepasse: motdepassechiffre
       })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -45,7 +46,7 @@ exports.nouveauMotDePasseBDD = async (infosFormulaire) => {
       })
       .where({ id: idUtilisateur[0].idUtilisateur })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -62,7 +63,7 @@ exports.utilisateurConfirme = async (uuidEnAttenteDeValidation) => {
       .update({ confirme: 1 })
       .where({ id: id[0].idUtilisateur })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -71,7 +72,7 @@ exports.recuperationIdUtilisateurBdd = async (emailATester) => {
     const emailATesterNormaliser = validator.normalizeEmail(emailATester)
     return await idUtilisateurDepuisEmail(emailATesterNormaliser)
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -84,7 +85,7 @@ exports.recuperationEmailUtilisateurParUUIDBdd = async (uuidEnAttenteDeValidatio
     const emailDelUUID = validator.normalizeEmail(email[0].email)
     return emailDelUUID
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -95,7 +96,7 @@ exports.miseaJourDerniereConnexion = async (id) => {
       .update({ derniereConnexion: timeStamp })
       .where({ id })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -111,7 +112,7 @@ exports.checkEmail = async (emailATester) => {
       return false
     }
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -127,7 +128,7 @@ exports.checkEmailConfirmation = async (emailATester) => {
       return false
     }
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -143,7 +144,7 @@ exports.checkMotdePasse = async (emailATester, mdpATester) => {
       return false
     }
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -161,7 +162,7 @@ exports.checkUUID = async (uuid) => {
       return false
     }
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -171,7 +172,7 @@ exports.uuidUtilisePourConfirmer = async (uuidEnAttenteDeValidation) => {
       .where({ uuid: uuidEnAttenteDeValidation })
       .update({ utilise: 1 })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -181,7 +182,7 @@ exports.uuidUtilisePourReinitialiser = async (uuidEnAttenteDeValidation) => {
       .where({ uuid: uuidEnAttenteDeValidation })
       .update({ utilise: 1 })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -193,7 +194,7 @@ exports.entreeConfirmationMail = async (emailAConfirmer, uuidaValider) => {
     await core('confirmationMail')
       .insert({ idUtilisateur, uuid })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -205,7 +206,7 @@ exports.entreeReinitialisationMDP = async (emailAReinitialiser, uuidReinitialisa
     await core('reinitialisationMDP')
       .insert({ idUtilisateur, uuid })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -231,6 +232,6 @@ exports.nettoyageLiensMailsetMdpOubliesBDD = async () => {
 
     return true
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }

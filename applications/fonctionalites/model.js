@@ -2,6 +2,7 @@
 const core = require('./../../config/basededonnees/core')
 const observations = require('./../../config/basededonnees/observations')
 const referentiel = require('./../../config/basededonnees/referentiel')
+const logger = require('./../utils/logger')
 
 exports.recuperationPseudoParIdUtilisateur = async (id) => {
   try {
@@ -11,7 +12,7 @@ exports.recuperationPseudoParIdUtilisateur = async (id) => {
     const pseudo = recherche[0].pseudo
     return pseudo
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -24,7 +25,7 @@ exports.recuperationElevesParIdUtilisateur = async (idUtilisateur) => {
     const listeEleves = recherche
     return listeEleves
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -34,7 +35,7 @@ exports.miseajourEleve = async (id, nom) => {
       .update({ nom })
       .where({ id })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -44,7 +45,7 @@ exports.desactivationEleve = async (id) => {
       .update({ actif: 0 })
       .where({ id })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -52,7 +53,7 @@ exports.ajoutEleveBDD = async (nom, idUtilisateur) => {
   try {
     await observations('eleves').insert({ nom, idUtilisateur })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -68,7 +69,7 @@ exports.verificationPresenceEleves = async (idUtilisateur) => {
       return true
     }
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -76,7 +77,7 @@ exports.enregistrementNouvelleObservationBDD = async (idUtilisateur, titre, desc
   try {
     return await observations('observations').insert({ idUtilisateur, titre, description, idAttendu })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -85,7 +86,7 @@ exports.recuperationObjectifsDuDomaine = async (idDomaine) => {
     const recherche = await referentiel('objectifs').select().where({ idDomaine })
     return recherche
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -94,7 +95,7 @@ exports.recuperationAttendusDelObjectif = async (idObjectif) => {
     const recherche = await referentiel('attendus').select().where({ idObjectif })
     return recherche
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -106,7 +107,7 @@ exports.nouvelAttenduPersonnalise = async (idUtilisateur, attenduPersonnalise, i
       attendu: attenduPersonnalise
     })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -114,7 +115,7 @@ exports.miseaJourObservationAvecAttendu = async (idObservation, idAttendu, refer
   try {
     return await observations('observations').update({ idAttendu, referentielOfficiel }).where({ id: idObservation })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -123,7 +124,7 @@ exports.recuperationTitreActivite = async (idObservation) => {
     const recherche = await observations('observations').select('titre').where({ id: idObservation })
     return recherche[0].titre
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -140,7 +141,7 @@ exports.recuperationAttenduEvalue = async (idObservation) => {
       return attendu[0].attendu
     }
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -149,6 +150,6 @@ exports.recuperationCriteres = async () => {
     const recherche = await referentiel('criteres').select()
     return recherche
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }

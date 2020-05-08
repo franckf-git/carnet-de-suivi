@@ -25,7 +25,7 @@ exports.acceuil = async (req, res, next) => {
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
     res.render('./applications/fonctionalites/views/acceuil', { pseudo, titre })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -37,7 +37,7 @@ exports.eleves = async (req, res, next) => {
     const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
     res.render('./applications/fonctionalites/views/eleves', { pseudo, titre, listeEleves })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -52,7 +52,7 @@ exports.editionEleves = async (req, res, next) => {
     }
     res.redirect('/eleves')
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -63,7 +63,7 @@ exports.ajoutEleve = async (req, res, next) => {
     await ajoutEleveBDD(nom, idUtilisateur)
     res.redirect('/eleves')
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -74,7 +74,7 @@ exports.exportcsa = async (req, res, next) => {
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
     res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -89,7 +89,7 @@ exports.domaine = async (req, res, next) => {
     }
     res.render('./applications/fonctionalites/views/observationDomaine', { pseudo, titre })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -152,7 +152,7 @@ exports.nouvelleObservationChoixAttendu = async (req, res, next) => {
     const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
     res.render('./applications/fonctionalites/views/observationEvaluation', { pseudo, titre, titreActivite, attenduEvalue, idObservation, listeEleves, criteres })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -163,7 +163,7 @@ exports.parents = async (req, res, next) => {
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
     res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -174,7 +174,7 @@ exports.partage = async (req, res, next) => {
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
     res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
@@ -185,6 +185,6 @@ exports.suivis = async (req, res, next) => {
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
     res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }

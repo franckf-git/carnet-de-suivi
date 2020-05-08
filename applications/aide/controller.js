@@ -1,5 +1,6 @@
 'use strict'
 const { recuperationContenuAideBDD } = require('./model')
+const logger = require('./../utils/logger')
 
 exports.recuperationContenuAide = async (req, res, next) => {
   try {
@@ -7,6 +8,6 @@ exports.recuperationContenuAide = async (req, res, next) => {
     const aAfficherDansLaPage = await recuperationContenuAideBDD(intitule)
     res.json(aAfficherDansLaPage)
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }

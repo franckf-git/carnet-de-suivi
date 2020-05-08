@@ -6,6 +6,7 @@ const {
   checkUUID
 } = require('./model')
 const validator = require('validator')
+const logger = require('./../utils/logger')
 
 exports.verificationChampsFormulaire = async (champsFormulaire, route) => {
   try {
@@ -96,7 +97,7 @@ exports.verificationChampsFormulaire = async (champsFormulaire, route) => {
       return true
     }
   } catch (error) {
-    console.error(error)
+    logger.error(error)
   }
 }
 
