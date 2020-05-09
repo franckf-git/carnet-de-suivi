@@ -24,4 +24,6 @@ export function aideEnPage() {
       return 'Il semble y avoir eu une erreur ou cette aide n\'est pas encore disponible.'
     }
   }
+
+  document.querySelector('.aide-close').addEventListener('click', () => document.querySelector('.modal-aide').classList.remove('is-active'))
 }
