@@ -8,37 +8,45 @@
         <div class="is-hidden"><%= idObservation %></div>
 
         <% listeEleves.forEach(eleve => { %>
-        <div class="box box-eleve has-background-grey-lighter is-font-secondary" id="<%= eleve.id %>">
+        <div class="box box-eleveEval has-background-grey-lighter">
             <%= eleve.nom %>
-            <span class="tag is-info is-pulled-right">OK</span>
+            <span class="tag is-success is-pulled-right">Evalué</span>
         </div>
 
-        <div class="modal" id="modal-eleve <%= eleve.id %>">
+        <div class="modal">
             <div class="modal-background"></div>
             <div class="modal-card">
-                <form action="" method="post">
-                    <header class="modal-card-head">
-                        <p><%= attenduEvalue %></p>
-                    </header>
-                    <section class="modal-card-body">
-                        <h4 class="subtitle"><%= eleve.nom %></h4>
-                        <% criteres.forEach(critere => { %>
-                        <div class="column">
-                            <button class="button <%= critere.couleur %>"
-                                id="<%= critere.id %>"><%= critere.critere %></button>
-                        </div>
-                        <% }); %>
-                    </section>
-                    <footer class="modal-card-foot">
-                        <button class="button is-fullwidth">Précédent</button>
-                        <button class="button is-primary is-fullwidth">Suivant</button>
-                    </footer>
-                </form>
+                <header class="modal-card-head">
+                    <p><%= attenduEvalue %></p>
+                </header>
+                <section class="modal-card-body" id="<%= eleve.id %>">
+                    <h4 class="subtitle"><%= eleve.nom %></h4>
+                    <% criteres.forEach(critere => { %>
+                    <div class="column">
+                        <button class="button <%= critere.couleur %>"
+                            id="<%= critere.id %>"><%= critere.critere %></button>
+                    </div>
+                    <% }); %>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-fullwidth precedent">Précédent</button>
+                    <button class="button is-primary is-fullwidth suivant">Suivant</button>
+                    <button class="button is-info is-fullwidth terminee is-hidden">Observation
+                        finie</button>
+                </footer>
             </div>
             <button class="modal-close is-large" aria-label="close"></button>
         </div>
 
         <% }); %>
+
+        <hr>
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <button class="button is-info is-fullwidth">Observation
+                    finie</button>
+            </div>
+        </div>
 
     </div>
 </section>
