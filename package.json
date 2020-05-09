@@ -7,7 +7,9 @@
     "start": "redis-server & node ./bin/www",
     "prod": "redis-server & NODE_ENV=production node ./bin/www",
     "dev": "redis-server & NODE_ENV=development nodemon ./bin/www",
-    "checkupdate": "npm audit ; npm outdated ; npm shrinkwrap"
+    "checkupdate": "npm audit ; npm outdated ; npm shrinkwrap",
+    "linter": "npx eslint applications/ ; npx standard",
+    "linterfix": "npx eslint applications/ --fix ; npx standard --fix"
   },
   "repository": {
     "type": "git",
