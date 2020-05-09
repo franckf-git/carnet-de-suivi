@@ -5,12 +5,12 @@
 
         <h1 class="subtitle"><%= titreActivite %></h1>
 
-        <div class="is-hidden"><%= idObservation %></div>
+        <div class="idObservation" id="<%= idObservation %>"></div>
 
         <% listeEleves.forEach(eleve => { %>
-        <div class="box box-eleveEval has-background-grey-lighter">
+        <div class="box box-eleveEval has-text-centered has-background-grey-lighter" id="box_<%= eleve.id %>">
             <%= eleve.nom %>
-            <span class="tag is-success is-pulled-right">Evalué</span>
+            <span class="tag is-success is-pulled-right is-hidden">Evalué</span>
         </div>
 
         <div class="modal">
@@ -23,16 +23,17 @@
                     <h4 class="subtitle"><%= eleve.nom %></h4>
                     <% criteres.forEach(critere => { %>
                     <div class="column">
-                        <button class="button <%= critere.couleur %>"
+                        <button class="button <%= critere.couleur %> critere"
                             id="<%= critere.id %>"><%= critere.critere %></button>
                     </div>
                     <% }); %>
+                    <span class="tag is-success is-pulled-right is-invisible">Evalué</span>
                 </section>
                 <footer class="modal-card-foot">
                     <button class="button is-fullwidth precedent">Précédent</button>
                     <button class="button is-primary is-fullwidth suivant">Suivant</button>
-                    <button class="button is-info is-fullwidth terminee is-hidden">Observation
-                        finie</button>
+                    <a href="/acceuil" class="button is-info is-fullwidth terminee is-hidden">Observation
+                        finie</a>
                 </footer>
             </div>
             <button class="modal-close is-large" aria-label="close"></button>
@@ -43,8 +44,8 @@
         <hr>
         <div class="columns is-centered">
             <div class="column is-half">
-                <button class="button is-info is-fullwidth">Observation
-                    finie</button>
+                <a href="/acceuil" class="button is-info is-fullwidth">Observation
+                    finie</a>
             </div>
         </div>
 

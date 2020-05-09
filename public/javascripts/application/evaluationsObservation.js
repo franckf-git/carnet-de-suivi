@@ -43,4 +43,41 @@ export function evaluationsObservation() {
             termines.forEach((terminee) => terminee.classList.add('is-hidden'))
         }
     }
+
+    /* Envoie des evaluations à une API securisée */
+    const criteres = document.querySelectorAll('.critere')
+    criteres.forEach(critere => { critere.addEventListener('click', () => envoiAPIenregistrementEvaluations(critere)) })
+
+    const envoiAPIenregistrementEvaluations = async (critere) => {
+        try {
+            const idCritere = critere.id
+            const idEleve = critere.parentNode.parentNode.id
+            const idObservation = document.querySelector('.idObservation').id
+            const evaluationFaite = { idCritere, idEleve, idObservation }
+            const noteModal = critere.parentNode.parentNode.childNodes[13] // pas très propre - les suggestions sont bienvenues
+            const fondEleve = document.getElementById(`box_${idEleve}`)
+            const noteFondEleve = fondEleve.childNodes[1]
+
+            await critere.classList.add('is-loading')
+            const poster = await fetch('/observation/enregistrementEvaluations', {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                },
+                body: JSON.stringify(evaluationFaite)
+            })
+            if (poster.ok) {
+                await critere.classList.remove('is-loading')
+                noteModal.classList.remove('is-invisible')
+                fondEleve.classList.remove('has-background-grey-lighter')
+                noteFondEleve.classList.remove('is-hidden')
+            } else {
+                critere.classList.add('is-danger')
+            }
+        } catch (error) {
+            console.error(error)
+            critere.classList.add('is-danger')
+        }
+    }
 }

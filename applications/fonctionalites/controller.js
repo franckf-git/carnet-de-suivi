@@ -156,6 +156,16 @@ exports.nouvelleObservationChoixAttendu = async (req, res, next) => {
   }
 }
 
+exports.enregistrementEvaluations = async (req, res, next) => {
+  try {
+    console.log(req.body)
+    res.json({ message: 'ok' })
+    // { idCritere: '3', idEleve: '7', idObservation: '44' }
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
 exports.parents = async (req, res, next) => {
   try {
     const titre = 'Gestion des parents'

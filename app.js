@@ -54,7 +54,6 @@ app.use('/statsutilisation', require('./applications/statistiques/statsutilisati
 app.use('/aide', require('./applications/aide/api'))
 // ROUTES siAuthentifie
 app.use('/acceuil', require('./applications/fonctionalites/acceuil'))
-app.use('/apisecure', require('./applications/apisecure/api'))
 app.use('/observation', require('./applications/fonctionalites/observation/'))
 app.use('/eleves', require('./applications/fonctionalites/eleves/'))
 app.use('/parents', require('./applications/fonctionalites/parents/'))
