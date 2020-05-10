@@ -13,7 +13,10 @@ const {
   miseaJourObservationAvecAttendu,
   recuperationTitreActivite,
   recuperationAttenduEvalue,
-  recuperationCriteres
+  recuperationCriteres,
+  checkEvaluationFaite,
+  miseaJourEvaluationsBDD,
+  enregistrementEvaluationsBDD
 } = require('./model')
 const { nettoyageTotal } = require('./../utils')
 const logger = require('./../utils/logger')
@@ -158,9 +161,15 @@ exports.nouvelleObservationChoixAttendu = async (req, res, next) => {
 
 exports.enregistrementEvaluations = async (req, res, next) => {
   try {
-    console.log(req.body)
-    res.json({ message: 'ok' })
-    // { idCritere: '3', idEleve: '7', idObservation: '44' }
+    const { idObservation, idEleve, idCritere } = req.body
+    const check = await checkEvaluationFaite(idObservation, idEleve, idCritere)
+    if (check) {
+      await miseaJourEvaluationsBDD(idObservation, idEleve, idCritere)
+      res.json({ message: 'maj' })
+    } else {
+      await enregistrementEvaluationsBDD(idObservation, idEleve, idCritere)
+      res.json({ message: 'evalue' })
+    }
   } catch (error) {
     logger.error(error)
   }

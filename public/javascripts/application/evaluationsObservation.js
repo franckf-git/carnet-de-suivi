@@ -53,7 +53,7 @@ export function evaluationsObservation() {
             const idCritere = critere.id
             const idEleve = critere.parentNode.parentNode.id
             const idObservation = document.querySelector('.idObservation').id
-            const evaluationFaite = { idCritere, idEleve, idObservation }
+            const evaluationFaite = { idObservation, idEleve, idCritere }
             const noteModal = critere.parentNode.parentNode.childNodes[13] // pas très propre - les suggestions sont bienvenues
             const fondEleve = document.getElementById(`box_${idEleve}`)
             const noteFondEleve = fondEleve.childNodes[1]

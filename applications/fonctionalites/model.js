@@ -153,3 +153,32 @@ exports.recuperationCriteres = async () => {
     logger.error(error)
   }
 }
+
+exports.checkEvaluationFaite = async (idObservation, idEleve) => {
+  try {
+    const recherche = await observations('evaluations').select().where({ idObservation, idEleve })
+    if (typeof recherche[0] === 'undefined') {
+      return false
+    } else {
+      return true
+    }
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.miseaJourEvaluationsBDD = async (idObservation, idEleve, idCritere) => {
+  try {
+    return await observations('evaluations').update({ idCritere }).where({ idObservation, idEleve })
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.enregistrementEvaluationsBDD = async (idObservation, idEleve, idCritere) => {
+  try {
+    return await observations('evaluations').insert({ idObservation, idEleve, idCritere })
+  } catch (error) {
+    logger.error(error)
+  }
+}
