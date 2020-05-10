@@ -43,6 +43,7 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 - [] partager mes élèves à un prof
 - [] voir et évaluer les élèves partagés avec moi (module séparé)
 - [] transmettre des élèves désactivés à un collègue (changement de classe)
+- [] désactiver tous mes élèves (changement de classe)
 - [x] supprimer des élèves (préciser qu'il s'agit d'une desactivation le carnet est toujours disponible)
 - [] supprimer des observations (ou les editer ?)
 - [] import onde
