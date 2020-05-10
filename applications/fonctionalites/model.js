@@ -16,6 +16,18 @@ exports.recuperationPseudoParIdUtilisateur = async (id) => {
   }
 }
 
+exports.recuperationNomEleveParId = async (id) => {
+  try {
+    const recherche = await observations('eleves')
+      .select('nom')
+      .where({ id })
+    const nom = recherche[0].nom
+    return nom
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
 exports.recuperationElevesParIdUtilisateur = async (idUtilisateur) => {
   try {
     const recherche = await observations('eleves')
