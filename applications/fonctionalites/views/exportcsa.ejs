@@ -4,27 +4,26 @@
     <div class="container has-text-centered">
         <div class="columns">
 
-            <div class="colum">
+            <div class="column">
                 <h2 class="subtitle">Carnets de toute la classe (temp)</h2>
-                <div class="buttons is-fullwidth">
-                    <button class="button">Exporter le carnet de tous les élèves en PDF</button>
-                    <button class="button">Exporter le carnet de tous les élèves en PDF <br> (version légère pour
-                        impression
-                        rapide)</button>
-                    <button class="button">Export administratif</button>
-                    <button class="button">Tableau de bord</button>
-                    <button class="button">Synthèse des acquis</button>
-                </div>
+                <a class="box">Exporter le carnet de tous les élèves en PDF</a>
+                <a class="box">Exporter le carnet de tous les élèves en PDF <br>
+                    (version légère pour impression rapide)</a>
+                <a class="box">Export administratif</a>
+                <a class="box">Tableau de bord</a>
+                <a class="box">Synthèse des acquis</a>
             </div>
-            <div class="colum">
+
+            <div class="column">
                 <h2 class="subtitle">Voir le carnet de chaque élève :</h2>
                 <% if ( typeof listeEleves[0] === 'undefined') { %>
-                <h1 class="title is-italic has-text-centered">Vous n'avez pas d'élèves actifs actuellement.</h1>
+                <h1 class="title is-italic has-text-centered">Vous n'avez pas d'élèves actifs
+                    actuellement.</h1>
                 <% } else { %>
                 <% listeEleves.forEach(eleve => { %>
-                <div class="box" id="<%= eleve.id %>">
+                <a class="box has-background-grey-lighter" id="<%= eleve.id %>">
                     <%= eleve.nom %>
-                </div>
+                </a>
                 <% }); %>
                 <% } %>
                 <hr class="has-background-primary">
@@ -32,7 +31,9 @@
                 <div class="content has-text-justified">
                     <ul>
                         <% if ( typeof listeElevesDesactives[0] === 'undefined') { %>
-                        <h3 class="subtitle is-italic has-text-centered">Vous n'avez pas d'élèves inactifs actuellement.
+                        <h3 class="subtitle is-italic has-text-centered">Vous n'avez pas d'élèves
+                            inactifs
+                            actuellement.
                         </h3>
                         <% } else { %>
                         <% listeElevesDesactives.forEach(eleve => { %>
