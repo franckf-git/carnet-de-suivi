@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <hr>
+    <hr class="has-background-primary">
 
     <div class="modal" id="formAjoutEleve">
       <div class="modal-background"></div>
@@ -39,7 +39,7 @@
     </div>
 
     <% if ( typeof listeEleves[0] === 'undefined') { %>
-    <h3 class="subtitle is-italic">Vous n'avez pas encore d'élèves.</h3>
+    <h1 class="title is-italic has-text-centered">Vous n'avez pas d'élèves actifs actuellement.</h1>
     <% } else { %>
     <% listeEleves.forEach(eleve => { %>
     <div class="box box-eleve has-background-grey-lighter is-font-secondary" id="<%= eleve.id %>">
@@ -71,7 +71,21 @@
 
     <% }); %>
     <% } %>
-
+    <hr class="has-background-primary">
+    <h2 class="subtitle">Elèves désactivés :</h2>
+    <div class="content has-text-justified">
+      <ul>
+        <% if ( typeof listeElevesDesactives[0] === 'undefined') { %>
+        <h3 class="subtitle is-italic has-text-centered">Vous n'avez pas d'élèves inactifs actuellement.</h3>
+        <% } else { %>
+        <% listeElevesDesactives.forEach(eleve => { %>
+        <li id="<%= eleve.id %>">
+          <%= eleve.nom %>
+        </li>
+        <% }); %>
+        <% } %>
+      </ul>
+    </div>
   </div>
 </section>
 

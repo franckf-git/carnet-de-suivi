@@ -38,8 +38,9 @@ exports.eleves = async (req, res, next) => {
     const titre = 'Gestion des élèves'
     const idUtilisateur = req.session.utilisateur
     const listeEleves = await recuperationElevesParIdUtilisateur(idUtilisateur)
+    const listeElevesDesactives = await recuperationElevesDesactivesParIdUtilisateur(idUtilisateur)
     const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
-    res.render('./applications/fonctionalites/views/eleves', { pseudo, titre, listeEleves })
+    res.render('./applications/fonctionalites/views/eleves', { pseudo, titre, listeEleves, listeElevesDesactives })
   } catch (error) {
     logger.error(error)
   }
