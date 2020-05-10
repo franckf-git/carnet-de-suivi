@@ -17,7 +17,8 @@ const {
   recuperationCriteres,
   checkEvaluationFaite,
   miseaJourEvaluationsBDD,
-  enregistrementEvaluationsBDD
+  enregistrementEvaluationsBDD,
+  verificationLienEleveProf
 } = require('./model')
 const { nettoyageTotal } = require('./../utils')
 const logger = require('./../utils/logger')
@@ -207,6 +208,22 @@ exports.suivis = async (req, res, next) => {
     const id = req.session.utilisateur
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
     res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.carnetdesuivi = async (req, res, next) => {
+  try {
+    const idEleve = req.params.id
+    const idUtilisateur = req.session.utilisateur
+    const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
+    const checkEleveProf = await verificationLienEleveProf(idEleve, idUtilisateur)
+    if (!checkEleveProf) {
+      return res.render('./applications/fonctionalites/views/eleveInconnu', { pseudo })
+    }
+    const titre = idEleve
+    res.render('./applications/fonctionalites/views/carnetEleve', { pseudo, titre })
   } catch (error) {
     logger.error(error)
   }

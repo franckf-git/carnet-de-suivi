@@ -21,7 +21,7 @@
                     actuellement.</h1>
                 <% } else { %>
                 <% listeEleves.forEach(eleve => { %>
-                <a class="box has-background-grey-lighter" id="<%= eleve.id %>">
+                <a href="/exportcsa/eleve/<%= eleve.id %>" class="box has-background-grey-lighter">
                     <%= eleve.nom %>
                 </a>
                 <% }); %>

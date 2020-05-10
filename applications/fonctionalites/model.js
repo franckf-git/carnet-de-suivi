@@ -195,3 +195,16 @@ exports.enregistrementEvaluationsBDD = async (idObservation, idEleve, idCritere)
     logger.error(error)
   }
 }
+
+exports.verificationLienEleveProf = async (idEleve, idUtilisateur) => {
+  try {
+    const recherche = await observations('eleves').select().where({ id: idEleve, idUtilisateur })
+    if (typeof recherche[0] === 'undefined') {
+      return false
+    } else {
+      return true
+    }
+  } catch (error) {
+    logger.error(error)
+  }
+}
