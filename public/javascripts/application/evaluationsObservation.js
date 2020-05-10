@@ -55,6 +55,7 @@ export function evaluationsObservation() {
             const idObservation = document.querySelector('.idObservation').id
             const evaluationFaite = { idObservation, idEleve, idCritere }
             const noteModal = critere.parentNode.parentNode.childNodes[13] // pas très propre - les suggestions sont bienvenues
+            const noteModalmaj = critere.parentNode.parentNode.childNodes[15]
             const fondEleve = document.getElementById(`box_${idEleve}`)
             const noteFondEleve = fondEleve.childNodes[1]
 
@@ -68,10 +69,15 @@ export function evaluationsObservation() {
                 body: JSON.stringify(evaluationFaite)
             })
             if (poster.ok) {
+                const retourServeur = await poster.json()
                 await critere.classList.remove('is-loading')
+
                 noteModal.classList.remove('is-invisible')
                 fondEleve.classList.remove('has-background-grey-lighter')
                 noteFondEleve.classList.remove('is-hidden')
+                if (retourServeur.message === 'maj') {
+                    noteModalmaj.classList.remove('is-invisible')
+                }
             } else {
                 critere.classList.add('is-danger')
             }
