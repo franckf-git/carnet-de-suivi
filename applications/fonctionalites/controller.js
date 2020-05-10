@@ -1,6 +1,7 @@
 'use strict'
 const {
   recuperationElevesParIdUtilisateur,
+  recuperationElevesDesactivesParIdUtilisateur,
   recuperationPseudoParIdUtilisateur,
   miseajourEleve,
   desactivationEleve,
@@ -75,7 +76,9 @@ exports.exportcsa = async (req, res, next) => {
     const titre = 'Export du carnet de suivi'
     const id = req.session.utilisateur
     const pseudo = await recuperationPseudoParIdUtilisateur(id)
-    res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
+    const listeEleves = await recuperationElevesParIdUtilisateur(id)
+    const listeElevesDesactives = await recuperationElevesDesactivesParIdUtilisateur(id)
+    res.render('./applications/fonctionalites/views/exportcsa', { pseudo, titre, listeEleves, listeElevesDesactives })
   } catch (error) {
     logger.error(error)
   }

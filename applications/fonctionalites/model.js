@@ -29,6 +29,19 @@ exports.recuperationElevesParIdUtilisateur = async (idUtilisateur) => {
   }
 }
 
+exports.recuperationElevesDesactivesParIdUtilisateur = async (idUtilisateur) => {
+  try {
+    const recherche = await observations('eleves')
+      .select()
+      .where({ idUtilisateur, actif: 0 })
+      .orderBy('nom')
+    const listeEleves = recherche
+    return listeEleves
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
 exports.miseajourEleve = async (id, nom) => {
   try {
     await observations('eleves')

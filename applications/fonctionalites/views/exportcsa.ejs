@@ -1,0 +1,48 @@
+<% include ./../../views/headerConnecte %>
+
+<section class="section">
+    <div class="container has-text-centered">
+        <div class="columns">
+
+            <div class="colum">
+                <h2 class="subtitle">Carnets de toute la classe (temp)</h2>
+                <div class="buttons is-fullwidth">
+                    <button class="button">Exporter le carnet de tous les élèves en PDF</button>
+                    <button class="button">Exporter le carnet de tous les élèves en PDF <br> (version légère pour
+                        impression
+                        rapide)</button>
+                    <button class="button">Export administratif</button>
+                    <button class="button">Tableau de bord</button>
+                    <button class="button">Synthèse des acquis</button>
+                </div>
+            </div>
+            <div class="colum">
+                <h2 class="subtitle">Voir le carnet de chaque élève :</h2>
+                <% if ( typeof listeEleves[0] === 'undefined') { %>
+                <h3 class="is-italic">Vous n'avez pas encore d'élèves.</h3>
+                <% } else { %>
+                <% listeEleves.forEach(eleve => { %>
+                <div class="box" id="<%= eleve.id %>">
+                    <%= eleve.nom %>
+                </div>
+                <% }); %>
+                <% } %>
+                <hr class="has-background-primary">
+                <h2 class="subtitle">Elèves désactivés:</h2>
+                <% if ( typeof listeElevesDesactives[0] === 'undefined') { %>
+                <h3 class="is-italic">Vous n'avez pas encore d'élèves.</h3>
+                <% } else { %>
+                <% listeEleves.forEach(eleve => { %>
+                <div class="box" id="<%= eleve.id %>">
+                    <%= eleve.nom %>
+                </div>
+                <% }); %>
+                <% } %>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<% include ./../../views/footer %>
