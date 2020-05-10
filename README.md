@@ -27,8 +27,8 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 ## Fonctionnalitées PMV
 
 - [x] ajouter des élèves
-- [] créer une observation (référentiel)
-- [] créer une observation (champs libre)
+- [x] créer une observation (référentiel)
+- [x] créer une observation (champs libre)
 - [] exporter le carnet de suivi par élève (pdf)
 
 ## Fonctionnalitées à venir
@@ -38,7 +38,7 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 - [] partie communautaire (forum ou message board interne)
 - [] gestion des parents (invitation à créer un compte spécial ou envoi de mails ? lien pour PDF ?)
 - [] interface parent simplifiée
-- [] recherche de profs de la même école (par UAI ou code décidé en avance)
+- [] recherche de profs de la même école (par UAI ou code generé alétoirement)
 - [] partager mes élèves à un prof
 - [] voir et évaluer les élèves partagés avec moi (module séparé)
 - [] transmettre des élèves désactivés à un collègue (changement de classe)
@@ -62,7 +62,7 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 - [] mise en place de pm2 (multitreads)
 - [] intégration avec nginx en reverse proxy
 - [] pages statiques gérés par le serveur web
-- [] gestion des logs
+- [x] gestion des logs
 - [] passage à mariadb
 - [] tests unitaires
 - [] api de maintenance/administration (dump, stats, changement de niveau de logs)
