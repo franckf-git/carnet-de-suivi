@@ -31,7 +31,7 @@ exports.initialisationBDDObservations = () => {
           table.integer('idAttendu')
             .index()
             .defaultTo(0)
-          table.boolean('referentielOfficiel')
+          table.boolean('referentielRecommande')
             .defaultTo(1)
           table.string('titre')
           table.string('description')

@@ -25,8 +25,8 @@ export function formulaireTitreObservable() {
   }
 
   /* Envoi de l id de l attendu avec un formulaire caché */
-  const attenduOfficiel = document.querySelectorAll('#attenduReferentiel')
-  attenduOfficiel.forEach(element => {
+  const attenduRecommande = document.querySelectorAll('#attenduReferentiel')
+  attenduRecommande.forEach(element => {
     element.addEventListener('click', () => {
       document.querySelector('#choixAttendu').value = element.getAttribute('data-value')
       document.forms.choixAttendus.submit()

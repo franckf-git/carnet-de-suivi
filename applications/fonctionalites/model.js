@@ -111,9 +111,9 @@ exports.nouvelAttenduPersonnalise = async (idUtilisateur, attenduPersonnalise, i
   }
 }
 
-exports.miseaJourObservationAvecAttendu = async (idObservation, idAttendu, referentielOfficiel) => {
+exports.miseaJourObservationAvecAttendu = async (idObservation, idAttendu, referentielRecommande) => {
   try {
-    return await observations('observations').update({ idAttendu, referentielOfficiel }).where({ id: idObservation })
+    return await observations('observations').update({ idAttendu, referentielRecommande }).where({ id: idObservation })
   } catch (error) {
     logger.error(error)
   }
@@ -130,10 +130,10 @@ exports.recuperationTitreActivite = async (idObservation) => {
 
 exports.recuperationAttenduEvalue = async (idObservation) => {
   try {
-    const recherche = await observations('observations').select('idAttendu', 'referentielOfficiel').where({ id: idObservation })
+    const recherche = await observations('observations').select('idAttendu', 'referentielRecommande').where({ id: idObservation })
     const idAttendu = recherche[0].idAttendu
-    const referentielOfficiel = recherche[0].referentielOfficiel
-    if (referentielOfficiel) {
+    const referentielRecommande = recherche[0].referentielRecommande
+    if (referentielRecommande) {
       const attendu = await referentiel('attendus').select('attendu').where({ id: idAttendu })
       return attendu[0].attendu
     } else {
