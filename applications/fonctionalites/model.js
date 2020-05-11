@@ -220,3 +220,55 @@ exports.verificationLienEleveProf = async (idEleve, idUtilisateur) => {
     logger.error(error)
   }
 }
+
+exports.recuperationEvaluationParObservation = async (idEleve) => {
+  try {
+    return await observations('evaluations').select('idObservation', 'idCritere').where({ idEleve })
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.recuperationObservationparId = async (idObservation) => {
+  try {
+    const recherche = await observations('observations').select().where({ id: idObservation })
+    return recherche
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.recuperationObjectifparId = async (idObjectif) => {
+  try {
+    const recherche = await referentiel('objectifs').select().where({ id: idObjectif })
+    return recherche
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.recuperationDomaineparId = async (idDomaine) => {
+  try {
+    const recherche = await referentiel('domaines').select().where({ id: idDomaine })
+    return recherche
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.recuperationAttenduparIdObservation = async (idObservation) => {
+  try {
+    const recherche = await observations('observations').select('idAttendu', 'referentielRecommande').where({ id: idObservation })
+    const idAttendu = recherche[0].idAttendu
+    const referentielRecommande = recherche[0].referentielRecommande
+    if (referentielRecommande) {
+      const attendu = await referentiel('attendus').select().where({ id: idAttendu })
+      return attendu
+    } else {
+      const attendu = await observations('attendusPersonnalises').select().where({ id: idAttendu })
+      return attendu
+    }
+  } catch (error) {
+    logger.error(error)
+  }
+}
