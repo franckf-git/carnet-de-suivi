@@ -235,34 +235,27 @@ exports.carnetdesuivi = async (req, res, next) => {
     const evaluationsDelEleve = await recuperationEvaluationParObservation(idEleve)
     // console.log(evaluationsDelEleve)
 
-    const creationArborescenceReferentiel = async () => {
-      await evaluationsDelEleve.map(async (evaluation) => {
-
-        const tablepourEvaluation = []
-        tablepourEvaluation.push(evaluation)
-
+    const creationArborescenceCarnetParEvaluation = async (evaluationsDelEleve) => {
+      const elementArborescenceCarnet = await evaluationsDelEleve.map(async (evaluation) => {
         const idObservation = evaluation.idObservation
         const infosObservation = await recuperationObservationparId(idObservation)
-        // console.log(infosObservation)
-        tablepourEvaluation.push(infosObservation)
 
-        const attenduEvalue = await recuperationAttenduparIdObservation(idObservation)
-        // console.log(attenduEvalue)
-        tablepourEvaluation.push(attenduEvalue)
+        const infosAttendu = await recuperationAttenduparIdObservation(idObservation)
 
-        const objectif = attenduEvalue[0].idObjectif
+        const objectif = infosAttendu[0].idObjectif
         const infosObjectif = await recuperationObjectifparId(objectif)
-        // console.log(infosObjectif);
-        tablepourEvaluation.push(infosObjectif)
 
         const domaine = infosObjectif[0].idDomaine
         const infosDomaine = await recuperationDomaineparId(domaine)
-        // console.log(infosDomaine);
-        tablepourEvaluation.push(infosDomaine)
 
-        console.log(tablepourEvaluation)
+        const object = { domaine: infosDomaine[0], objectif: infosObjectif[0], attendu: infosAttendu[0], observation: infosObservation[0], evaluation: evaluation.idCritere }
+        return object
       })
+      const arborescenceCarnet = await Promise.all(elementArborescenceCarnet)
+      return arborescenceCarnet
     }
+    const retourParEvaluation = await creationArborescenceCarnetParEvaluation(evaluationsDelEleve)
+    console.log(retourParEvaluation[0].observation.titre)
 
     /*
     sortie désirée
@@ -270,28 +263,6 @@ exports.carnetdesuivi = async (req, res, next) => {
 {iddomaine: 1, domaine:"blavbla", [objectifs,objectifs ]}
                                    {idobjectif: 22, objectifs:"blabla"  }
     */
-
-    creationArborescenceReferentiel()
-
-    /*
-    const creationArborescenceReferentiel = async () => {
-      const domaines = await recuperationDomaines()
-      await domaines.map(async (domaine) => {
-        const idDomaine = domaine.id
-        const objectifs = await recuperationObjectifsDuDomaine(idDomaine)
-        await objectifs.map(async (objectif) => {
-          const idObjectif = objectif.id
-          const attendus = await recuperationAttendusDelObjectif(idObjectif)
-          await attendus.map(async (attendu) => {
-            const idAttendu = attendu.id
-            console.log(idAttendu)
-          })
-        })
-      })
-    }
-    creationArborescenceReferentiel()
-    */
-
     res.render('./applications/fonctionalites/views/carnetEleve', { pseudo, titre })
   } catch (error) {
     logger.error(error)
