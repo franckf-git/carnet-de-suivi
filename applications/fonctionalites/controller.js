@@ -114,6 +114,7 @@ exports.nouvelleObservationDomaine = async (req, res, next) => {
     const idUtilisateur = req.session.utilisateur
     const titreActivite = nettoyageTotal(req.body.titre)
     const description = nettoyageTotal(req.body.description)
+    const domaine = req.body.domaine
     const idObservation = await enregistrementNouvelleObservationBDD(idUtilisateur,
       titreActivite,
       description)
