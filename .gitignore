@@ -76,4 +76,5 @@ basededonnees/dumps/*.sql
 # Dump Redis
 dump.rdb
 
+# Working Docs (référentiels, tableurs, ....)
 documents-de-travail

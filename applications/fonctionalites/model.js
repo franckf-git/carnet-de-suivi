@@ -124,6 +124,24 @@ exports.recuperationAttendusDelObjectif = async (idObjectif) => {
   }
 }
 
+exports.recuperationAttendusDelObjectif = async (idObjectif) => {
+  try {
+    const recherche = await referentiel('attendus').select().where({ idObjectif })
+    return recherche
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.recuperationAttendusPersoDelObjectif = async (idObjectif) => {
+  try {
+    const recherche = await observations('attendusPersonnalises').select().where({ idObjectif })
+    return recherche
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
 exports.nouvelAttenduPersonnalise = async (idUtilisateur, attenduPersonnalise, idObjectif) => {
   try {
     return await observations('attendusPersonnalises').insert({
@@ -268,6 +286,15 @@ exports.recuperationAttenduparIdObservation = async (idObservation) => {
       const attendu = await observations('attendusPersonnalises').select().where({ id: idAttendu })
       return attendu
     }
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.recuperationDomaines = async () => {
+  try {
+    const recherche = await referentiel('domaines').select()
+    return recherche
   } catch (error) {
     logger.error(error)
   }

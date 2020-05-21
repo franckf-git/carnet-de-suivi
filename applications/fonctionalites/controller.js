@@ -24,7 +24,9 @@ const {
   recuperationObservationparId,
   recuperationObjectifparId,
   recuperationDomaineparId,
-  recuperationAttenduparIdObservation
+  recuperationAttenduparIdObservation,
+  recuperationDomaines,
+  recuperationAttendusPersoDelObjectif
 } = require('./model')
 const { nettoyageTotal } = require('./../utils')
 const logger = require('./../utils/logger')
@@ -233,8 +235,8 @@ exports.carnetdesuivi = async (req, res, next) => {
     }
 
     const evaluationsDelEleve = await recuperationEvaluationParObservation(idEleve)
-    // console.log(evaluationsDelEleve)
 
+    /* de l'évalaution on remonte l'arborescence */
     const creationArborescenceCarnetParEvaluation = async (evaluationsDelEleve) => {
       const elementArborescenceCarnet = await evaluationsDelEleve.map(async (evaluation) => {
         const idObservation = evaluation.idObservation
@@ -257,11 +259,28 @@ exports.carnetdesuivi = async (req, res, next) => {
     const retourParEvaluation = await creationArborescenceCarnetParEvaluation(evaluationsDelEleve)
     console.log(retourParEvaluation[0].observation.titre)
 
-    /*
+    /* on descend l'arborescence vers l'évaluation */
+    /* 
     sortie désirée
-[domaine,domaine]
-{iddomaine: 1, domaine:"blavbla", [objectifs,objectifs ]}
-                                   {idobjectif: 22, objectifs:"blabla"  }
+    [domaine,domaine]
+    {iddomaine: 1, domaine:"blavbla", [objectifs,objectifs ]}
+                                       {idobjectif: 22, objectifs:"blabla"  }
+*/
+    /*
+        const creationArborescenceCarnetParStructure = async (evaluationsDelEleve) => {
+          const domaines = await recuperationDomaines()
+          domaines.map(async (domaine) => {
+            const objectifs = await recuperationObjectifsDuDomaine(domaine.id)
+            objectifs.map(async (objectif) => {
+              const attendus = await recuperationAttendusDelObjectif(objectif.id)
+              const attendusPerso = await recuperationAttendusPersoDelObjectif(objectif.id)
+              console.log(attendusPerso);
+    
+            })
+          })
+        }
+        const retourParStructure = await creationArborescenceCarnetParStructure(evaluationsDelEleve)
+        console.log(retourParStructure)
     */
     res.render('./applications/fonctionalites/views/carnetEleve', { pseudo, titre })
   } catch (error) {
