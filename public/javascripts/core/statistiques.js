@@ -65,8 +65,8 @@ export function envoiInfosAnomyniseesSurUtilisation() {
     duration
   }
 
-  const sendToServer = () => {
-    fetch('/statsutilisation', {
+  const sendToServer = async () => {
+    await fetch('/statsutilisation', {
       method: 'POST',
       mode: 'cors',
       headers: {

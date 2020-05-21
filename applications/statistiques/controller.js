@@ -9,6 +9,7 @@ exports.enregistrementInfos = async (req, res, next) => {
     const remoteAddress = req.connection.remoteAddress
     const aSauvegarder = { ip, remoteAddress, ...infosClient }
     await enregistrementInfosBDD(aSauvegarder)
+    res.json({ message: 'ok' })
   } catch (error) {
     logger.error(error)
   }
