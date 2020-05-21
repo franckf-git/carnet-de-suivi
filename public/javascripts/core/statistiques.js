@@ -44,6 +44,14 @@ export function envoiInfosAnomyniseesSurUtilisation() {
   const orientation = screen.orientation.type
   const duration = 0
 
+  // si l'utilisateur refuse les stats
+  let refus = false
+  const buttonRefus = document.querySelector('.button-refus')
+  buttonRefus.addEventListener('click', () => {
+    refus = true
+    buttonRefus.classList.add('is-hidden')
+  })
+
   const infos = {
     uuid,
     uuidStatsAnonym,
@@ -70,7 +78,9 @@ export function envoiInfosAnomyniseesSurUtilisation() {
 
   const cycle = () => {
     infos.duration = infos.duration + intervalSec
-    sendToServer()
+    if (!refus) {
+      sendToServer()
+    }
   }
 
   if (doNotTrack !== '1') {
