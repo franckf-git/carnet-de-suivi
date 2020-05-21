@@ -2,6 +2,7 @@
 
 <section class="section">
   <div class="container has-text-centered">
+
     <div class="columns">
       <div class="column is-10">
         <figure class="image is-48x48 is-hidden-tablet is-pulled-right demanderAjoutEleve">
@@ -41,6 +42,7 @@
     <% if ( typeof listeEleves[0] === 'undefined') { %>
     <h1 class="title is-italic has-text-centered">Vous n'avez pas d'élèves actifs actuellement.</h1>
     <% } else { %>
+
     <% listeEleves.forEach(eleve => { %>
     <div class="box box-eleve has-background-grey-lighter is-font-secondary" id="<%= eleve.id %>">
       <%= eleve.nom %>
@@ -68,9 +70,9 @@
       </div>
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
-
     <% }); %>
     <% } %>
+
     <hr class="has-background-primary">
     <h2 class="subtitle">Elèves désactivés :</h2>
     <div class="content has-text-justified">
@@ -86,6 +88,7 @@
         <% } %>
       </ul>
     </div>
+
   </div>
 </section>
 

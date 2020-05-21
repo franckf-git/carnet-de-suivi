@@ -4,6 +4,7 @@
   <div class="container has-text-centered">
     <div class="columns is-centered">
       <div class="column is-5 is-4-desktop">
+
         <% include ./../../views/messages/erreurs %>
         <form
           action="/reinitialisationmotdepasse/<% if ( typeof uuid != 'undefined' ) { %><%= uuid %><% } else { %>"" <% } %>"
@@ -26,6 +27,7 @@
             <button class="button is-primary is-fullwidth">Enregistrer ce mot de passe</button>
           </div>
         </form>
+
       </div>
     </div>
   </div>
