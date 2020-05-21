@@ -2,7 +2,26 @@
 
 <section class="section">
     <div class="container">
+        <a class="button is-primary" href="/exportcsa">Retour</a>
         <%= typeof titre != 'undefined' ? titre : 'Carnet de Suivi' %>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <% retourParEvaluation.forEach(evaluation => { %>
+        <div class="box">
+            <div>id domaine : <%= evaluation.domaine.id %></div>
+            <div>domaine : <%= evaluation.domaine.domaine %></div>
+            <div>id objectif : <%= evaluation.objectif.id %></div>
+            <div>objectif : <%= evaluation.objectif.objectif %></div>
+            <div>id attendu : <%= evaluation.attendu.id %></div>
+            <div>attendu : <%= evaluation.attendu.attendu %></div>
+            <div>observation titre : <%= evaluation.observation.titre %></div>
+            <div>observation creation : <%= evaluation.observation.creation %></div>
+            <div>evaluation : <%= evaluation.evaluation %></div>
+        </div>
+        <% }); %>
     </div>
 </section>
 

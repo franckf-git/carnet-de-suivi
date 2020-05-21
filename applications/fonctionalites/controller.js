@@ -257,7 +257,6 @@ exports.carnetdesuivi = async (req, res, next) => {
       return arborescenceCarnet
     }
     const retourParEvaluation = await creationArborescenceCarnetParEvaluation(evaluationsDelEleve)
-    console.log(retourParEvaluation[0].observation.titre)
 
     /* on descend l'arborescence vers l'évaluation */
     /* 
@@ -282,7 +281,7 @@ exports.carnetdesuivi = async (req, res, next) => {
         const retourParStructure = await creationArborescenceCarnetParStructure(evaluationsDelEleve)
         console.log(retourParStructure)
     */
-    res.render('./applications/fonctionalites/views/carnetEleve', { pseudo, titre })
+    res.render('./applications/fonctionalites/views/carnetEleve', { pseudo, titre, retourParEvaluation })
   } catch (error) {
     logger.error(error)
   }
