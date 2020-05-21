@@ -1,9 +1,26 @@
 <% include ./../../views/headerConnecte %>
 
-<section class="section">
-    <div class="container">
-        <a class="button is-primary" href="/exportcsa">Retour</a>
-        <%= typeof titre != 'undefined' ? titre : 'Carnet de Suivi' %>
+<section class="section container">
+    <div class="columns">
+        <div class="column">
+            <a class="button is-primary is-fullwidth" href="/exportcsa">Retour</a>
+        </div>
+        <div class="column">
+            <a class="button is-fullwidth" href="/">Exporter en PDF</a>
+        </div>
+    </div>
+</section>
+
+<section class="hero is-bold has-background-grey-lighter">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                <%= typeof titre != 'undefined' ? titre : 'Carnet de Suivi' %>
+            </h1>
+            <h2 class="subtitle">
+                Elève de <%= typeof pseudo != 'undefined' ? pseudo : 'pseudo' %>
+            </h2>
+        </div>
     </div>
 </section>
 
