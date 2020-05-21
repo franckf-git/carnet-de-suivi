@@ -22,7 +22,7 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 
 ## Bugs (aka feature)
 - [] les retours à la ligne ne sont pas pris en compte dans la description de l'activité
-- [] titre activité : sanitize "<"
+- [x] titre activité : sanitize "<"
 
 ## Fonctionnalitées PMV
 
@@ -54,6 +54,8 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 - [] les parents voient le dernier point de suivi par défaut
 - [] intégration des points de suivis au carnet de suivi (option ou imposé ?)
 - [] ajout de multimédia aux observations (photo, audio, video)
+- [] sur modal critère : trois grosses icones photo/micro/commentaires(optionnel avec alerte modifiable dans le carnet)
+- [] carnet de suivi ajout de commentaires possible
 - [] ajout de photos aux domaines / sousdomaines
 - [] tableau de bord classe (avec filtres domaines / sousdomaines)
 - [] tableau de bord eleve (avec filtres domaines / sousdomaines)
