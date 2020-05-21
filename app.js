@@ -32,6 +32,7 @@ const optionsSession = {
   resave: false,
   saveUninitialized: true,
   cookie: {
+    sameSite: true,
     httpOnly: true,
     expires: 60000000,
     maxAge: 60000000
