@@ -15,6 +15,12 @@ module.exports = {
     ecmaVersion: 2018
   },
   "extends": "eslint:recommended",
+  "plugins": [
+    "security"
+  ],
+  "extends": [
+    "plugin:security/recommended"
+  ],
   rules: {
   }
 }
