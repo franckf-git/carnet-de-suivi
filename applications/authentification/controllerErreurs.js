@@ -15,11 +15,11 @@ exports.verificationChampsFormulaire = async (champsFormulaire, route) => {
 
     /* tests mot de passe longueur et espaces */
     if (route === 'connexion' || route === 'enregistrement' || route === 'nouveaumotdepasse') {
-      const longueurMotdePasse = await validator.isLength(motdepasse, { min: 8, max: 32 })
+      const longueurMotdePasse = await validator.isLength(motdepasse, { min: 8, max: 52 })
       const espacesDansMotdePasse = await validator.contains(motdepasse, ' ')
       if (!longueurMotdePasse) {
         erreursDuFormulaire
-          .push({ messageDAvertissement: 'Le mot de passe doit être entre 8 et 32 caractères. Merci de le corriger.' })
+          .push({ messageDAvertissement: 'Le mot de passe doit être entre 8 et 52 caractères. Merci de le corriger.' })
       }
       if (espacesDansMotdePasse) {
         erreursDuFormulaire
