@@ -30,6 +30,7 @@ const {
 } = require('./model')
 const { nettoyageTotal } = require('./../utils')
 const logger = require('./../utils/logger')
+const validator = require('validator')
 
 exports.acceuil = async (req, res, next) => {
   try {
@@ -112,7 +113,8 @@ exports.domaine = async (req, res, next) => {
 exports.nouvelleObservationDomaine = async (req, res, next) => {
   try {
     const idUtilisateur = req.session.utilisateur
-    const titreActivite = nettoyageTotal(req.body.titre)
+    const titreEscape = validator.blacklist(req.body.titre, '<')
+    const titreActivite = nettoyageTotal(titreEscape)
     const description = nettoyageTotal(req.body.description)
     const domaine = req.body.domaine
     const idObservation = await enregistrementNouvelleObservationBDD(idUtilisateur,
