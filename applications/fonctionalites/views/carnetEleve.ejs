@@ -6,7 +6,7 @@
             <a class="button is-primary is-fullwidth" href="/exportcsa">Retour</a>
         </div>
         <div class="column">
-            <a class="button is-fullwidth" href="/">Exporter en PDF</a>
+            <a class="button export-pdf is-fullwidth">Exporter en PDF</a>
         </div>
     </div>
 </section>
@@ -41,5 +41,24 @@
         <% }); %>
     </div>
 </section>
+
+<script src='/javascripts/pdfmake/pdfmake.min.js'></script>
+<script src='/javascripts/pdfmake/vfs_fonts.js'></script>
+<script>
+    const docDefinition = {
+        content: [
+            `${document.querySelector('.title').innerHTML}`,
+            `${document.querySelectorAll('.subtitle')[1].innerHTML}`,
+            `${document.querySelectorAll('.box').forEach(evaluation => {
+                evaluation.innerHTML.toString()
+            })}`
+        ]
+    }
+
+    const exportPdf = document.querySelector('.export-pdf')
+    exportPdf.addEventListener('click', () => {
+        pdfMake.createPdf(docDefinition).open()
+    })
+</script>
 
 <% include ./../../views/footer %>
