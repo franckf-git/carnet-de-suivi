@@ -299,3 +299,12 @@ exports.recuperationDomaines = async () => {
     logger.error(error)
   }
 }
+
+exports.recuperationObservationsDelAttendu = async (idAttendu) => {
+  try {
+    const recherche = await observations('observations').select().where({ idAttendu })
+    return recherche
+  } catch (error) {
+    logger.error(error)
+  }
+}

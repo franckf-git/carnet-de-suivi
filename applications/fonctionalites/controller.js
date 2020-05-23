@@ -10,6 +10,7 @@ const {
   enregistrementNouvelleObservationBDD,
   recuperationObjectifsDuDomaine,
   recuperationAttendusDelObjectif,
+  recuperationAttendusPersoDelObjectif,
   nouvelAttenduPersonnalise,
   miseaJourObservationAvecAttendu,
   recuperationTitreActivite,
@@ -26,7 +27,7 @@ const {
   recuperationDomaineparId,
   recuperationAttenduparIdObservation,
   recuperationDomaines,
-  recuperationAttendusPersoDelObjectif
+  recuperationObservationsDelAttendu
 } = require('./model')
 const { nettoyageTotal } = require('./../utils')
 const logger = require('./../utils/logger')
@@ -260,29 +261,46 @@ exports.carnetdesuivi = async (req, res, next) => {
     }
     const retourParEvaluation = await creationArborescenceCarnetParEvaluation(evaluationsDelEleve)
 
-    /* on descend l'arborescence vers l'évaluation */
-    /* 
-    sortie désirée
-    [domaine,domaine]
-    {iddomaine: 1, domaine:"blavbla", [objectifs,objectifs ]}
-                                       {idobjectif: 22, objectifs:"blabla"  }
-*/
-    /*
-        const creationArborescenceCarnetParStructure = async (evaluationsDelEleve) => {
-          const domaines = await recuperationDomaines()
-          domaines.map(async (domaine) => {
-            const objectifs = await recuperationObjectifsDuDomaine(domaine.id)
-            objectifs.map(async (objectif) => {
-              const attendus = await recuperationAttendusDelObjectif(objectif.id)
-              const attendusPerso = await recuperationAttendusPersoDelObjectif(objectif.id)
-              console.log(attendusPerso);
-    
-            })
+    /**********************/
+    const creationArborescenceCarnetParStructure = async () => {
+      const structure = []
+      const domaines = await recuperationDomaines()
+      const descendreDansReferentielDomaine = domaines.map(async (domaine) => {
+        const objectifsDuDomaine = await recuperationObjectifsDuDomaine(domaine.id)
+        const descendreDansReferentielObjectif = objectifsDuDomaine.map(async (objectif) => {
+
+          const attendusDelObjectif = await recuperationAttendusDelObjectif(objectif.id)
+          const descendreDansReferentielAttendus = attendusDelObjectif.map(async (attendu) => {
+            const observations = await recuperationObservationsDelAttendu(attendu.id)
+            const attendusETObservations = { ...attendu, observations }
+            return attendusETObservations
           })
-        }
-        const retourParStructure = await creationArborescenceCarnetParStructure(evaluationsDelEleve)
-        console.log(retourParStructure)
-    */
+
+          const attendusPersoDelObjectif = await recuperationAttendusPersoDelObjectif(objectif.id)
+          const descendreDansReferentielAttendusPerso = attendusPersoDelObjectif.map(async (attenduPerso) => {
+            const observations = await recuperationObservationsDelAttendu(attenduPerso.id)
+            const attendusPersoETObservations = { ...attenduPerso, observations }
+            return attendusPersoETObservations
+          })
+          const attendus = await Promise.all(descendreDansReferentielAttendus)
+          const attendusPerso = await Promise.all(descendreDansReferentielAttendusPerso)
+
+          const objectifsETattendusETattendusPersoETobservations = { ...objectif, attendus, attendusPerso }
+          return objectifsETattendusETattendusPersoETobservations
+        })
+
+        const objectifs = await Promise.all(descendreDansReferentielObjectif)
+        const domaineETobjectifsETattendusETobservations = { ...domaine, objectifs }
+        structure.push(domaineETobjectifsETattendusETobservations)
+      })
+
+      await Promise.all(descendreDansReferentielDomaine)
+      return structure
+    }
+    const retourParStructure = await creationArborescenceCarnetParStructure()
+    console.log(retourParStructure)
+    /**********************/
+
     res.render('./applications/fonctionalites/views/carnetEleve', { pseudo, titre, retourParEvaluation })
   } catch (error) {
     logger.error(error)
