@@ -28,15 +28,16 @@
     <div class="container">
         <% retourParEvaluation.forEach(evaluation => { %>
         <div class="box">
-            <div>id domaine : <%= evaluation.domaine.id %></div>
-            <div>domaine : <%= evaluation.domaine.domaine %></div>
-            <div>id objectif : <%= evaluation.objectif.id %></div>
-            <div>objectif : <%= evaluation.objectif.objectif %></div>
-            <div>id attendu : <%= evaluation.attendu.id %></div>
-            <div>attendu : <%= evaluation.attendu.attendu %></div>
-            <div>observation titre : <%= evaluation.observation.titre %></div>
-            <div>observation creation : <%= evaluation.observation.creation %></div>
-            <div>evaluation : <%= evaluation.evaluation %></div>
+            <div class="domaine" id="<%= evaluation.domaine.id %>">domaine : <%= evaluation.domaine.domaine %></div>
+            <div class="objectif" id="<%= evaluation.objectif.id %>">objectif : <%= evaluation.objectif.objectif %>
+            </div>
+            <div class="attendu" id="<%= evaluation.attendu.id %>">attendu : <%= evaluation.attendu.attendu %></div>
+            <div class="observation">observation titre : <%= evaluation.observation.titre %></div>
+            <div class="observation-date">observation creation : <div class="is-italic">
+                    <%= evaluation.observation.creation %></div>
+            </div>
+            <div class="evaluation">evaluation : <%= evaluation.evaluation %></div>
+            <p><br></p>
         </div>
         <% }); %>
     </div>
@@ -45,13 +46,16 @@
 <script src='/javascripts/pdfmake/pdfmake.min.js'></script>
 <script src='/javascripts/pdfmake/vfs_fonts.js'></script>
 <script>
+    const listEvaluations = []
+    const boxEvaluations = document.querySelectorAll('.box').forEach((evaluations) => {
+        listEvaluations.push(evaluations.innerText)
+    })
+
     const docDefinition = {
         content: [
             `${document.querySelector('.title').innerHTML}`,
             `${document.querySelectorAll('.subtitle')[1].innerHTML}`,
-            `${document.querySelectorAll('.box').forEach(evaluation => {
-                evaluation.innerHTML.toString()
-            })}`
+            `${listEvaluations}`
         ]
     }
 
