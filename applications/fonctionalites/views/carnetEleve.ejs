@@ -43,6 +43,44 @@
     </div>
 </section>
 
+<section class="section">
+    <div class="container">
+        <% retourParStructure.forEach(domaine => { %>
+        <div class="box has-background-info">
+            <div class="domaine" id="<%= domaine.id %>">domaine : <%= domaine.domaine %></div>
+            <% domaine.objectifs.forEach(objectif => { %>
+            <div class="box has-background-warning">
+                <div class="objectif" id="<%= objectif.id %>">objectif : <%= objectif.objectif %></div>
+                <% objectif.attendus.forEach(attendu => { %>
+                <div class="box has-background-grey-light">
+                    <div class="attendu" id="<%= attendu.id %>">attendu : <%= attendu.attendu %></div>
+                    <% attendu.observations.forEach(observation => { %>
+                    <div class="box has-background-danger">
+                        <div class="observation" id="<%= observation.id %>">observation : <%= observation.titre %>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+                <% }); %>
+                <% objectif.attendusPerso.forEach(attenduPerso => { %>
+                <div class="box has-background-grey-light">
+                    <div class="attenduPerso" id="<%= attenduPerso.id %>">attenduPerso :
+                        <%= attenduPerso.attenduPerso %></div>
+                    <% attenduPerso.observations.forEach(observation => { %>
+                    <div class="box has-background-danger">
+                        <div class="observation" id="<%= observation.id %>">observation : <%= observation.titre %>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+                <% }); %>
+            </div>
+            <% }); %>
+        </div>
+        <% }); %>
+    </div>
+</section>
+
 <script src='/javascripts/pdfmake/pdfmake.min.js'></script>
 <script src='/javascripts/pdfmake/vfs_fonts.js'></script>
 <script>
