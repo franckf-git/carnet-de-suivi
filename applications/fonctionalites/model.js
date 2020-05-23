@@ -302,7 +302,16 @@ exports.recuperationDomaines = async () => {
 
 exports.recuperationObservationsDelAttendu = async (idAttendu) => {
   try {
-    const recherche = await observations('observations').select().where({ idAttendu })
+    const recherche = await observations('observations').select().where({ idAttendu, referentielRecommande: 1 })
+    return recherche
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.recuperationObservationsDelAttenduPerso = async (idAttendu) => {
+  try {
+    const recherche = await observations('observations').select().where({ idAttendu, referentielRecommande: 0 })
     return recherche
   } catch (error) {
     logger.error(error)
