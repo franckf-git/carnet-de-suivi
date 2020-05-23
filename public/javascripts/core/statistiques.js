@@ -45,12 +45,19 @@ export function envoiInfosAnomyniseesSurUtilisation() {
   const duration = 0
 
   // si l'utilisateur refuse les stats
-  let refus = false
+  let refusStats = false
   const buttonRefus = document.querySelector('.button-refus')
   buttonRefus.addEventListener('click', () => {
-    refus = true
+    refusStats = true
     buttonRefus.classList.add('is-hidden')
+    document.cookie = 'refusStatistiques=1'
   })
+  const refusStatsCookie = decodeURIComponent(document.cookie).split('; ').includes('refusStatistiques=1')
+  if (refusStatsCookie) {
+    refusStats = true
+    buttonRefus.classList.add('is-hidden')
+  }
+
 
   const infos = {
     uuid,
@@ -66,21 +73,21 @@ export function envoiInfosAnomyniseesSurUtilisation() {
   }
 
   const sendToServer = async () => {
-    await fetch('/statsutilisation', {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8'
-      },
-      body: JSON.stringify(infos)
-    })
+    if (!refusStats) {
+      await fetch('/statsutilisation', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify(infos)
+      })
+    }
   }
 
   const cycle = () => {
     infos.duration = infos.duration + intervalSec
-    if (!refus) {
-      sendToServer()
-    }
+    sendToServer()
   }
 
   if (doNotTrack !== '1') {
