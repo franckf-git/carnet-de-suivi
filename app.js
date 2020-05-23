@@ -45,6 +45,9 @@ if (app.get('env') === 'production') {
 app.use(session(optionsSession))
 
 // ROUTES
+if (app.get('env') === 'maintenance') {
+  app.use((req, res) => res.redirect('/maintenance'))
+}
 app.use('/connexion', require('./applications/authentification/connexion'))
 app.use('/deconnexion', require('./applications/authentification/deconnexion'))
 app.use('/enregistrement', require('./applications/authentification/enregistrement'))
