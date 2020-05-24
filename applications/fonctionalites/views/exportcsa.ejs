@@ -28,22 +28,18 @@
                 <% } %>
                 <hr class="has-background-primary">
                 <h3 class="subtitle">Elèves désactivés :</h3>
-                <div class="content has-text-justified">
-                    <ul>
-                        <% if ( typeof listeElevesDesactives[0] === 'undefined') { %>
-                        <h3 class="subtitle is-italic has-text-centered">Vous n'avez pas d'élèves
-                            inactifs
-                            actuellement.
-                        </h3>
-                        <% } else { %>
-                        <% listeElevesDesactives.forEach(eleve => { %>
-                        <li id="<%= eleve.id %>">
-                            <%= eleve.nom %>
-                        </li>
-                        <% }); %>
-                        <% } %>
-                    </ul>
-                </div>
+                <% if ( typeof listeElevesDesactives[0] === 'undefined') { %>
+                <h3 class="subtitle is-italic has-text-centered">Vous n'avez pas d'élèves
+                    inactifs
+                    actuellement.
+                </h3>
+                <% } else { %>
+                <% listeElevesDesactives.forEach(eleve => { %>
+                <a href="/exportcsa/eleve/<%= eleve.id %>" class="box has-background-grey-lighter">
+                    <%= eleve.nom %>
+                </a>
+                <% }); %>
+                <% } %>
             </div>
 
         </div>
