@@ -40,11 +40,11 @@
     </div>
 
     <% if ( typeof listeEleves[0] === 'undefined') { %>
-    <h1 class="title is-italic has-text-centered">Vous n'avez pas d'élèves actifs actuellement.</h1>
+    <h2 class="title is-italic has-text-centered">Vous n'avez pas d'élèves actifs actuellement.</h2>
     <% } else { %>
 
     <% listeEleves.forEach(eleve => { %>
-    <div class="box box-eleve has-background-grey-lighter is-font-secondary" id="<%= eleve.id %>">
+    <div class="box box-eleve has-background-light" id="<%= eleve.id %>">
       <%= eleve.nom %>
     </div>
 
@@ -74,7 +74,7 @@
     <% } %>
 
     <hr class="has-background-primary">
-    <h2 class="subtitle">Elèves désactivés :</h2>
+    <h3 class="subtitle">Elèves désactivés :</h3>
     <div class="content has-text-justified">
       <ul>
         <% if ( typeof listeElevesDesactives[0] === 'undefined') { %>

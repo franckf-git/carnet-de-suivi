@@ -3,11 +3,11 @@
 <section class="section">
     <div class="container has-text-centered">
 
-        <h1 class="subtitle"><%= titreActivite %></h1>
+        <h3 class="subtitle"><%= titreActivite %></h3>
         <div class="idObservation" id="<%= idObservation %>"></div>
 
         <% listeEleves.forEach(eleve => { %>
-        <div class="box box-eleveEval has-text-centered has-background-grey-lighter" id="box_<%= eleve.id %>">
+        <div class="box box-eleveEval has-text-centered has-background-light" id="box_<%= eleve.id %>">
             <%= eleve.nom %>
             <span class="tag is-success is-pulled-right is-hidden">Evalué</span>
         </div>
@@ -19,10 +19,10 @@
                     <p><%= attenduEvalue %></p>
                 </header>
                 <section class="modal-card-body" id="<%= eleve.id %>">
-                    <h4 class="subtitle"><%= eleve.nom %></h4>
+                    <h3 class="subtitle"><%= eleve.nom %></h3>
                     <% criteres.forEach(critere => { %>
                     <div class="column">
-                        <button class="button <%= critere.couleur %> critere"
+                        <button class="button is-fullwidth <%= critere.couleur %> critere"
                             id="<%= critere.id %>"><%= critere.critere %></button>
                     </div>
                     <% }); %>

@@ -2,8 +2,8 @@
 
 <section class="section">
   <div class="container has-text-centered">
-    <h2 class="title is-spaced">Merci de votre enregistrement <%= typeof email != 'undefined' ? email : '' %> !</h2>
-    <p class="subtitle">Bienvenue. Validez votre adresse et connectez vous pour profitez de notre application.</p>
+    <h2 class="title">Merci de votre enregistrement <%= typeof email != 'undefined' ? email : '' %> !</h2>
+    <h3 class="subtitle">Bienvenue. Validez votre adresse et connectez vous pour profitez de notre application.</h3>
     <div class="buttons is-centered">
       <a class="button is-primary"
         href="<%= typeof urluuid != 'undefined' ? urluuid : 'Erreur URL manquante' %>">Valider mon adresse mail</a>
