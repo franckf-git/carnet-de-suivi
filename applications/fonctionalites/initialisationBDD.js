@@ -1,6 +1,6 @@
 'use strict'
-const observations = require('./../../config/basededonnees/observations')
 
+const observations = require('./../../config/basededonnees/observations')
 exports.initialisationBDDObservations = () => {
   observations.schema.hasTable('eleves')
     .then((exists) => {
@@ -77,7 +77,6 @@ exports.initialisationBDDObservations = () => {
 }
 
 const referentiel = require('./../../config/basededonnees/referentiel')
-
 exports.initialisationBDDReferentiel = () => {
   referentiel.schema.hasTable('domaines')
     .then((exists) => {
