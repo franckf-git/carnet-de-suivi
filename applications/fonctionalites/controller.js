@@ -234,10 +234,7 @@ exports.enregistrementEvaluations = async (req, res, next) => {
 
 exports.parents = async (req, res, next) => {
   try {
-    const titre = 'Gestion des parents'
-    const id = req.session.utilisateur
-    const pseudo = await recuperationPseudoParIdUtilisateur(id)
-    res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
+    res.redirect('/bientot')
   } catch (error) {
     logger.error(error)
   }
@@ -245,10 +242,7 @@ exports.parents = async (req, res, next) => {
 
 exports.partage = async (req, res, next) => {
   try {
-    const titre = 'Partage d\'élèves'
-    const id = req.session.utilisateur
-    const pseudo = await recuperationPseudoParIdUtilisateur(id)
-    res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
+    res.redirect('/bientot')
   } catch (error) {
     logger.error(error)
   }
@@ -256,10 +250,7 @@ exports.partage = async (req, res, next) => {
 
 exports.suivis = async (req, res, next) => {
   try {
-    const titre = 'Points de suivi'
-    const id = req.session.utilisateur
-    const pseudo = await recuperationPseudoParIdUtilisateur(id)
-    res.render('./applications/fonctionalites/views/bientot', { pseudo, titre })
+    res.redirect('/bientot')
   } catch (error) {
     logger.error(error)
   }
