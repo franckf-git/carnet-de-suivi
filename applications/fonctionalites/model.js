@@ -74,6 +74,16 @@ exports.desactivationEleve = async (id) => {
   }
 }
 
+exports.reactivationEleve = async (id) => {
+  try {
+    await observations('eleves')
+      .update({ actif: 1 })
+      .where({ id })
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
 exports.ajoutEleveBDD = async (nom, idUtilisateur) => {
   try {
     await observations('eleves').insert({ nom, idUtilisateur })

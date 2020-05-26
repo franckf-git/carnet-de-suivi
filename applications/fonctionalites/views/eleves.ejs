@@ -79,9 +79,11 @@
     <h3 class="subtitle is-italic has-text-centered">Vous n'avez pas d'élèves inactifs actuellement.</h3>
     <% } else { %>
     <% listeElevesDesactives.forEach(eleve => { %>
-    <div class="box has-background-grey-lighter" id="<%= eleve.id %>">
-      <%= eleve.nom %>
-      <button class="button is-small is-info is-pulled-right">Réactiver cet élève</button>
+    <div class="box has-background-grey-lighter">
+      <form action="/eleves/edition/<%= eleve.id %>" method="post">
+        <%= eleve.nom %>
+        <button class="button is-small is-info is-pulled-right" name="reactivation">Réactiver</button>
+      </form>
     </div>
     <% }); %>
     <% } %>

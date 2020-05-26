@@ -5,6 +5,7 @@ const {
   recuperationPseudoParIdUtilisateur,
   miseajourEleve,
   desactivationEleve,
+  reactivationEleve,
   ajoutEleveBDD,
   verificationPresenceEleves,
   enregistrementNouvelleObservationBDD,
@@ -106,6 +107,8 @@ exports.editionEleves = async (req, res, next) => {
       await miseajourEleve(id, nom)
     } else if (req.body.desactivation === '') {
       await desactivationEleve(id)
+    } else if (req.body.reactivation === '') {
+      await reactivationEleve(id)
     }
     res.redirect('/eleves')
   } catch (error) {
