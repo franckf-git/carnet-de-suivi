@@ -53,7 +53,7 @@ exports.enregistrementInfos = async (infos) => {
 exports.nettoyageStatistiques = async () => {
   try {
     const dateDuJour = new Date()
-    const offset = (24 * 60 * 60 * 1000) * 90 * 3
+    const offset = (24 * 60 * 60 * 1000) * 30 * 3
     const statsExpire = dateDuJour.setTime(dateDuJour.getTime() - offset)
     const dateStatsExpire = new Date(statsExpire)
 
@@ -66,6 +66,8 @@ exports.nettoyageStatistiques = async () => {
         .where('ouverture', '<', dateStatsExpire)
         .del()
     }
+
+    return true
   } catch (error) {
     logger.error(error)
   }
