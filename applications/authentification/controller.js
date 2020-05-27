@@ -1,12 +1,12 @@
 'use strict'
 const {
-  enregistreNouveauUtilisateurBDD,
-  utilisateurConfirme,
-  nouveauMotDePasseBDD,
-  uuidUtilisePourConfirmer,
-  uuidUtilisePourReinitialiser,
-  recuperationIdUtilisateurBdd,
-  recuperationEmailUtilisateurParUUIDBdd,
+  enregistreNouveauUtilisateur,
+  miseajourUtilisateurConfirme,
+  miseajourNouveauMotDePasse,
+  miseajourUuidUtilisePourConfirmer,
+  miseajourUuidUtilisePourReinitialiser,
+  recuperationIdUtilisateurParEmailTest,
+  recuperationEmailUtilisateurParUUID,
   miseaJourDerniereConnexion
 } = require(
   './model')
@@ -30,7 +30,7 @@ exports.enregistreNouveauUtilisateur = async (req, res, next) => {
         .render('./applications/authentification/views/enregistrement', testsChamps)
     }
 
-    await enregistreNouveauUtilisateurBDD(champsFormulaire)
+    await enregistreNouveauUtilisateur(champsFormulaire)
     await envoiMailConfirmation(champsFormulaire.email)
     res.render('./applications/authentification/views/enregistrementTermine', { titre: 'Merci' })
   } catch (error) {
@@ -41,9 +41,9 @@ exports.enregistreNouveauUtilisateur = async (req, res, next) => {
 exports.confirmationEmail = async (req, res, next) => {
   try {
     const uuid = req.params.uuid
-    const email = await recuperationEmailUtilisateurParUUIDBdd(uuid)
-    await utilisateurConfirme(uuid)
-    await uuidUtilisePourConfirmer(uuid)
+    const email = await recuperationEmailUtilisateurParUUID(uuid)
+    await miseajourUtilisateurConfirme(uuid)
+    await miseajourUuidUtilisePourConfirmer(uuid)
     res.render('./applications/authentification/views/enregistrementEmailConfirme', { titre: 'Merci', email })
   } catch (error) {
     logger.error(error)
@@ -63,9 +63,9 @@ exports.connexionUtilisateur = async (req, res, next) => {
         .render('./applications/authentification/views/connexion', testsChamps)
     }
 
-    const recuperationIdUtilisateur = await recuperationIdUtilisateurBdd(champsFormulaire.email)
-    await miseaJourDerniereConnexion(recuperationIdUtilisateur)
-    req.session.utilisateur = recuperationIdUtilisateur
+    const idUtilisateur = await recuperationIdUtilisateurParEmailTest(champsFormulaire.email)
+    await miseaJourDerniereConnexion(idUtilisateur)
+    req.session.utilisateur = idUtilisateur
     res.redirect('/acceuil')
   } catch (error) {
     logger.error(error)
@@ -105,8 +105,8 @@ exports.nouveauMotDePasse = async (req, res, next) => {
         .render('./applications/authentification/views/motdepasseoublieNouveauMotdePasse', testsChampsAvecUUID)
     }
 
-    await nouveauMotDePasseBDD({ ...champsFormulaire, uuid })
-    await uuidUtilisePourReinitialiser(uuid)
+    await miseajourNouveauMotDePasse({ ...champsFormulaire, uuid })
+    await miseajourUuidUtilisePourReinitialiser(uuid)
     res.render(
       './applications/authentification/views/motdepasseoublieNouveauMotdePasseTermine', { titre: 'Merci' })
   } catch (error) {

@@ -3,7 +3,7 @@ const statistiques = require('./../../config/basededonnees/statistiques')
 const { nettoyageTotal } = require('./../utils')
 const logger = require('./../utils/logger')
 
-exports.enregistrementInfosBDD = async (infos) => {
+exports.enregistrementInfos = async (infos) => {
   try {
     const {
       ip,
@@ -36,6 +36,7 @@ exports.enregistrementInfosBDD = async (infos) => {
     const testSiUUIDExiste = await statistiques('infosUtilisation')
       .select()
       .where({ uuid: infosClean.uuid })
+
     if (testSiUUIDExiste.length !== 1) {
       await statistiques('infosUtilisation')
         .insert(infosClean)
@@ -49,7 +50,7 @@ exports.enregistrementInfosBDD = async (infos) => {
   }
 }
 
-exports.nettoyageStatistiquesBDD = async () => {
+exports.nettoyageStatistiques = async () => {
   try {
     const dateDuJour = new Date()
     const offset = (24 * 60 * 60 * 1000) * 90 * 3
@@ -65,8 +66,6 @@ exports.nettoyageStatistiquesBDD = async () => {
         .where('ouverture', '<', dateStatsExpire)
         .del()
     }
-
-    return true
   } catch (error) {
     logger.error(error)
   }

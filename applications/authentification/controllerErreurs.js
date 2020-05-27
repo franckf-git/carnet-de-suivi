@@ -1,9 +1,9 @@
 'use strict'
 const {
-  checkEmail,
-  checkEmailConfirmation,
-  checkMotdePasse,
-  checkUUID
+  verificationEmail,
+  verificationEmailConfirmation,
+  verificationMotdePasse,
+  verificationUUID
 } = require('./model')
 const validator = require('validator')
 const logger = require('./../utils/logger')
@@ -29,7 +29,7 @@ exports.verificationChampsFormulaire = async (champsFormulaire, route) => {
 
     /* test si le mot de passe est correct */
     if (route === 'connexion') {
-      const motdePasseValide = await checkMotdePasse(email, motdepasse)
+      const motdePasseValide = await verificationMotdePasse(email, motdepasse)
       if (!motdePasseValide) {
         erreursDuFormulaire
           .push({ messageDAvertissement: 'Le mot de passe fourni est incorrect. Vérifiez votre mot de passe ou utilisez "J\'ai oublié mon de passe" ci-dessous.' })
@@ -57,7 +57,7 @@ exports.verificationChampsFormulaire = async (champsFormulaire, route) => {
     /* test la longeur du pseudo et si le compte n'existe pas déjà */
     if (route === 'enregistrement') {
       const longueurPseudo = await validator.isLength(pseudo, { min: 3, max: 32 })
-      const emailExistant = await checkEmail(email)
+      const emailExistant = await verificationEmail(email)
       if (!longueurPseudo) {
         erreursDuFormulaire
           .push({ messageDAvertissement: 'Le pseudo doit être entre 3 et 32 caractères. Merci de le corriger.' })
@@ -70,8 +70,8 @@ exports.verificationChampsFormulaire = async (champsFormulaire, route) => {
 
     /* test si le compte existe et à été confirmé */
     if (route === 'connexion' || route === 'motdepasseoublie') {
-      const emailConfirmer = await checkEmailConfirmation(email)
-      const emailExistant = await checkEmail(email)
+      const emailConfirmer = await verificationEmailConfirmation(email)
+      const emailExistant = await verificationEmail(email)
       if (!emailConfirmer) {
         erreursDuFormulaire
           .push({ messageDAvertissement: 'Votre compte existe bien mais vous n\'avez pas confirmé votre email. Vérifiez votre boite mail pour confirmer votre adresse.' })
@@ -102,7 +102,7 @@ exports.verificationChampsFormulaire = async (champsFormulaire, route) => {
 }
 
 exports.siUUIDvalide = async (req, res, next) => {
-  const testUUID = await checkUUID(req.params.uuid)
+  const testUUID = await verificationUUID(req.params.uuid)
   if (testUUID) {
     return next()
   } else {

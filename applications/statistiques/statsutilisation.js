@@ -1,8 +1,8 @@
 'use strict'
 const express = require('express')
 const router = express.Router()
-const { enregistrementInfos } = require('./controller')
+const { infos } = require('./controller')
 
-router.post('/', enregistrementInfos)
+router.post('/', infos)
 
 module.exports = router

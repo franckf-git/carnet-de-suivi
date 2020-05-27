@@ -2,12 +2,13 @@
 const aide = require('./../../config/basededonnees/aide')
 const logger = require('./../utils/logger')
 
-exports.recuperationContenuAideBDD = async (intitule) => {
+exports.recuperationContenuAide = async (intitule) => {
   try {
-    const aAfficherDansLaPage = await aide('aideDansPage')
+    const recherche = await aide('aideDansPage')
       .select('texte')
       .where({ intitule })
-    return aAfficherDansLaPage[0].texte
+    const textedAideaAfficher = recherche[0].texte
+    return textedAideaAfficher
   } catch (error) {
     logger.error(error)
   }

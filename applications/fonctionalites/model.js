@@ -108,15 +108,17 @@ exports.verificationPresenceEleves = async (idUtilisateur) => {
   }
 }
 
-exports.enregistrementNouvelleObservationBDD = async (idUtilisateur, titre, description, idAttendu) => {
+exports.enregistrementNouvelleObservation = async (idUtilisateur, titre, description, idAttendu) => {
   try {
-    return await observations('observations').insert({ idUtilisateur, titre, description, idAttendu })
+    const enregistrement = await observations('observations').insert({ idUtilisateur, titre, description, idAttendu })
+    const idNouvelleObservation = enregistrement
+    return idNouvelleObservation
   } catch (error) {
     logger.error(error)
   }
 }
 
-exports.recuperationObjectifsDuDomaine = async (idDomaine) => {
+exports.recuperationObjectifsParDomaine = async (idDomaine) => {
   try {
     const recherche = await referentiel('objectifs').select().where({ idDomaine })
     return recherche
@@ -125,7 +127,7 @@ exports.recuperationObjectifsDuDomaine = async (idDomaine) => {
   }
 }
 
-exports.recuperationAttendusDelObjectif = async (idObjectif) => {
+exports.recuperationAttendusParObjectif = async (idObjectif) => {
   try {
     const recherche = await referentiel('attendus').select().where({ idObjectif })
     return recherche
@@ -134,16 +136,7 @@ exports.recuperationAttendusDelObjectif = async (idObjectif) => {
   }
 }
 
-exports.recuperationAttendusDelObjectif = async (idObjectif) => {
-  try {
-    const recherche = await referentiel('attendus').select().where({ idObjectif })
-    return recherche
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
-exports.recuperationAttendusPersoDelObjectif = async (idObjectif) => {
+exports.recuperationAttendusPersoParObjectif = async (idObjectif) => {
   try {
     const recherche = await observations('attendusPersonnalises').select().where({ idObjectif })
     return recherche
@@ -152,46 +145,52 @@ exports.recuperationAttendusPersoDelObjectif = async (idObjectif) => {
   }
 }
 
-exports.nouvelAttenduPersonnalise = async (idUtilisateur, attenduPersonnalise, idObjectif) => {
+exports.enregistrementNouvelAttenduPersonnalise = async (idUtilisateur, attenduPersonnalise, idObjectif) => {
   try {
-    return await observations('attendusPersonnalises').insert({
+    const enregistrement = await observations('attendusPersonnalises').insert({
       idUtilisateur,
       idObjectif,
       attendu: attenduPersonnalise
     })
+    const idNouvelAttenduPersonnalise = enregistrement
+    return idNouvelAttenduPersonnalise
   } catch (error) {
     logger.error(error)
   }
 }
 
-exports.miseaJourObservationAvecAttendu = async (idObservation, idAttendu, referentielRecommande) => {
+exports.miseajourObservationAvecAttendu = async (idObservation, idAttendu, referentielRecommande) => {
   try {
-    return await observations('observations').update({ idAttendu, referentielRecommande }).where({ id: idObservation })
+    const miseajour = await observations('observations').update({ idAttendu, referentielRecommande }).where({ id: idObservation })
+    return miseajour
   } catch (error) {
     logger.error(error)
   }
 }
 
-exports.recuperationTitreActivite = async (idObservation) => {
+exports.recuperationTitreActiviteParObservation = async (idObservation) => {
   try {
     const recherche = await observations('observations').select('titre').where({ id: idObservation })
-    return recherche[0].titre
+    const titre = recherche[0].titre
+    return titre
   } catch (error) {
     logger.error(error)
   }
 }
 
-exports.recuperationAttenduEvalue = async (idObservation) => {
+exports.recuperationAttenduEvalueParObservation = async (idObservation) => {
   try {
     const recherche = await observations('observations').select('idAttendu', 'referentielRecommande').where({ id: idObservation })
     const idAttendu = recherche[0].idAttendu
     const referentielRecommande = recherche[0].referentielRecommande
     if (referentielRecommande) {
       const attendu = await referentiel('attendus').select('attendu').where({ id: idAttendu })
-      return attendu[0].attendu
+      const attenduEvalue = attendu[0].attendu
+      return attenduEvalue
     } else {
       const attendu = await observations('attendusPersonnalises').select('attendu').where({ id: idAttendu })
-      return attendu[0].attendu
+      const attenduEvalue = attendu[0].attendu
+      return attenduEvalue
     }
   } catch (error) {
     logger.error(error)
@@ -207,7 +206,7 @@ exports.recuperationCriteres = async () => {
   }
 }
 
-exports.checkEvaluationFaite = async (idObservation, idEleve) => {
+exports.verificationEvaluationFaite = async (idObservation, idEleve) => {
   try {
     const recherche = await observations('evaluations').select().where({ idObservation, idEleve })
     if (typeof recherche[0] === 'undefined') {
@@ -220,17 +219,19 @@ exports.checkEvaluationFaite = async (idObservation, idEleve) => {
   }
 }
 
-exports.miseaJourEvaluationsBDD = async (idObservation, idEleve, idCritere) => {
+exports.miseajourEvaluations = async (idObservation, idEleve, idCritere) => {
   try {
-    return await observations('evaluations').update({ idCritere }).where({ idObservation, idEleve })
+    const miseajour = await observations('evaluations').update({ idCritere }).where({ idObservation, idEleve })
+    return miseajour
   } catch (error) {
     logger.error(error)
   }
 }
 
-exports.enregistrementEvaluationsBDD = async (idObservation, idEleve, idCritere) => {
+exports.enregistrementEvaluations = async (idObservation, idEleve, idCritere) => {
   try {
-    return await observations('evaluations').insert({ idObservation, idEleve, idCritere })
+    const enregistrement = await observations('evaluations').insert({ idObservation, idEleve, idCritere })
+    return enregistrement
   } catch (error) {
     logger.error(error)
   }
@@ -249,15 +250,16 @@ exports.verificationLienEleveProf = async (idEleve, idUtilisateur) => {
   }
 }
 
-exports.recuperationEvaluationParObservation = async (idEleve) => {
+exports.recuperationEvaluationParEleve = async (idEleve) => {
   try {
-    return await observations('evaluations').select('idObservation', 'idCritere').where({ idEleve })
+    const recherche = await observations('evaluations').select('idObservation', 'idCritere').where({ idEleve })
+    return recherche
   } catch (error) {
     logger.error(error)
   }
 }
 
-exports.recuperationObservationparId = async (idObservation) => {
+exports.recuperationObservationParId = async (idObservation) => {
   try {
     const recherche = await observations('observations').select().where({ id: idObservation })
     return recherche
@@ -266,7 +268,7 @@ exports.recuperationObservationparId = async (idObservation) => {
   }
 }
 
-exports.recuperationObjectifparId = async (idObjectif) => {
+exports.recuperationObjectifParId = async (idObjectif) => {
   try {
     const recherche = await referentiel('objectifs').select().where({ id: idObjectif })
     return recherche
@@ -275,7 +277,7 @@ exports.recuperationObjectifparId = async (idObjectif) => {
   }
 }
 
-exports.recuperationDomaineparId = async (idDomaine) => {
+exports.recuperationDomaineParId = async (idDomaine) => {
   try {
     const recherche = await referentiel('domaines').select().where({ id: idDomaine })
     return recherche
@@ -284,7 +286,7 @@ exports.recuperationDomaineparId = async (idDomaine) => {
   }
 }
 
-exports.recuperationAttenduparIdObservation = async (idObservation) => {
+exports.recuperationAttenduParObservation = async (idObservation) => {
   try {
     const recherche = await observations('observations').select('idAttendu', 'referentielRecommande').where({ id: idObservation })
     const idAttendu = recherche[0].idAttendu
@@ -310,7 +312,7 @@ exports.recuperationDomaines = async () => {
   }
 }
 
-exports.recuperationObservationsDelAttendu = async (idAttendu) => {
+exports.recuperationObservationsParAttendu = async (idAttendu) => {
   try {
     const recherche = await observations('observations').select().where({ idAttendu, referentielRecommande: 1 })
     return recherche
@@ -319,7 +321,7 @@ exports.recuperationObservationsDelAttendu = async (idAttendu) => {
   }
 }
 
-exports.recuperationObservationsDelAttenduPerso = async (idAttendu) => {
+exports.recuperationObservationsParAttenduPerso = async (idAttendu) => {
   try {
     const recherche = await observations('observations').select().where({ idAttendu, referentielRecommande: 0 })
     return recherche

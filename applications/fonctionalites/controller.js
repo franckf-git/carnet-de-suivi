@@ -8,28 +8,28 @@ const {
   reactivationEleve,
   ajoutEleveBDD,
   verificationPresenceEleves,
-  enregistrementNouvelleObservationBDD,
-  recuperationObjectifsDuDomaine,
-  recuperationAttendusDelObjectif,
-  recuperationAttendusPersoDelObjectif,
-  nouvelAttenduPersonnalise,
-  miseaJourObservationAvecAttendu,
-  recuperationTitreActivite,
-  recuperationAttenduEvalue,
+  enregistrementNouvelleObservation,
+  recuperationObjectifsParDomaine,
+  recuperationAttendusParObjectif,
+  recuperationAttendusPersoParObjectif,
+  enregistrementNouvelAttenduPersonnalise,
+  miseajourObservationAvecAttendu,
+  recuperationTitreActiviteParObservation,
+  recuperationAttenduEvalueParObservation,
   recuperationCriteres,
-  checkEvaluationFaite,
-  miseaJourEvaluationsBDD,
-  enregistrementEvaluationsBDD,
+  verificationEvaluationFaite,
+  miseajourEvaluations,
+  enregistrementEvaluations,
   verificationLienEleveProf,
   recuperationNomEleveParId,
-  recuperationEvaluationParObservation,
-  recuperationObservationparId,
-  recuperationObjectifparId,
-  recuperationDomaineparId,
-  recuperationAttenduparIdObservation,
+  recuperationEvaluationParEleve,
+  recuperationObservationParId,
+  recuperationObjectifParId,
+  recuperationDomaineParId,
+  recuperationAttenduParObservation,
   recuperationDomaines,
-  recuperationObservationsDelAttendu,
-  recuperationObservationsDelAttenduPerso
+  recuperationObservationsParAttendu,
+  recuperationObservationsParAttenduPerso
 } = require('./model')
 const { nettoyageTotal } = require('./../utils')
 const logger = require('./../utils/logger')
@@ -43,7 +43,7 @@ const creationArborescenceCarnetParStructure = async () => {
 }
 
 const descendreDansReferentielDomaine = (domaines) => domaines.map(async (domaine) => {
-  const objectifsDuDomaine = await recuperationObjectifsDuDomaine(domaine.id)
+  const objectifsDuDomaine = await recuperationObjectifsParDomaine(domaine.id)
 
   const objectifs = await Promise.all(descendreDansReferentielObjectif(objectifsDuDomaine))
   const domaineETobjectifsETattendusETobservations = { ...domaine, objectifs }
@@ -51,11 +51,10 @@ const descendreDansReferentielDomaine = (domaines) => domaines.map(async (domain
 })
 
 const descendreDansReferentielObjectif = (objectifsDuDomaine) => objectifsDuDomaine.map(async (objectif) => {
-
-  const attendusDelObjectif = await recuperationAttendusDelObjectif(objectif.id)
+  const attendusDelObjectif = await recuperationAttendusParObjectif(objectif.id)
   const attendus = await Promise.all(descendreDansReferentielAttendus(attendusDelObjectif))
 
-  const attendusPersoDelObjectif = await recuperationAttendusPersoDelObjectif(objectif.id)
+  const attendusPersoDelObjectif = await recuperationAttendusPersoParObjectif(objectif.id)
   const attendusPerso = await Promise.all(descendreDansReferentielAttendusPerso(attendusPersoDelObjectif))
 
   const objectifsETattendusETattendusPersoETobservations = { ...objectif, attendus, attendusPerso }
@@ -63,13 +62,13 @@ const descendreDansReferentielObjectif = (objectifsDuDomaine) => objectifsDuDoma
 })
 
 const descendreDansReferentielAttendus = (attendusDelObjectif) => attendusDelObjectif.map(async (attendu) => {
-  const observations = await recuperationObservationsDelAttendu(attendu.id)
+  const observations = await recuperationObservationsParAttendu(attendu.id)
   const attendusETobservations = { ...attendu, observations }
   return attendusETobservations
 })
 
 const descendreDansReferentielAttendusPerso = (attendusPersoDelObjectif) => attendusPersoDelObjectif.map(async (attenduPerso) => {
-  const observations = await recuperationObservationsDelAttenduPerso(attenduPerso.id)
+  const observations = await recuperationObservationsParAttenduPerso(attenduPerso.id)
   const attendusPersoETobservations = { ...attenduPerso, observations }
   return attendusPersoETobservations
 })
@@ -162,16 +161,16 @@ exports.nouvelleObservationDomaine = async (req, res, next) => {
     const titreActivite = nettoyageTotal(titreEscape)
     const description = nettoyageTotal(req.body.description)
     const domaine = req.body.domaine
-    const idObservation = await enregistrementNouvelleObservationBDD(idUtilisateur,
+    const idObservation = await enregistrementNouvelleObservation(idUtilisateur,
       titreActivite,
       description)
 
-    const objectifsDuDomaine = await recuperationObjectifsDuDomaine(domaine)
+    const objectifsDuDomaine = await recuperationObjectifsParDomaine(domaine)
     const creationArborescenceReferentiel = async (objectifsDuDomaine) => {
       // on utilise map car forEach ne fonctionne pas avec await
       const arborescenceItems = await objectifsDuDomaine.map(async (objectif) => {
         const idObjectif = objectif.id
-        const attendusDelObjectif = await recuperationAttendusDelObjectif(idObjectif)
+        const attendusDelObjectif = await recuperationAttendusParObjectif(idObjectif)
         const arborescenceItem = { objectif, attendusDelObjectif }
         return arborescenceItem
       })
@@ -200,15 +199,15 @@ exports.nouvelleObservationChoixAttendu = async (req, res, next) => {
 
     if (typeof attenduPersonnalise !== 'undefined') {
       attenduPersonnalise = nettoyageTotal(attenduPersonnalise)
-      const idAttenduPersonnalise = await nouvelAttenduPersonnalise(idUtilisateur, attenduPersonnalise, idObjectif)
-      await miseaJourObservationAvecAttendu(idObservation, idAttenduPersonnalise[0], 0)
+      const idAttenduPersonnalise = await enregistrementNouvelAttenduPersonnalise(idUtilisateur, attenduPersonnalise, idObjectif)
+      await miseajourObservationAvecAttendu(idObservation, idAttenduPersonnalise[0], 0)
     } else {
-      await miseaJourObservationAvecAttendu(idObservation, idAttendu, 1)
+      await miseajourObservationAvecAttendu(idObservation, idAttendu, 1)
     }
 
     const listeEleves = await recuperationElevesParIdUtilisateur(idUtilisateur)
-    const titreActivite = await recuperationTitreActivite(idObservation)
-    const attenduEvalue = await recuperationAttenduEvalue(idObservation)
+    const titreActivite = await recuperationTitreActiviteParObservation(idObservation)
+    const attenduEvalue = await recuperationAttenduEvalueParObservation(idObservation)
     const criteres = await recuperationCriteres()
 
     const titre = 'Evaluer vos élèves'
@@ -222,12 +221,12 @@ exports.nouvelleObservationChoixAttendu = async (req, res, next) => {
 exports.enregistrementEvaluations = async (req, res, next) => {
   try {
     const { idObservation, idEleve, idCritere } = req.body
-    const check = await checkEvaluationFaite(idObservation, idEleve, idCritere)
+    const check = await verificationEvaluationFaite(idObservation, idEleve, idCritere)
     if (check) {
-      await miseaJourEvaluationsBDD(idObservation, idEleve, idCritere)
+      await miseajourEvaluations(idObservation, idEleve, idCritere)
       res.json({ message: 'maj' })
     } else {
-      await enregistrementEvaluationsBDD(idObservation, idEleve, idCritere)
+      await enregistrementEvaluations(idObservation, idEleve, idCritere)
       res.json({ message: 'evalue' })
     }
   } catch (error) {
@@ -272,21 +271,21 @@ exports.carnetdesuivi = async (req, res, next) => {
       return res.render('./applications/fonctionalites/views/eleveInconnu', { pseudo })
     }
 
-    const evaluationsDelEleve = await recuperationEvaluationParObservation(idEleve)
+    const evaluationsDelEleve = await recuperationEvaluationParEleve(idEleve)
 
     /* de l'évalaution on remonte l'arborescence */
     const creationArborescenceCarnetParEvaluation = async (evaluationsDelEleve) => {
       const elementArborescenceCarnet = await evaluationsDelEleve.map(async (evaluation) => {
         const idObservation = evaluation.idObservation
-        const infosObservation = await recuperationObservationparId(idObservation)
+        const infosObservation = await recuperationObservationParId(idObservation)
 
-        const infosAttendu = await recuperationAttenduparIdObservation(idObservation)
+        const infosAttendu = await recuperationAttenduParObservation(idObservation)
 
         const objectif = infosAttendu[0].idObjectif
-        const infosObjectif = await recuperationObjectifparId(objectif)
+        const infosObjectif = await recuperationObjectifParId(objectif)
 
         const domaine = infosObjectif[0].idDomaine
-        const infosDomaine = await recuperationDomaineparId(domaine)
+        const infosDomaine = await recuperationDomaineParId(domaine)
 
         const object = { domaine: infosDomaine[0], objectif: infosObjectif[0], attendu: infosAttendu[0], observation: infosObservation[0], evaluation: evaluation.idCritere }
         return object

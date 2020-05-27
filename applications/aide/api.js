@@ -1,8 +1,8 @@
 'use strict'
 const express = require('express')
 const router = express.Router()
-const { recuperationContenuAide } = require('./controller')
+const { contenuAide } = require('./controller')
 
-router.get('/:intitule', recuperationContenuAide)
+router.get('/:intitule', contenuAide)
 
 module.exports = router

@@ -4,16 +4,16 @@ const bcrypt = require('bcrypt')
 const validator = require('validator')
 const logger = require('./../utils/logger')
 
-const idUtilisateurDepuisEmail = async (email) => {
+const recuperationIdUtilisateurParEmail = async (email) => {
   const emailNormaliser = validator.normalizeEmail(email)
-  const retourBdd = await core('utilisateurs')
+  const recherche = await core('utilisateurs')
     .select('id')
     .where({ email: emailNormaliser })
-  const idUtilisateur = retourBdd[0].id
+  const idUtilisateur = recherche[0].id
   return idUtilisateur
 }
 
-exports.enregistreNouveauUtilisateurBDD = async (infosFormulaire) => {
+exports.enregistreNouveauUtilisateur = async (infosFormulaire) => {
   try {
     const { pseudo, email, motdepasse } = infosFormulaire
     const emailNormaliser = validator.normalizeEmail(email)
@@ -29,7 +29,7 @@ exports.enregistreNouveauUtilisateurBDD = async (infosFormulaire) => {
   }
 }
 
-exports.nouveauMotDePasseBDD = async (infosFormulaire) => {
+exports.miseajourNouveauMotDePasse = async (infosFormulaire) => {
   try {
     const { uuid, motdepasse } = infosFormulaire
     const motdepassechiffre = await bcrypt.hash(motdepasse, 12)
@@ -50,7 +50,7 @@ exports.nouveauMotDePasseBDD = async (infosFormulaire) => {
   }
 }
 
-exports.utilisateurConfirme = async (uuidEnAttenteDeValidation) => {
+exports.miseajourUtilisateurConfirme = async (uuidEnAttenteDeValidation) => {
   try {
     const id = await core('confirmationMail')
       .select('idUtilisateur')
@@ -67,16 +67,17 @@ exports.utilisateurConfirme = async (uuidEnAttenteDeValidation) => {
   }
 }
 
-exports.recuperationIdUtilisateurBdd = async (emailATester) => {
+exports.recuperationIdUtilisateurParEmailTest = async (emailATester) => {
   try {
     const emailATesterNormaliser = validator.normalizeEmail(emailATester)
-    return await idUtilisateurDepuisEmail(emailATesterNormaliser)
+    const recherche = await recuperationIdUtilisateurParEmail(emailATesterNormaliser)
+    return recherche
   } catch (error) {
     logger.error(error)
   }
 }
 
-exports.recuperationEmailUtilisateurParUUIDBdd = async (uuidEnAttenteDeValidation) => {
+exports.recuperationEmailUtilisateurParUUID = async (uuidEnAttenteDeValidation) => {
   try {
     const email = await core('confirmationMail')
       .join('utilisateurs', 'confirmationMail.idUtilisateur', '=', 'utilisateurs.id')
@@ -89,7 +90,7 @@ exports.recuperationEmailUtilisateurParUUIDBdd = async (uuidEnAttenteDeValidatio
   }
 }
 
-exports.miseaJourDerniereConnexion = async (id) => {
+exports.miseajourDerniereConnexion = async (id) => {
   try {
     const timeStamp = new Date().toISOString()
     await core('utilisateurs')
@@ -100,7 +101,7 @@ exports.miseaJourDerniereConnexion = async (id) => {
   }
 }
 
-exports.checkEmail = async (emailATester) => {
+exports.verificationEmail = async (emailATester) => {
   try {
     const emailATesterNormaliser = validator.normalizeEmail(emailATester)
     const emailExiste = await core('utilisateurs')
@@ -116,7 +117,7 @@ exports.checkEmail = async (emailATester) => {
   }
 }
 
-exports.checkEmailConfirmation = async (emailATester) => {
+exports.verificationEmailConfirmation = async (emailATester) => {
   try {
     const emailATesterNormaliser = validator.normalizeEmail(emailATester)
     const confirmeEnBase = await core('utilisateurs')
@@ -132,7 +133,7 @@ exports.checkEmailConfirmation = async (emailATester) => {
   }
 }
 
-exports.checkMotdePasse = async (emailATester, mdpATester) => {
+exports.verificationMotdePasse = async (emailATester, mdpATester) => {
   try {
     const emailATesterNormaliser = validator.normalizeEmail(emailATester)
     const mdpEnBase = await core('utilisateurs')
@@ -148,7 +149,7 @@ exports.checkMotdePasse = async (emailATester, mdpATester) => {
   }
 }
 
-exports.checkUUID = async (uuid) => {
+exports.verificationUUID = async (uuid) => {
   try {
     const testConfirmationMail = await core('confirmationMail')
       .select()
@@ -166,21 +167,23 @@ exports.checkUUID = async (uuid) => {
   }
 }
 
-exports.uuidUtilisePourConfirmer = async (uuidEnAttenteDeValidation) => {
+exports.miseajourUuidUtilisePourConfirmer = async (uuidEnAttenteDeValidation) => {
   try {
-    return await core('confirmationMail')
+    const miseajour = await core('confirmationMail')
       .where({ uuid: uuidEnAttenteDeValidation })
       .update({ utilise: 1 })
+    return miseajour
   } catch (error) {
     logger.error(error)
   }
 }
 
-exports.uuidUtilisePourReinitialiser = async (uuidEnAttenteDeValidation) => {
+exports.miseajourUuidUtilisePourReinitialiser = async (uuidEnAttenteDeValidation) => {
   try {
-    return await core('reinitialisationMDP')
+    const miseajour = await core('reinitialisationMDP')
       .where({ uuid: uuidEnAttenteDeValidation })
       .update({ utilise: 1 })
+    return miseajour
   } catch (error) {
     logger.error(error)
   }
@@ -190,7 +193,7 @@ exports.entreeConfirmationMail = async (emailAConfirmer, uuidaValider) => {
   try {
     const emailAConfirmerNormaliser = validator.normalizeEmail(emailAConfirmer)
     const uuid = uuidaValider
-    const idUtilisateur = await idUtilisateurDepuisEmail(emailAConfirmerNormaliser)
+    const idUtilisateur = await recuperationIdUtilisateurParEmail(emailAConfirmerNormaliser)
     await core('confirmationMail')
       .insert({ idUtilisateur, uuid })
   } catch (error) {
@@ -202,7 +205,7 @@ exports.entreeReinitialisationMDP = async (emailAReinitialiser, uuidReinitialisa
   try {
     const emailAReinitialiserNormaliser = validator.normalizeEmail(emailAReinitialiser)
     const uuid = uuidReinitialisationMotdePasse
-    const idUtilisateur = await idUtilisateurDepuisEmail(emailAReinitialiserNormaliser)
+    const idUtilisateur = await recuperationIdUtilisateurParEmail(emailAReinitialiserNormaliser)
     await core('reinitialisationMDP')
       .insert({ idUtilisateur, uuid })
   } catch (error) {
@@ -210,7 +213,7 @@ exports.entreeReinitialisationMDP = async (emailAReinitialiser, uuidReinitialisa
   }
 }
 
-exports.nettoyageLiensMailsetMdpOubliesBDD = async () => {
+exports.nettoyageLiensMailsetMdpOublies = async () => {
   try {
     const dateDuJour = new Date()
     const offset = (24 * 60 * 60 * 1000) * 3
