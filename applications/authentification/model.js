@@ -169,10 +169,9 @@ exports.verificationUUID = async (uuid) => {
 
 exports.miseajourUuidUtilisePourConfirmer = async (uuidEnAttenteDeValidation) => {
   try {
-    const miseajour = await core('confirmationMail')
+    await core('confirmationMail')
       .where({ uuid: uuidEnAttenteDeValidation })
       .update({ utilise: 1 })
-    return miseajour
   } catch (error) {
     logger.error(error)
   }
@@ -180,10 +179,9 @@ exports.miseajourUuidUtilisePourConfirmer = async (uuidEnAttenteDeValidation) =>
 
 exports.miseajourUuidUtilisePourReinitialiser = async (uuidEnAttenteDeValidation) => {
   try {
-    const miseajour = await core('reinitialisationMDP')
+    await core('reinitialisationMDP')
       .where({ uuid: uuidEnAttenteDeValidation })
       .update({ utilise: 1 })
-    return miseajour
   } catch (error) {
     logger.error(error)
   }

@@ -161,8 +161,7 @@ exports.enregistrementNouvelAttenduPersonnalise = async (idUtilisateur, attenduP
 
 exports.miseajourObservationAvecAttendu = async (idObservation, idAttendu, referentielRecommande) => {
   try {
-    const miseajour = await observations('observations').update({ idAttendu, referentielRecommande }).where({ id: idObservation })
-    return miseajour
+    await observations('observations').update({ idAttendu, referentielRecommande }).where({ id: idObservation })
   } catch (error) {
     logger.error(error)
   }
@@ -221,8 +220,7 @@ exports.verificationEvaluationFaite = async (idObservation, idEleve) => {
 
 exports.miseajourEvaluations = async (idObservation, idEleve, idCritere) => {
   try {
-    const miseajour = await observations('evaluations').update({ idCritere }).where({ idObservation, idEleve })
-    return miseajour
+    await observations('evaluations').update({ idCritere }).where({ idObservation, idEleve })
   } catch (error) {
     logger.error(error)
   }
@@ -230,8 +228,7 @@ exports.miseajourEvaluations = async (idObservation, idEleve, idCritere) => {
 
 exports.enregistrementEvaluations = async (idObservation, idEleve, idCritere) => {
   try {
-    const enregistrement = await observations('evaluations').insert({ idObservation, idEleve, idCritere })
-    return enregistrement
+    await observations('evaluations').insert({ idObservation, idEleve, idCritere })
   } catch (error) {
     logger.error(error)
   }
