@@ -1,7 +1,7 @@
 'use strict'
 const uuid = require('uuid')
 const config = require('./../../config')
-const { entreeConfirmationMail, entreeReinitialisationMDP } = require('./model')
+const { enregistrementConfirmationMail, enregistrementReinitialisationMDP } = require('./model')
 const { envoiMailTemplate } = require('./../utils/envoiMailsTemplates')
 const logger = require('./../utils/logger')
 
@@ -19,7 +19,7 @@ exports.envoiMailConfirmation = async (emailAConfirmer) => {
       urluuid
     }
 
-    await entreeConfirmationMail(emailAConfirmer, uuidConfirmationMail)
+    await enregistrementConfirmationMail(emailAConfirmer, uuidConfirmationMail)
     await envoiMailTemplate('confirmationEmail', options)
   } catch (error) {
     logger.error(error)
@@ -40,7 +40,7 @@ exports.envoiMailReinitialisation = async (emailAReinitialiser) => {
       urluuid
     }
 
-    await entreeReinitialisationMDP(emailAReinitialiser, uuidReinitialisationMotdePasse)
+    await enregistrementReinitialisationMDP(emailAReinitialiser, uuidReinitialisationMotdePasse)
     await envoiMailTemplate('reinitialisationMotdePasse', options)
   } catch (error) {
     logger.error(error)

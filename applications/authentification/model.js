@@ -187,7 +187,7 @@ exports.miseajourUuidUtilisePourReinitialiser = async (uuidEnAttenteDeValidation
   }
 }
 
-exports.entreeConfirmationMail = async (emailAConfirmer, uuidaValider) => {
+exports.enregistrementConfirmationMail = async (emailAConfirmer, uuidaValider) => {
   try {
     const emailAConfirmerNormaliser = validator.normalizeEmail(emailAConfirmer)
     const uuid = uuidaValider
@@ -199,7 +199,7 @@ exports.entreeConfirmationMail = async (emailAConfirmer, uuidaValider) => {
   }
 }
 
-exports.entreeReinitialisationMDP = async (emailAReinitialiser, uuidReinitialisationMotdePasse) => {
+exports.enregistrementReinitialisationMDP = async (emailAReinitialiser, uuidReinitialisationMotdePasse) => {
   try {
     const emailAReinitialiserNormaliser = validator.normalizeEmail(emailAReinitialiser)
     const uuid = uuidReinitialisationMotdePasse
