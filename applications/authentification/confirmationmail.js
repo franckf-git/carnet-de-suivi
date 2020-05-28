@@ -2,8 +2,8 @@
 const express = require('express')
 const router = express.Router()
 const { confirmationEmail } = require('./controller')
-const { siUUIDvalide } = require('./controllerErreurs')
+const { siUuidValide } = require('./controllerErreurs')
 
-router.get('/:uuid', siUUIDvalide, confirmationEmail)
+router.get('/:uuid', siUuidValide, confirmationEmail)
 
 module.exports = router

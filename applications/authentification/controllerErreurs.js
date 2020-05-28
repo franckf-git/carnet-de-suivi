@@ -3,7 +3,7 @@ const {
   verificationEmail,
   verificationEmailConfirmation,
   verificationMotdePasse,
-  verificationUUID
+  verificationUuid
 } = require('./model')
 const validator = require('validator')
 const logger = require('./../utils/logger')
@@ -101,9 +101,9 @@ exports.verificationChampsFormulaire = async (champsFormulaire, route) => {
   }
 }
 
-exports.siUUIDvalide = async (req, res, next) => {
-  const testUUID = await verificationUUID(req.params.uuid)
-  if (testUUID) {
+exports.siUuidValide = async (req, res, next) => {
+  const testUuid = await verificationUuid(req.params.uuid)
+  if (testUuid) {
     return next()
   } else {
     res.redirect('/lieninvalide')

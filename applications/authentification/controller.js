@@ -100,9 +100,9 @@ exports.nouveauMotDePasse = async (req, res, next) => {
     }
     const testsChamps = await verificationChampsFormulaire(champsFormulaire, 'nouveaumotdepasse')
     if (testsChamps !== true) {
-      const testsChampsAvecUUID = { ...testsChamps, uuid }
+      const testsChampsAvecUuid = { ...testsChamps, uuid }
       return res.status(401)
-        .render('./applications/authentification/views/motdepasseoublieNouveauMotdePasse', testsChampsAvecUUID)
+        .render('./applications/authentification/views/motdepasseoublieNouveauMotdePasse', testsChampsAvecUuid)
     }
 
     await miseajourNouveauMotDePasse({ ...champsFormulaire, uuid })

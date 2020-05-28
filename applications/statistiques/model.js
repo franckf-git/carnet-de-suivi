@@ -33,11 +33,11 @@ exports.enregistrementInfos = async (infos) => {
       orientation: nettoyageTotal(orientation),
       duration: nettoyageTotal(duration)
     }
-    const testSiUUIDExiste = await statistiques('infosUtilisation')
+    const testSiUuidExiste = await statistiques('infosUtilisation')
       .select()
       .where({ uuid: infosClean.uuid })
 
-    if (testSiUUIDExiste.length !== 1) {
+    if (testSiUuidExiste.length !== 1) {
       await statistiques('infosUtilisation')
         .insert(infosClean)
     } else {

@@ -83,8 +83,8 @@ exports.recuperationEmailUtilisateurParUuid = async (uuidEnAttenteDeValidation) 
       .join('utilisateurs', 'confirmationMail.idUtilisateur', '=', 'utilisateurs.id')
       .select('utilisateurs.email')
       .where({ 'confirmationMail.uuid': uuidEnAttenteDeValidation })
-    const emailDelUUID = validator.normalizeEmail(email[0].email)
-    return emailDelUUID
+    const emailDelUuid = validator.normalizeEmail(email[0].email)
+    return emailDelUuid
   } catch (error) {
     logger.error(error)
   }
@@ -149,7 +149,7 @@ exports.verificationMotdePasse = async (emailATester, mdpATester) => {
   }
 }
 
-exports.verificationUUID = async (uuid) => {
+exports.verificationUuid = async (uuid) => {
   try {
     const testConfirmationMail = await core('confirmationMail')
       .select()
