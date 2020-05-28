@@ -77,7 +77,7 @@ exports.recuperationIdUtilisateurParEmailTest = async (emailATester) => {
   }
 }
 
-exports.recuperationEmailUtilisateurParUUID = async (uuidEnAttenteDeValidation) => {
+exports.recuperationEmailUtilisateurParUuid = async (uuidEnAttenteDeValidation) => {
   try {
     const email = await core('confirmationMail')
       .join('utilisateurs', 'confirmationMail.idUtilisateur', '=', 'utilisateurs.id')

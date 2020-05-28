@@ -6,7 +6,7 @@ const {
   miseajourUuidUtilisePourConfirmer,
   miseajourUuidUtilisePourReinitialiser,
   recuperationIdUtilisateurParEmailTest,
-  recuperationEmailUtilisateurParUUID,
+  recuperationEmailUtilisateurParUuid,
   miseaJourDerniereConnexion
 } = require(
   './model')
@@ -41,7 +41,7 @@ exports.enregistreNouveauUtilisateur = async (req, res, next) => {
 exports.confirmationEmail = async (req, res, next) => {
   try {
     const uuid = req.params.uuid
-    const email = await recuperationEmailUtilisateurParUUID(uuid)
+    const email = await recuperationEmailUtilisateurParUuid(uuid)
     await miseajourUtilisateurConfirme(uuid)
     await miseajourUuidUtilisePourConfirmer(uuid)
     res.render('./applications/authentification/views/enregistrementEmailConfirme', { titre: 'Merci', email })
