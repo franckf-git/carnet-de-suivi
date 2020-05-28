@@ -77,8 +77,8 @@ const descendreDansReferentielAttendusPerso = (attendusPersoDelObjectif) => atte
 exports.acceuil = async (req, res, next) => {
   try {
     const titre = 'Bonjour'
-    const id = req.session.utilisateur
-    const pseudo = await recuperationPseudoParIdUtilisateur(id)
+    const idUtilisateur = req.session.utilisateur
+    const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
     res.render('./applications/fonctionalites/views/acceuil', { pseudo, titre })
   } catch (error) {
     logger.error(error)
@@ -129,10 +129,10 @@ exports.ajoutEleve = async (req, res, next) => {
 exports.exportcsa = async (req, res, next) => {
   try {
     const titre = 'Export du carnet de suivi'
-    const id = req.session.utilisateur
-    const pseudo = await recuperationPseudoParIdUtilisateur(id)
-    const listeEleves = await recuperationElevesParIdUtilisateur(id)
-    const listeElevesDesactives = await recuperationElevesDesactivesParIdUtilisateur(id)
+    const idUtilisateur = req.session.utilisateur
+    const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
+    const listeEleves = await recuperationElevesParIdUtilisateur(idUtilisateur)
+    const listeElevesDesactives = await recuperationElevesDesactivesParIdUtilisateur(idUtilisateur)
     res.render('./applications/fonctionalites/views/exportcsa', { pseudo, titre, listeEleves, listeElevesDesactives })
   } catch (error) {
     logger.error(error)
@@ -142,9 +142,9 @@ exports.exportcsa = async (req, res, next) => {
 exports.domaine = async (req, res, next) => {
   try {
     const titre = 'Créer une observation'
-    const id = req.session.utilisateur
-    const pseudo = await recuperationPseudoParIdUtilisateur(id)
-    const elevesPresents = await verificationPresenceEleves(id)
+    const idUtilisateur = req.session.utilisateur
+    const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
+    const elevesPresents = await verificationPresenceEleves(idUtilisateur)
     if (!elevesPresents) {
       return res.render('./applications/fonctionalites/views/elevesAbsents', { pseudo, titre })
     }

@@ -90,12 +90,12 @@ exports.recuperationEmailUtilisateurParUuid = async (uuidEnAttenteDeValidation) 
   }
 }
 
-exports.miseajourDerniereConnexion = async (id) => {
+exports.miseajourDerniereConnexion = async (idUtilisateur) => {
   try {
     const timeStamp = new Date().toISOString()
     await core('utilisateurs')
       .update({ derniereConnexion: timeStamp })
-      .where({ id })
+      .where({ id: idUtilisateur })
   } catch (error) {
     logger.error(error)
   }

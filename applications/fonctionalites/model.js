@@ -4,11 +4,11 @@ const observations = require('./../../config/basededonnees/observations')
 const referentiel = require('./../../config/basededonnees/referentiel')
 const logger = require('./../utils/logger')
 
-exports.recuperationPseudoParIdUtilisateur = async (id) => {
+exports.recuperationPseudoParIdUtilisateur = async (idUtilisateur) => {
   try {
     const recherche = await core('utilisateurs')
       .select('pseudo')
-      .where({ id })
+      .where({ id: idUtilisateur })
     const pseudo = recherche[0].pseudo
     return pseudo
   } catch (error) {
@@ -16,11 +16,11 @@ exports.recuperationPseudoParIdUtilisateur = async (id) => {
   }
 }
 
-exports.recuperationNomEleveParId = async (id) => {
+exports.recuperationNomEleveParId = async (idEleve) => {
   try {
     const recherche = await observations('eleves')
       .select('nom')
-      .where({ id })
+      .where({ id: idEleve })
     const nom = recherche[0].nom
     return nom
   } catch (error) {
