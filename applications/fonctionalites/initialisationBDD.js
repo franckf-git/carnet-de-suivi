@@ -1,11 +1,11 @@
 'use strict'
 
-const observations = require('./../../config/basededonnees/observations')
-exports.initialisationBDDObservations = () => {
-  observations.schema.hasTable('eleves')
+const carnetdesuivi = require('./../../config/basededonnees/carnetdesuivi')
+exports.initialisationBDDcarnetdesuivi = () => {
+  carnetdesuivi.schema.hasTable('eleves')
     .then((exists) => {
       if (!exists) {
-        return observations.schema.createTable('eleves', (table) => {
+        return carnetdesuivi.schema.createTable('eleves', (table) => {
           table.increments()
             .primary()
             .index()
@@ -15,14 +15,14 @@ exports.initialisationBDDObservations = () => {
           table.boolean('actif')
             .defaultTo(1)
           table.timestamp('enregistrement')
-            .defaultTo(observations.fn.now())
+            .defaultTo(carnetdesuivi.fn.now())
         })
       }
     })
-  observations.schema.hasTable('observations')
+  carnetdesuivi.schema.hasTable('observations')
     .then((exists) => {
       if (!exists) {
-        return observations.schema.createTable('observations', (table) => {
+        return carnetdesuivi.schema.createTable('observations', (table) => {
           table.increments()
             .primary()
             .index()
@@ -36,14 +36,14 @@ exports.initialisationBDDObservations = () => {
           table.string('titre')
           table.string('description')
           table.timestamp('creation')
-            .defaultTo(observations.fn.now())
+            .defaultTo(carnetdesuivi.fn.now())
         })
       }
     })
-  observations.schema.hasTable('attendusPersonnalises')
+  carnetdesuivi.schema.hasTable('attendusPersonnalises')
     .then((exists) => {
       if (!exists) {
-        return observations.schema.createTable('attendusPersonnalises', (table) => {
+        return carnetdesuivi.schema.createTable('attendusPersonnalises', (table) => {
           table.increments()
             .primary()
             .index()
@@ -53,14 +53,14 @@ exports.initialisationBDDObservations = () => {
             .index()
           table.string('attendu')
           table.timestamp('creation')
-            .defaultTo(observations.fn.now())
+            .defaultTo(carnetdesuivi.fn.now())
         })
       }
     })
-  observations.schema.hasTable('evaluations')
+  carnetdesuivi.schema.hasTable('evaluations')
     .then((exists) => {
       if (!exists) {
-        return observations.schema.createTable('evaluations', (table) => {
+        return carnetdesuivi.schema.createTable('evaluations', (table) => {
           table.integer('idObservation')
             .index()
           table.foreign('idObservation')

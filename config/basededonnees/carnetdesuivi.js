@@ -1,12 +1,12 @@
 'use strict'
 const config = require('./../')
 
-const observations = require('knex')({
+const carnetdesuivi = require('knex')({
   client: 'sqlite3',
   connection: {
-    filename: config.SQLITE_OBSERVATIONS
+    filename: config.SQLITE_CARNETDESUIVI
   },
   useNullAsDefault: true
 })
 
-module.exports = observations
+module.exports = carnetdesuivi

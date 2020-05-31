@@ -1,10 +1,10 @@
 'use strict'
-const observations = require('./../../../config/basededonnees/observations')
+const carnetdesuivi = require('./../../../config/basededonnees/carnetdesuivi')
 const logger = require('./../../utils/logger')
 
 exports.miseajourEleve = async (id, nom) => {
   try {
-    await observations('eleves')
+    await carnetdesuivi('eleves')
       .update({ nom })
       .where({ id })
   } catch (error) {
@@ -14,7 +14,7 @@ exports.miseajourEleve = async (id, nom) => {
 
 exports.desactivationEleve = async (id) => {
   try {
-    await observations('eleves')
+    await carnetdesuivi('eleves')
       .update({ actif: 0 })
       .where({ id })
   } catch (error) {
@@ -24,7 +24,7 @@ exports.desactivationEleve = async (id) => {
 
 exports.reactivationEleve = async (id) => {
   try {
-    await observations('eleves')
+    await carnetdesuivi('eleves')
       .update({ actif: 1 })
       .where({ id })
   } catch (error) {
@@ -34,7 +34,7 @@ exports.reactivationEleve = async (id) => {
 
 exports.ajoutEleve = async (nom, idUtilisateur) => {
   try {
-    await observations('eleves').insert({ nom, idUtilisateur })
+    await carnetdesuivi('eleves').insert({ nom, idUtilisateur })
   } catch (error) {
     logger.error(error)
   }

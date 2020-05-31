@@ -1,11 +1,11 @@
 'use strict'
-const observations = require('./../../../config/basededonnees/observations')
+const carnetdesuivi = require('./../../../config/basededonnees/carnetdesuivi')
 const referentiel = require('./../../../config/basededonnees/referentiel')
 const logger = require('./../../utils/logger')
 
 exports.recuperationNomEleveParId = async (idEleve) => {
   try {
-    const recherche = await observations('eleves')
+    const recherche = await carnetdesuivi('eleves')
       .select('nom')
       .where({ id: idEleve })
     const nom = recherche[0].nom
@@ -17,7 +17,7 @@ exports.recuperationNomEleveParId = async (idEleve) => {
 
 exports.recuperationAttendusPersoParObjectif = async (idObjectif) => {
   try {
-    const recherche = await observations('attendusPersonnalises').select().where({ idObjectif })
+    const recherche = await carnetdesuivi('attendusPersonnalises').select().where({ idObjectif })
     return recherche
   } catch (error) {
     logger.error(error)
@@ -26,7 +26,7 @@ exports.recuperationAttendusPersoParObjectif = async (idObjectif) => {
 
 exports.recuperationEvaluationParEleve = async (idEleve) => {
   try {
-    const recherche = await observations('evaluations').select('idObservation', 'idCritere').where({ idEleve })
+    const recherche = await carnetdesuivi('evaluations').select('idObservation', 'idCritere').where({ idEleve })
     return recherche
   } catch (error) {
     logger.error(error)
@@ -35,7 +35,7 @@ exports.recuperationEvaluationParEleve = async (idEleve) => {
 
 exports.recuperationObservationParId = async (idObservation) => {
   try {
-    const recherche = await observations('observations').select().where({ id: idObservation })
+    const recherche = await carnetdesuivi('observations').select().where({ id: idObservation })
     return recherche
   } catch (error) {
     logger.error(error)
@@ -62,14 +62,14 @@ exports.recuperationDomaineParId = async (idDomaine) => {
 
 exports.recuperationAttenduParObservation = async (idObservation) => {
   try {
-    const recherche = await observations('observations').select('idAttendu', 'referentielRecommande').where({ id: idObservation })
+    const recherche = await carnetdesuivi('observations').select('idAttendu', 'referentielRecommande').where({ id: idObservation })
     const idAttendu = recherche[0].idAttendu
     const referentielRecommande = recherche[0].referentielRecommande
     if (referentielRecommande) {
       const attendu = await referentiel('attendus').select().where({ id: idAttendu })
       return attendu
     } else {
-      const attendu = await observations('attendusPersonnalises').select().where({ id: idAttendu })
+      const attendu = await carnetdesuivi('attendusPersonnalises').select().where({ id: idAttendu })
       return attendu
     }
   } catch (error) {
@@ -88,7 +88,7 @@ exports.recuperationDomaines = async () => {
 
 exports.recuperationObservationsParAttendu = async (idAttendu) => {
   try {
-    const recherche = await observations('observations').select().where({ idAttendu, referentielRecommande: 1 })
+    const recherche = await carnetdesuivi('observations').select().where({ idAttendu, referentielRecommande: 1 })
     return recherche
   } catch (error) {
     logger.error(error)
@@ -97,7 +97,7 @@ exports.recuperationObservationsParAttendu = async (idAttendu) => {
 
 exports.recuperationObservationsParAttenduPerso = async (idAttendu) => {
   try {
-    const recherche = await observations('observations').select().where({ idAttendu, referentielRecommande: 0 })
+    const recherche = await carnetdesuivi('observations').select().where({ idAttendu, referentielRecommande: 0 })
     return recherche
   } catch (error) {
     logger.error(error)
@@ -106,7 +106,7 @@ exports.recuperationObservationsParAttenduPerso = async (idAttendu) => {
 
 exports.verificationLienEleveProf = async (idEleve, idUtilisateur) => {
   try {
-    const recherche = await observations('eleves').select().where({ id: idEleve, idUtilisateur })
+    const recherche = await carnetdesuivi('eleves').select().where({ id: idEleve, idUtilisateur })
     if (typeof recherche[0] === 'undefined') {
       return false
     } else {

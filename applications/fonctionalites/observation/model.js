@@ -1,5 +1,5 @@
 'use strict'
-const observations = require('./../../../config/basededonnees/observations')
+const carnetdesuivi = require('./../../../config/basededonnees/carnetdesuivi')
 const referentiel = require('./../../../config/basededonnees/referentiel')
 const logger = require('./../../utils/logger')
 
@@ -14,7 +14,7 @@ exports.recuperationCriteres = async () => {
 
 exports.recuperationTitreActiviteParObservation = async (idObservation) => {
   try {
-    const recherche = await observations('observations').select('titre').where({ id: idObservation })
+    const recherche = await carnetdesuivi('observations').select('titre').where({ id: idObservation })
     const titre = recherche[0].titre
     return titre
   } catch (error) {
@@ -24,7 +24,7 @@ exports.recuperationTitreActiviteParObservation = async (idObservation) => {
 
 exports.recuperationAttenduEvalueParObservation = async (idObservation) => {
   try {
-    const recherche = await observations('observations').select('idAttendu', 'referentielRecommande').where({ id: idObservation })
+    const recherche = await carnetdesuivi('observations').select('idAttendu', 'referentielRecommande').where({ id: idObservation })
     const idAttendu = recherche[0].idAttendu
     const referentielRecommande = recherche[0].referentielRecommande
     if (referentielRecommande) {
@@ -32,7 +32,7 @@ exports.recuperationAttenduEvalueParObservation = async (idObservation) => {
       const attenduEvalue = attendu[0].attendu
       return attenduEvalue
     } else {
-      const attendu = await observations('attendusPersonnalises').select('attendu').where({ id: idAttendu })
+      const attendu = await carnetdesuivi('attendusPersonnalises').select('attendu').where({ id: idAttendu })
       const attenduEvalue = attendu[0].attendu
       return attenduEvalue
     }
@@ -43,7 +43,7 @@ exports.recuperationAttenduEvalueParObservation = async (idObservation) => {
 
 exports.enregistrementNouvelleObservation = async (idUtilisateur, titre, description, idAttendu) => {
   try {
-    const enregistrement = await observations('observations').insert({ idUtilisateur, titre, description, idAttendu })
+    const enregistrement = await carnetdesuivi('observations').insert({ idUtilisateur, titre, description, idAttendu })
     const idNouvelleObservation = enregistrement
     return idNouvelleObservation
   } catch (error) {
@@ -53,7 +53,7 @@ exports.enregistrementNouvelleObservation = async (idUtilisateur, titre, descrip
 
 exports.enregistrementNouvelAttenduPersonnalise = async (idUtilisateur, attenduPersonnalise, idObjectif) => {
   try {
-    const enregistrement = await observations('attendusPersonnalises').insert({
+    const enregistrement = await carnetdesuivi('attendusPersonnalises').insert({
       idUtilisateur,
       idObjectif,
       attendu: attenduPersonnalise
@@ -67,7 +67,7 @@ exports.enregistrementNouvelAttenduPersonnalise = async (idUtilisateur, attenduP
 
 exports.enregistrementEvaluations = async (idObservation, idEleve, idCritere) => {
   try {
-    await observations('evaluations').insert({ idObservation, idEleve, idCritere })
+    await carnetdesuivi('evaluations').insert({ idObservation, idEleve, idCritere })
   } catch (error) {
     logger.error(error)
   }
@@ -75,7 +75,7 @@ exports.enregistrementEvaluations = async (idObservation, idEleve, idCritere) =>
 
 exports.miseajourObservationAvecAttendu = async (idObservation, idAttendu, referentielRecommande) => {
   try {
-    await observations('observations').update({ idAttendu, referentielRecommande }).where({ id: idObservation })
+    await carnetdesuivi('observations').update({ idAttendu, referentielRecommande }).where({ id: idObservation })
   } catch (error) {
     logger.error(error)
   }
@@ -83,7 +83,7 @@ exports.miseajourObservationAvecAttendu = async (idObservation, idAttendu, refer
 
 exports.miseajourEvaluations = async (idObservation, idEleve, idCritere) => {
   try {
-    await observations('evaluations').update({ idCritere }).where({ idObservation, idEleve })
+    await carnetdesuivi('evaluations').update({ idCritere }).where({ idObservation, idEleve })
   } catch (error) {
     logger.error(error)
   }
@@ -91,7 +91,7 @@ exports.miseajourEvaluations = async (idObservation, idEleve, idCritere) => {
 
 exports.verificationEvaluationFaite = async (idObservation, idEleve) => {
   try {
-    const recherche = await observations('evaluations').select().where({ idObservation, idEleve })
+    const recherche = await carnetdesuivi('evaluations').select().where({ idObservation, idEleve })
     if (typeof recherche[0] === 'undefined') {
       return false
     } else {
@@ -104,7 +104,7 @@ exports.verificationEvaluationFaite = async (idObservation, idEleve) => {
 
 exports.verificationPresenceEleves = async (idUtilisateur) => {
   try {
-    const recherche = await observations('eleves')
+    const recherche = await carnetdesuivi('eleves')
       .select()
       .where({ idUtilisateur, actif: 1 })
       .limit(1)

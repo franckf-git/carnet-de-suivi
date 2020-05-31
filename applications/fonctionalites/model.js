@@ -1,6 +1,6 @@
 'use strict'
 const core = require('./../../config/basededonnees/core')
-const observations = require('./../../config/basededonnees/observations')
+const carnetdesuivi = require('./../../config/basededonnees/carnetdesuivi')
 const referentiel = require('./../../config/basededonnees/referentiel')
 const logger = require('./../utils/logger')
 
@@ -18,7 +18,7 @@ exports.recuperationPseudoParIdUtilisateur = async (idUtilisateur) => {
 
 exports.recuperationElevesParIdUtilisateur = async (idUtilisateur) => {
   try {
-    const recherche = await observations('eleves')
+    const recherche = await carnetdesuivi('eleves')
       .select()
       .where({ idUtilisateur, actif: 1 })
       .orderBy('nom')
@@ -31,7 +31,7 @@ exports.recuperationElevesParIdUtilisateur = async (idUtilisateur) => {
 
 exports.recuperationElevesDesactivesParIdUtilisateur = async (idUtilisateur) => {
   try {
-    const recherche = await observations('eleves')
+    const recherche = await carnetdesuivi('eleves')
       .select()
       .where({ idUtilisateur, actif: 0 })
       .orderBy('nom')

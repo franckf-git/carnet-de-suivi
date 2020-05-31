@@ -11,7 +11,7 @@ const debug = require('debug')(`${config.DOMAIN}:server`)
 const { initialisationBDDAuthentification } = require('./../applications/authentification/initialisationBDD')
 const { initialisationBDDStatistiques } = require('./../applications/statistiques/initialisationBDD')
 const { initialisationBDDAide } = require('./../applications/aide/initialisationBDD')
-const { initialisationBDDObservations, initialisationBDDReferentiel } = require('./../applications/fonctionalites/initialisationBDD')
+const { initialisationBDDcarnetdesuivi, initialisationBDDReferentiel } = require('./../applications/fonctionalites/initialisationBDD')
 const { nettoyageLiensMailsetMdpOublies, nettoyageStatistiques, sauvegardeBasedeDonnees } = require(
   './../applications/utils/crontab')
 const logger = require('./../applications/utils/logger')
@@ -30,7 +30,7 @@ app.set('port', port)
 initialisationBDDAuthentification()
 initialisationBDDStatistiques()
 initialisationBDDAide()
-initialisationBDDObservations()
+initialisationBDDcarnetdesuivi()
 initialisationBDDReferentiel()
 
 /**
