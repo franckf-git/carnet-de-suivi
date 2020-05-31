@@ -1,12 +1,12 @@
 'use strict'
 const {
+  recuperationIdUtilisateurParEmailTest,
+  recuperationEmailUtilisateurParUuid,
   enregistreNouveauUtilisateur,
   miseajourUtilisateurConfirme,
   miseajourNouveauMotDePasse,
   miseajourUuidUtilisePourConfirmer,
   miseajourUuidUtilisePourReinitialiser,
-  recuperationIdUtilisateurParEmailTest,
-  recuperationEmailUtilisateurParUuid,
   miseajourDerniereConnexion
 } = require(
   './model')
