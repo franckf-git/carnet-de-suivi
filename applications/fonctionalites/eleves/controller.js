@@ -8,7 +8,7 @@ const {
   miseajourEleve,
   desactivationEleve,
   reactivationEleve,
-  ajoutEleveBDD
+  ajoutEleve
 } = require('./model')
 const { nettoyageTotal } = require('./../../utils')
 const logger = require('./../../utils/logger')
@@ -30,7 +30,7 @@ exports.editionEleves = async (req, res, next) => {
   try {
     const idEleve = req.params.id
     if (req.body.sauver === '') {
-      const { nom } = req.body
+      const nom = nettoyageTotal(req.body.nom)
       await miseajourEleve(idEleve, nom)
     } else if (req.body.desactivation === '') {
       await desactivationEleve(idEleve)
@@ -43,11 +43,11 @@ exports.editionEleves = async (req, res, next) => {
   }
 }
 
-exports.ajoutEleve = async (req, res, next) => {
+exports.ajoutNouvelEleve = async (req, res, next) => {
   try {
     const nom = nettoyageTotal(req.body.nom)
     const idUtilisateur = req.session.utilisateur
-    await ajoutEleveBDD(nom, idUtilisateur)
+    await ajoutEleve(nom, idUtilisateur)
     res.redirect('/eleves')
   } catch (error) {
     logger.error(error)

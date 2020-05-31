@@ -32,7 +32,7 @@ exports.reactivationEleve = async (id) => {
   }
 }
 
-exports.ajoutEleveBDD = async (nom, idUtilisateur) => {
+exports.ajoutEleve = async (nom, idUtilisateur) => {
   try {
     await observations('eleves').insert({ nom, idUtilisateur })
   } catch (error) {
