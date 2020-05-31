@@ -2,6 +2,7 @@
 const {
     recuperationObjectifsParDomaine,
     recuperationObservationParId,
+    recuperationAttenduParObservation,
     recuperationAttendusParObjectif
 } = require('./../model')
 const {
@@ -10,7 +11,6 @@ const {
     recuperationObservationsParAttenduPerso,
     recuperationObjectifParId,
     recuperationDomaineParId,
-    recuperationAttenduParObservation
 } = require('./model')
 
 /* on descent la structure du référentiel vers les attendus */

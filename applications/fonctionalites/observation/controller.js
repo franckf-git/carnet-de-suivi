@@ -4,10 +4,10 @@ const {
   recuperationElevesParIdUtilisateur,
   recuperationObjectifsParDomaine,
   recuperationAttendusParObjectif,
+  recuperationAttenduParObservation,
   recuperationObservationParId
 } = require('./../model')
 const {
-  recuperationAttenduEvalueParObservation,
   recuperationCriteres,
   enregistrementNouvelleObservation,
   enregistrementNouvelAttenduPersonnalise,
@@ -90,7 +90,9 @@ exports.nouvelleObservationChoixAttendu = async (req, res, next) => {
     const listeEleves = await recuperationElevesParIdUtilisateur(idUtilisateur)
     const observation = await recuperationObservationParId(idObservation)
     const titreActivite = observation[0].titre
-    const attenduEvalue = await recuperationAttenduEvalueParObservation(idObservation)
+    const attendu = await recuperationAttenduParObservation(idObservation)
+    const attenduEvalue = attendu[0].attendu
+
     const criteres = await recuperationCriteres()
 
     const titre = 'Evaluer vos élèves'
