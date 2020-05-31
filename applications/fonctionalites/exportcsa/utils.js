@@ -5,7 +5,6 @@ const {
 } = require('./../model')
 const {
     recuperationAttendusPersoParObjectif,
-    recuperationDomaines,
     recuperationObservationsParAttendu,
     recuperationObservationsParAttenduPerso,
     recuperationObservationParId,
@@ -16,7 +15,7 @@ const {
 
 /* on descent la structure du référentiel vers les attendus */
 exports.creationArborescenceCarnetParStructure = async () => {
-    const domaines = await recuperationDomaines()
+    const domaines = await recuperationDomaineParId()
     const domaineArborescenceVersObservations = await Promise.all(descendreDansReferentielDomaine(domaines))
     return domaineArborescenceVersObservations
 }

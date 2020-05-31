@@ -53,8 +53,13 @@ exports.recuperationObjectifParId = async (idObjectif) => {
 
 exports.recuperationDomaineParId = async (idDomaine) => {
   try {
-    const recherche = await referentiel('domaines').select().where({ id: idDomaine })
-    return recherche
+    if (idDomaine === undefined) {
+      const recherche = await referentiel('domaines').select()
+      return recherche
+    } else {
+      const recherche = await referentiel('domaines').select().where({ id: idDomaine })
+      return recherche
+    }
   } catch (error) {
     logger.error(error)
   }
@@ -72,15 +77,6 @@ exports.recuperationAttenduParObservation = async (idObservation) => {
       const attendu = await carnetdesuivi('attendusPersonnalises').select().where({ id: idAttendu })
       return attendu
     }
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
-exports.recuperationDomaines = async () => {
-  try {
-    const recherche = await referentiel('domaines').select()
-    return recherche
   } catch (error) {
     logger.error(error)
   }
