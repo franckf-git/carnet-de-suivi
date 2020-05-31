@@ -1,13 +1,15 @@
 'use strict'
 const {
-  recuperationElevesParIdUtilisateur,
-  recuperationElevesDesactivesParIdUtilisateur,
   recuperationPseudoParIdUtilisateur,
+  recuperationElevesParIdUtilisateur,
+  recuperationElevesDesactivesParIdUtilisateur
+} = require('./../model')
+const {
   miseajourEleve,
   desactivationEleve,
   reactivationEleve,
   ajoutEleveBDD
-} = require('./../model')
+} = require('./model')
 const { nettoyageTotal } = require('./../../utils')
 const logger = require('./../../utils/logger')
 

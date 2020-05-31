@@ -1,8 +1,10 @@
 'use strict'
 const {
-  recuperationElevesParIdUtilisateur,
-  recuperationElevesDesactivesParIdUtilisateur,
   recuperationPseudoParIdUtilisateur,
+  recuperationElevesParIdUtilisateur,
+  recuperationElevesDesactivesParIdUtilisateur
+} = require('./../model')
+const {
   verificationLienEleveProf,
   recuperationNomEleveParId,
   recuperationEvaluationParEleve,
@@ -10,7 +12,7 @@ const {
   recuperationObjectifParId,
   recuperationDomaineParId,
   recuperationAttenduParObservation
-} = require('./../model')
+} = require('./model')
 const { creationArborescenceCarnetParStructure } = require('./utils')
 const logger = require('./../../utils/logger')
 

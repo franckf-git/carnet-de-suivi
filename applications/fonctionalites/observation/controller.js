@@ -1,11 +1,13 @@
 'use strict'
 const {
-  recuperationElevesParIdUtilisateur,
   recuperationPseudoParIdUtilisateur,
+  recuperationElevesParIdUtilisateur,
+  recuperationObjectifsParDomaine,
+  recuperationAttendusParObjectif
+} = require('./../model')
+const {
   verificationPresenceEleves,
   enregistrementNouvelleObservation,
-  recuperationObjectifsParDomaine,
-  recuperationAttendusParObjectif,
   enregistrementNouvelAttenduPersonnalise,
   miseajourObservationAvecAttendu,
   recuperationTitreActiviteParObservation,
@@ -14,7 +16,7 @@ const {
   verificationEvaluationFaite,
   miseajourEvaluations,
   enregistrementEvaluations
-} = require('./../model')
+} = require('./model')
 const { nettoyageTotal } = require('./../../utils')
 const logger = require('./../../utils/logger')
 const validator = require('validator')

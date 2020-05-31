@@ -1,12 +1,14 @@
 'use strict'
 const {
     recuperationObjectifsParDomaine,
-    recuperationAttendusParObjectif,
+    recuperationAttendusParObjectif
+} = require('./../model')
+const {
     recuperationAttendusPersoParObjectif,
     recuperationDomaines,
     recuperationObservationsParAttendu,
     recuperationObservationsParAttenduPerso
-} = require('./../model')
+} = require('./model')
 
 exports.creationArborescenceCarnetParStructure = async () => {
     const domaines = await recuperationDomaines()
