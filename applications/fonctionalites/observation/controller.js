@@ -14,7 +14,6 @@ const {
   enregistrementEvaluations,
   miseajourObservationAvecAttendu,
   miseajourEvaluations,
-  verificationPresenceEleves,
   verificationEvaluationFaite
 } = require('./model')
 const { nettoyageTotal } = require('./../../utils')
@@ -26,7 +25,8 @@ exports.domaine = async (req, res, next) => {
     const titre = 'Créer une observation'
     const idUtilisateur = req.session.utilisateur
     const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
-    const elevesPresents = await verificationPresenceEleves(idUtilisateur)
+    const listeEleves = await recuperationElevesParIdUtilisateur(idUtilisateur)
+    const elevesPresents = listeEleves[0]
     if (!elevesPresents) {
       return res.render('./applications/fonctionalites/views/elevesAbsents', { pseudo, titre })
     }
