@@ -24,19 +24,6 @@ exports.recuperationAttendusPersoParObjectif = async (idObjectif) => {
   }
 }
 
-exports.verificationLienEleveProf = async (idEleve, idUtilisateur) => {
-  try {
-    const recherche = await observations('eleves').select().where({ id: idEleve, idUtilisateur })
-    if (typeof recherche[0] === 'undefined') {
-      return false
-    } else {
-      return true
-    }
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
 exports.recuperationEvaluationParEleve = async (idEleve) => {
   try {
     const recherche = await observations('evaluations').select('idObservation', 'idCritere').where({ idEleve })
@@ -112,6 +99,19 @@ exports.recuperationObservationsParAttenduPerso = async (idAttendu) => {
   try {
     const recherche = await observations('observations').select().where({ idAttendu, referentielRecommande: 0 })
     return recherche
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.verificationLienEleveProf = async (idEleve, idUtilisateur) => {
+  try {
+    const recherche = await observations('eleves').select().where({ id: idEleve, idUtilisateur })
+    if (typeof recherche[0] === 'undefined') {
+      return false
+    } else {
+      return true
+    }
   } catch (error) {
     logger.error(error)
   }

@@ -3,49 +3,10 @@ const observations = require('./../../../config/basededonnees/observations')
 const referentiel = require('./../../../config/basededonnees/referentiel')
 const logger = require('./../../utils/logger')
 
-exports.verificationPresenceEleves = async (idUtilisateur) => {
+exports.recuperationCriteres = async () => {
   try {
-    const recherche = await observations('eleves')
-      .select()
-      .where({ idUtilisateur, actif: 1 })
-      .limit(1)
-    if (typeof recherche[0] === 'undefined') {
-      return false
-    } else {
-      return true
-    }
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
-exports.enregistrementNouvelleObservation = async (idUtilisateur, titre, description, idAttendu) => {
-  try {
-    const enregistrement = await observations('observations').insert({ idUtilisateur, titre, description, idAttendu })
-    const idNouvelleObservation = enregistrement
-    return idNouvelleObservation
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
-exports.enregistrementNouvelAttenduPersonnalise = async (idUtilisateur, attenduPersonnalise, idObjectif) => {
-  try {
-    const enregistrement = await observations('attendusPersonnalises').insert({
-      idUtilisateur,
-      idObjectif,
-      attendu: attenduPersonnalise
-    })
-    const idNouvelAttenduPersonnalise = enregistrement
-    return idNouvelAttenduPersonnalise
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
-exports.miseajourObservationAvecAttendu = async (idObservation, idAttendu, referentielRecommande) => {
-  try {
-    await observations('observations').update({ idAttendu, referentielRecommande }).where({ id: idObservation })
+    const recherche = await referentiel('criteres').select()
+    return recherche
   } catch (error) {
     logger.error(error)
   }
@@ -80,10 +41,49 @@ exports.recuperationAttenduEvalueParObservation = async (idObservation) => {
   }
 }
 
-exports.recuperationCriteres = async () => {
+exports.enregistrementNouvelleObservation = async (idUtilisateur, titre, description, idAttendu) => {
   try {
-    const recherche = await referentiel('criteres').select()
-    return recherche
+    const enregistrement = await observations('observations').insert({ idUtilisateur, titre, description, idAttendu })
+    const idNouvelleObservation = enregistrement
+    return idNouvelleObservation
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.enregistrementNouvelAttenduPersonnalise = async (idUtilisateur, attenduPersonnalise, idObjectif) => {
+  try {
+    const enregistrement = await observations('attendusPersonnalises').insert({
+      idUtilisateur,
+      idObjectif,
+      attendu: attenduPersonnalise
+    })
+    const idNouvelAttenduPersonnalise = enregistrement
+    return idNouvelAttenduPersonnalise
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.enregistrementEvaluations = async (idObservation, idEleve, idCritere) => {
+  try {
+    await observations('evaluations').insert({ idObservation, idEleve, idCritere })
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.miseajourObservationAvecAttendu = async (idObservation, idAttendu, referentielRecommande) => {
+  try {
+    await observations('observations').update({ idAttendu, referentielRecommande }).where({ id: idObservation })
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.miseajourEvaluations = async (idObservation, idEleve, idCritere) => {
+  try {
+    await observations('evaluations').update({ idCritere }).where({ idObservation, idEleve })
   } catch (error) {
     logger.error(error)
   }
@@ -102,17 +102,17 @@ exports.verificationEvaluationFaite = async (idObservation, idEleve) => {
   }
 }
 
-exports.miseajourEvaluations = async (idObservation, idEleve, idCritere) => {
+exports.verificationPresenceEleves = async (idUtilisateur) => {
   try {
-    await observations('evaluations').update({ idCritere }).where({ idObservation, idEleve })
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
-exports.enregistrementEvaluations = async (idObservation, idEleve, idCritere) => {
-  try {
-    await observations('evaluations').insert({ idObservation, idEleve, idCritere })
+    const recherche = await observations('eleves')
+      .select()
+      .where({ idUtilisateur, actif: 1 })
+      .limit(1)
+    if (typeof recherche[0] === 'undefined') {
+      return false
+    } else {
+      return true
+    }
   } catch (error) {
     logger.error(error)
   }
