@@ -13,6 +13,29 @@ const recuperationIdUtilisateurParEmail = async (email) => {
   return idUtilisateur
 }
 
+exports.recuperationIdUtilisateurParEmailTest = async (emailATester) => {
+  try {
+    const emailATesterNormaliser = validator.normalizeEmail(emailATester)
+    const recherche = await recuperationIdUtilisateurParEmail(emailATesterNormaliser)
+    return recherche
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.recuperationEmailUtilisateurParUuid = async (uuidEnAttenteDeValidation) => {
+  try {
+    const email = await core('confirmationMail')
+      .join('utilisateurs', 'confirmationMail.idUtilisateur', '=', 'utilisateurs.id')
+      .select('utilisateurs.email')
+      .where({ 'confirmationMail.uuid': uuidEnAttenteDeValidation })
+    const emailDelUuid = validator.normalizeEmail(email[0].email)
+    return emailDelUuid
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
 exports.enregistreNouveauUtilisateur = async (infosFormulaire) => {
   try {
     const { pseudo, email, motdepasse } = infosFormulaire
@@ -24,6 +47,30 @@ exports.enregistreNouveauUtilisateur = async (infosFormulaire) => {
         email: emailNormaliser,
         motdepasse: motdepassechiffre
       })
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.enregistrementConfirmationMail = async (emailAConfirmer, uuidaValider) => {
+  try {
+    const emailAConfirmerNormaliser = validator.normalizeEmail(emailAConfirmer)
+    const uuid = uuidaValider
+    const idUtilisateur = await recuperationIdUtilisateurParEmail(emailAConfirmerNormaliser)
+    await core('confirmationMail')
+      .insert({ idUtilisateur, uuid })
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.enregistrementReinitialisationMDP = async (emailAReinitialiser, uuidReinitialisationMotdePasse) => {
+  try {
+    const emailAReinitialiserNormaliser = validator.normalizeEmail(emailAReinitialiser)
+    const uuid = uuidReinitialisationMotdePasse
+    const idUtilisateur = await recuperationIdUtilisateurParEmail(emailAReinitialiserNormaliser)
+    await core('reinitialisationMDP')
+      .insert({ idUtilisateur, uuid })
   } catch (error) {
     logger.error(error)
   }
@@ -67,35 +114,32 @@ exports.miseajourUtilisateurConfirme = async (uuidEnAttenteDeValidation) => {
   }
 }
 
-exports.recuperationIdUtilisateurParEmailTest = async (emailATester) => {
-  try {
-    const emailATesterNormaliser = validator.normalizeEmail(emailATester)
-    const recherche = await recuperationIdUtilisateurParEmail(emailATesterNormaliser)
-    return recherche
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
-exports.recuperationEmailUtilisateurParUuid = async (uuidEnAttenteDeValidation) => {
-  try {
-    const email = await core('confirmationMail')
-      .join('utilisateurs', 'confirmationMail.idUtilisateur', '=', 'utilisateurs.id')
-      .select('utilisateurs.email')
-      .where({ 'confirmationMail.uuid': uuidEnAttenteDeValidation })
-    const emailDelUuid = validator.normalizeEmail(email[0].email)
-    return emailDelUuid
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
 exports.miseajourDerniereConnexion = async (idUtilisateur) => {
   try {
     const timeStamp = new Date().toISOString()
     await core('utilisateurs')
       .update({ derniereConnexion: timeStamp })
       .where({ id: idUtilisateur })
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.miseajourUuidUtilisePourConfirmer = async (uuidEnAttenteDeValidation) => {
+  try {
+    await core('confirmationMail')
+      .where({ uuid: uuidEnAttenteDeValidation })
+      .update({ utilise: 1 })
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.miseajourUuidUtilisePourReinitialiser = async (uuidEnAttenteDeValidation) => {
+  try {
+    await core('reinitialisationMDP')
+      .where({ uuid: uuidEnAttenteDeValidation })
+      .update({ utilise: 1 })
   } catch (error) {
     logger.error(error)
   }
@@ -162,50 +206,6 @@ exports.verificationUuid = async (uuid) => {
     } else {
       return false
     }
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
-exports.miseajourUuidUtilisePourConfirmer = async (uuidEnAttenteDeValidation) => {
-  try {
-    await core('confirmationMail')
-      .where({ uuid: uuidEnAttenteDeValidation })
-      .update({ utilise: 1 })
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
-exports.miseajourUuidUtilisePourReinitialiser = async (uuidEnAttenteDeValidation) => {
-  try {
-    await core('reinitialisationMDP')
-      .where({ uuid: uuidEnAttenteDeValidation })
-      .update({ utilise: 1 })
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
-exports.enregistrementConfirmationMail = async (emailAConfirmer, uuidaValider) => {
-  try {
-    const emailAConfirmerNormaliser = validator.normalizeEmail(emailAConfirmer)
-    const uuid = uuidaValider
-    const idUtilisateur = await recuperationIdUtilisateurParEmail(emailAConfirmerNormaliser)
-    await core('confirmationMail')
-      .insert({ idUtilisateur, uuid })
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
-exports.enregistrementReinitialisationMDP = async (emailAReinitialiser, uuidReinitialisationMotdePasse) => {
-  try {
-    const emailAReinitialiserNormaliser = validator.normalizeEmail(emailAReinitialiser)
-    const uuid = uuidReinitialisationMotdePasse
-    const idUtilisateur = await recuperationIdUtilisateurParEmail(emailAReinitialiserNormaliser)
-    await core('reinitialisationMDP')
-      .insert({ idUtilisateur, uuid })
   } catch (error) {
     logger.error(error)
   }
