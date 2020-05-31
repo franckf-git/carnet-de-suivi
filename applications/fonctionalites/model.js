@@ -59,3 +59,12 @@ exports.recuperationAttendusParObjectif = async (idObjectif) => {
     logger.error(error)
   }
 }
+
+exports.recuperationObservationParId = async (idObservation) => {
+  try {
+    const recherche = await carnetdesuivi('observations').select().where({ id: idObservation })
+    return recherche
+  } catch (error) {
+    logger.error(error)
+  }
+}

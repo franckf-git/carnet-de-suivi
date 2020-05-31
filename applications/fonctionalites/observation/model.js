@@ -12,16 +12,6 @@ exports.recuperationCriteres = async () => {
      }
 }
 
-exports.recuperationTitreActiviteParObservation = async (idObservation) => {
-     try {
-          const recherche = await carnetdesuivi('observations').select('titre').where({ id: idObservation })
-          const titre = recherche[0].titre
-          return titre
-     } catch (error) {
-          logger.error(error)
-     }
-}
-
 exports.recuperationAttenduEvalueParObservation = async (idObservation) => {
      try {
           const recherche = await carnetdesuivi('observations').select('idAttendu', 'referentielRecommande').where({ id: idObservation })

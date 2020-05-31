@@ -33,15 +33,6 @@ exports.recuperationEvaluationParEleve = async (idEleve) => {
   }
 }
 
-exports.recuperationObservationParId = async (idObservation) => {
-  try {
-    const recherche = await carnetdesuivi('observations').select().where({ id: idObservation })
-    return recherche
-  } catch (error) {
-    logger.error(error)
-  }
-}
-
 exports.recuperationObjectifParId = async (idObjectif) => {
   try {
     const recherche = await referentiel('objectifs').select().where({ id: idObjectif })

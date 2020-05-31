@@ -1,13 +1,13 @@
 'use strict'
 const {
     recuperationObjectifsParDomaine,
+    recuperationObservationParId,
     recuperationAttendusParObjectif
 } = require('./../model')
 const {
     recuperationAttendusPersoParObjectif,
     recuperationObservationsParAttendu,
     recuperationObservationsParAttenduPerso,
-    recuperationObservationParId,
     recuperationObjectifParId,
     recuperationDomaineParId,
     recuperationAttenduParObservation
