@@ -58,7 +58,6 @@ export function envoiInfosAnomyniseesSurUtilisation() {
     buttonRefus.classList.add('is-hidden')
   }
 
-
   const infos = {
     uuid,
     uuidStatsAnonym,
