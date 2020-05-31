@@ -7,7 +7,7 @@ const {
   miseajourUuidUtilisePourReinitialiser,
   recuperationIdUtilisateurParEmailTest,
   recuperationEmailUtilisateurParUuid,
-  miseaJourDerniereConnexion
+  miseajourDerniereConnexion
 } = require(
   './model')
 const { verificationChampsFormulaire } = require('./controllerErreurs')
@@ -64,7 +64,7 @@ exports.connexionUtilisateur = async (req, res, next) => {
     }
 
     const idUtilisateur = await recuperationIdUtilisateurParEmailTest(champsFormulaire.email)
-    await miseaJourDerniereConnexion(idUtilisateur)
+    await miseajourDerniereConnexion(idUtilisateur)
     req.session.utilisateur = idUtilisateur
     res.redirect('/acceuil')
   } catch (error) {
