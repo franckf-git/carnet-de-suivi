@@ -103,8 +103,8 @@ exports.nouvelleObservationChoixAttendu = async (req, res, next) => {
 exports.enregistrementEvaluations = async (req, res, next) => {
   try {
     const { idObservation, idEleve, idCritere } = req.body
-    const check = await verificationEvaluationFaite(idObservation, idEleve, idCritere)
-    if (check) {
+    const evaluationFaite = await verificationEvaluationFaite(idObservation, idEleve, idCritere)
+    if (evaluationFaite) {
       await miseajourEvaluations(idObservation, idEleve, idCritere)
       res.json({ message: 'maj' })
     } else {
