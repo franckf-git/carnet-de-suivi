@@ -1,5 +1,12 @@
 <% include ./../../views/headerConnecte %>
 
+<script src="/javascripts/application/formulaireTitreObservable.js" type="module" defer></script>
+
+<script>
+    console.log('hjsdkfk');
+
+</script>
+
 <section class="section">
     <div class="container has-text-centered">
 
@@ -9,8 +16,7 @@
                 <form id="titreActivite" action="/observation/objectif" method="post">
                     <div class="field">
                         <div class="control">
-                            <input class="input is-font-secondary" type="text" id="champsTitre" name="titre"
-                                placeholder="Titre de l'activité (obligatoire)" required>
+                            <input class="input is-font-secondary" type="text" id="champsTitre" name="titre" placeholder="Titre de l'activité (obligatoire)" required>
                         </div>
                         <p class="help is-danger" id="alerteLongeur">Le titre doit comporter au moins 3 lettres et 40
                             maximum.
@@ -18,8 +24,7 @@
                     </div>
                     <div class="field">
                         <div class="control">
-                            <textarea class="textarea is-font-secondary" name="description"
-                                placeholder="Description (optionnel)"></textarea>
+                            <textarea class="textarea is-font-secondary" name="description" placeholder="Description (optionnel)"></textarea>
                         </div>
                     </div>
                     <input type="hidden" id="valeurDomaine" name="domaine">

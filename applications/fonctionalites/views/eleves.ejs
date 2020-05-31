@@ -1,5 +1,7 @@
 <% include ./../../views/headerConnecte %>
 
+<script src="/javascripts/application/gestionEleves.js" type="module" defer></script>
+
 <section class="section">
   <div class="container has-text-centered">
 
@@ -25,8 +27,7 @@
           </header>
           <section class="modal-card-body">
             <p class="control is-expanded">
-              <input class="input is-font-secondary" name="nom" type="text" id="input-eleve"
-                placeholder="Prénom de l'élève">
+              <input class="input is-font-secondary" name="nom" type="text" id="input-eleve" placeholder="Prénom de l'élève">
             </p>
             <p class="help is-danger" id="alertenom">Le nom doit comporter au moins 3 lettres et 32 maximum.
             </p>

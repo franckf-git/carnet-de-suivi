@@ -1,5 +1,7 @@
 <% include ./../../views/headerConnecte %>
 
+<script src="/javascripts/application/evaluationsObservation.js" type="module" defer></script>
+
 <section class="section">
     <div class="container has-text-centered">
 
@@ -22,8 +24,7 @@
                     <h3 class="subtitle"><%= eleve.nom %></h3>
                     <% criteres.forEach(critere => { %>
                     <div class="column">
-                        <button class="button is-fullwidth <%= critere.couleur %> critere"
-                            id="<%= critere.id %>"><%= critere.critere %></button>
+                        <button class="button is-fullwidth <%= critere.couleur %> critere" id="<%= critere.id %>"><%= critere.critere %></button>
                     </div>
                     <% }); %>
                     <span class="tag is-success is-pulled-right is-invisible">Evalué</span>
