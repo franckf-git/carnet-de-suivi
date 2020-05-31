@@ -7,9 +7,14 @@ const {
     recuperationAttendusPersoParObjectif,
     recuperationDomaines,
     recuperationObservationsParAttendu,
-    recuperationObservationsParAttenduPerso
+    recuperationObservationsParAttenduPerso,
+    recuperationObservationParId,
+    recuperationObjectifParId,
+    recuperationDomaineParId,
+    recuperationAttenduParObservation
 } = require('./model')
 
+/* on descent la structure du référentiel vers les attendus */
 exports.creationArborescenceCarnetParStructure = async () => {
     const domaines = await recuperationDomaines()
     const domaineArborescenceVersObservations = await Promise.all(descendreDansReferentielDomaine(domaines))
@@ -46,3 +51,24 @@ const descendreDansReferentielAttendusPerso = (attendusPersoDelObjectif) => atte
     const attendusPersoETobservations = { ...attenduPerso, observations }
     return attendusPersoETobservations
 })
+
+/* de l'évalution on remonte l'arborescence */
+exports.creationArborescenceCarnetParEvaluation = async (evaluationsDelEleve) => {
+    const elementArborescenceCarnet = await evaluationsDelEleve.map(async (evaluation) => {
+        const idObservation = evaluation.idObservation
+        const infosObservation = await recuperationObservationParId(idObservation)
+
+        const infosAttendu = await recuperationAttenduParObservation(idObservation)
+
+        const objectif = infosAttendu[0].idObjectif
+        const infosObjectif = await recuperationObjectifParId(objectif)
+
+        const domaine = infosObjectif[0].idDomaine
+        const infosDomaine = await recuperationDomaineParId(domaine)
+
+        const object = { domaine: infosDomaine[0], objectif: infosObjectif[0], attendu: infosAttendu[0], observation: infosObservation[0], evaluation: evaluation.idCritere }
+        return object
+    })
+    const arborescenceCarnet = await Promise.all(elementArborescenceCarnet)
+    return arborescenceCarnet
+}

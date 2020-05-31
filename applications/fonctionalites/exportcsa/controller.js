@@ -7,13 +7,9 @@ const {
 const {
   recuperationNomEleveParId,
   recuperationEvaluationParEleve,
-  recuperationObservationParId,
-  recuperationObjectifParId,
-  recuperationDomaineParId,
-  recuperationAttenduParObservation,
   verificationLienEleveProf
 } = require('./model')
-const { creationArborescenceCarnetParStructure } = require('./utils')
+const { creationArborescenceCarnetParStructure, creationArborescenceCarnetParEvaluation } = require('./utils')
 const logger = require('./../../utils/logger')
 
 exports.exportcsa = async (req, res, next) => {
@@ -44,28 +40,7 @@ exports.carnetdesuivi = async (req, res, next) => {
 
     const evaluationsDelEleve = await recuperationEvaluationParEleve(idEleve)
 
-    /* de l'évalaution on remonte l'arborescence */
-    const creationArborescenceCarnetParEvaluation = async (evaluationsDelEleve) => {
-      const elementArborescenceCarnet = await evaluationsDelEleve.map(async (evaluation) => {
-        const idObservation = evaluation.idObservation
-        const infosObservation = await recuperationObservationParId(idObservation)
-
-        const infosAttendu = await recuperationAttenduParObservation(idObservation)
-
-        const objectif = infosAttendu[0].idObjectif
-        const infosObjectif = await recuperationObjectifParId(objectif)
-
-        const domaine = infosObjectif[0].idDomaine
-        const infosDomaine = await recuperationDomaineParId(domaine)
-
-        const object = { domaine: infosDomaine[0], objectif: infosObjectif[0], attendu: infosAttendu[0], observation: infosObservation[0], evaluation: evaluation.idCritere }
-        return object
-      })
-      const arborescenceCarnet = await Promise.all(elementArborescenceCarnet)
-      return arborescenceCarnet
-    }
     const retourParEvaluation = await creationArborescenceCarnetParEvaluation(evaluationsDelEleve)
-
     const retourParStructure = await creationArborescenceCarnetParStructure()
 
     res.render('./applications/fonctionalites/views/carnetEleve', { pseudo, titre, retourParEvaluation, retourParStructure })
