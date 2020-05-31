@@ -7,7 +7,6 @@ const {
   recuperationObservationParId
 } = require('./../model')
 const {
-  recuperationTitreActiviteParObservation,
   recuperationAttenduEvalueParObservation,
   recuperationCriteres,
   enregistrementNouvelleObservation,
