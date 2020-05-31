@@ -6,16 +6,16 @@ const {
   recuperationAttendusParObjectif
 } = require('./../model')
 const {
-  verificationPresenceEleves,
-  enregistrementNouvelleObservation,
-  enregistrementNouvelAttenduPersonnalise,
-  miseajourObservationAvecAttendu,
   recuperationTitreActiviteParObservation,
   recuperationAttenduEvalueParObservation,
   recuperationCriteres,
-  verificationEvaluationFaite,
+  enregistrementNouvelleObservation,
+  enregistrementNouvelAttenduPersonnalise,
+  enregistrementEvaluations,
+  miseajourObservationAvecAttendu,
   miseajourEvaluations,
-  enregistrementEvaluations
+  verificationPresenceEleves,
+  verificationEvaluationFaite
 } = require('./model')
 const { nettoyageTotal } = require('./../../utils')
 const logger = require('./../../utils/logger')

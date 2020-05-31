@@ -5,13 +5,13 @@ const {
   recuperationElevesDesactivesParIdUtilisateur
 } = require('./../model')
 const {
-  verificationLienEleveProf,
   recuperationNomEleveParId,
   recuperationEvaluationParEleve,
   recuperationObservationParId,
   recuperationObjectifParId,
   recuperationDomaineParId,
-  recuperationAttenduParObservation
+  recuperationAttenduParObservation,
+  verificationLienEleveProf
 } = require('./model')
 const { creationArborescenceCarnetParStructure } = require('./utils')
 const logger = require('./../../utils/logger')
