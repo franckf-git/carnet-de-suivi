@@ -18,13 +18,12 @@
 }
 
 /* position du button aide */
-#aide {
+.button-help {
   position: fixed;
   bottom: 80px;
   right: 20px;
   z-index: 20;
 }
-
 
 /* Polices personnalisées */
 @font-face {

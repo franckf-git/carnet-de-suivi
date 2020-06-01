@@ -10,29 +10,22 @@
           <a href="/connexion">J'ai déjà un compte</a>
           <div class="field">
             <div class="control">
-              <input class="input is-font-secondary" type="text" name="pseudo" placeholder="Nom d'utilisateur"
-                value=<% if ( typeof pseudo != 'undefined' ) { %> "<%= pseudo %>" <% } else { %> "" <% } %> required>
+              <input class="input is-font-secondary" type="text" name="pseudo" placeholder="Nom d'utilisateur" value=<% if ( typeof pseudo != 'undefined' ) { %> "<%= pseudo %>" <% } else { %> "" <% } %> required>
             </div>
           </div>
           <div class="field">
             <div class="control">
-              <input class="input is-font-secondary" type="email" name="email" placeholder="Email"
-                value=<% if ( typeof email != 'undefined' ) { %> "<%= email %>" <% } else { %> "" <% } %> required>
+              <input class="input is-font-secondary" type="email" name="email" placeholder="Email" value=<% if ( typeof email != 'undefined' ) { %> "<%= email %>" <% } else { %> "" <% } %> required>
             </div>
           </div>
           <div class="field">
             <div class="control">
-              <input class="input is-font-secondary" type="password" name="motdepasse" placeholder="Mot de passe"
-                value=<% if ( typeof motdepasse != 'undefined' ) { %> "<%= motdepasse %>" <% } else { %> "" <% } %>
-                required>
+              <input class="input is-font-secondary" type="password" name="motdepasse" placeholder="Mot de passe" value=<% if ( typeof motdepasse != 'undefined' ) { %> "<%= motdepasse %>" <% } else { %> "" <% } %> required>
             </div>
           </div>
           <div class="field">
             <div class="control">
-              <input class="input is-font-secondary" type="password" name="motdepasseconfirm"
-                placeholder="Confirmez le mot de passe"
-                value=<% if ( typeof motdepasseconfirm != 'undefined' ) { %> "<%= motdepasseconfirm %>"
-                <% } else { %> "" <% } %> required>
+              <input class="input is-font-secondary" type="password" name="motdepasseconfirm" placeholder="Confirmez le mot de passe" value=<% if ( typeof motdepasseconfirm != 'undefined' ) { %> "<%= motdepasseconfirm %>" <% } else { %> "" <% } %> required>
             </div>
           </div>
           <p>En vous enregistrant, vous acceptez les
@@ -49,7 +42,7 @@
 </section>
 
 <span>
-  <a id="aide" data-value="enregistrement" title="Aide rapide">
+  <a class="button-help" data-value="enregistrement" title="Aide rapide">
     <figure class="image is-32x32">
       <!--https://fontawesome.com/license-->
       <img src="./images/icones/question-circle-regular-primary.svg" alt="boutton d'aide">
