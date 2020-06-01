@@ -23,7 +23,7 @@
                 ou utilisez un élément recommandé :
             </p>
             <% objectif.attendusDelObjectif.forEach(attendu => { %>
-            <a class="navbar-item has-text-left" data-value="<%= attendu.id %>" id="attenduReferentiel">
+            <a class="navbar-item has-text-left attenduReferentiel" id="<%= attendu.id %>">
                 <%= attendu.attendu %>
             </a>
             <hr class="navbar-divider">
@@ -36,7 +36,7 @@
 </section>
 
 <form id="choixAttendus" action="/observation/evaluation/" method="post">
-    <input type="hidden" name="idAttendu" id="choixAttendu">
+    <input type="hidden" name="idAttendu" class="choixAttendu">
     <input type="hidden" value="<%= idObservation %>" name="idObservation">
 </form>
 
