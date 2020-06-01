@@ -1,11 +1,11 @@
 export function envoiInfosAnomyniseesSurUtilisation() {
   const listCookies = document.cookie.split('; ')
-  const cookiesSansValeurs = []
+  const cookiesEmpty = []
   listCookies.forEach(element => {
     const search = element.split('=')[0]
-    cookiesSansValeurs.push(search)
+    cookiesEmpty.push(search)
   })
-  if (!cookiesSansValeurs.includes('uuidStatsAnonym')) {
+  if (!cookiesEmpty.includes('uuidStatsAnonym')) {
     const uuid = Math.random()
       .toString(16)
       .slice(2)
@@ -46,16 +46,16 @@ export function envoiInfosAnomyniseesSurUtilisation() {
 
   // si l'utilisateur refuse les stats
   let refusStats = false
-  const buttonRefus = document.querySelector('.button-refus')
-  buttonRefus.addEventListener('click', () => {
+  const buttonRefusStats = document.querySelector('.button-nostats')
+  buttonRefusStats.addEventListener('click', () => {
     refusStats = true
-    buttonRefus.classList.add('is-hidden')
+    buttonRefusStats.classList.add('is-hidden')
     document.cookie = 'refusStatistiques=1'
   })
   const refusStatsCookie = decodeURIComponent(document.cookie).split('; ').includes('refusStatistiques=1')
   if (refusStatsCookie) {
     refusStats = true
-    buttonRefus.classList.add('is-hidden')
+    buttonRefusStats.classList.add('is-hidden')
   }
 
   const infos = {
@@ -71,7 +71,7 @@ export function envoiInfosAnomyniseesSurUtilisation() {
     duration
   }
 
-  const sendToServer = async () => {
+  const envoisInfosAuServeur = async () => {
     if (!refusStats) {
       await fetch('/statsutilisation', {
         method: 'POST',
@@ -86,11 +86,11 @@ export function envoiInfosAnomyniseesSurUtilisation() {
 
   const cycle = () => {
     infos.duration = infos.duration + intervalSec
-    sendToServer()
+    envoisInfosAuServeur()
   }
 
   if (doNotTrack !== '1') {
-    sendToServer() // initialisation
+    envoisInfosAuServeur() // initialisation
     setInterval(() => cycle(), intervalSec * 1000)
   }
 }
