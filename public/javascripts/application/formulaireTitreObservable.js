@@ -1,24 +1,24 @@
 /* Envoi du titre de l activité et du choix du domaine */
-const bouttonsDomaine = document.querySelectorAll('#domaine')
-const champsTitre = document.querySelector('#champsTitre')
-const alerteLongeur = document.querySelector('#alerteLongeur')
+const cardsDomaine = document.querySelectorAll('.domaine')
+const inputActivity = document.querySelector('.input-activity')
+const alertLength = document.querySelector('.alert-length')
 
-if (bouttonsDomaine && champsTitre && alerteLongeur) {
-  bouttonsDomaine.forEach(bouttonDomaine => {
-    bouttonDomaine.addEventListener('click', () => {
-      const idDomaine = bouttonDomaine.getAttribute('data-value')
-      document.querySelector('#valeurDomaine').value = idDomaine
-      if (champsTitre.value.length > 2) {
+if (cardsDomaine && inputActivity && alertLength) {
+  cardsDomaine.forEach(cardDomaine => {
+    cardDomaine.addEventListener('click', () => {
+      const idDomaine = cardDomaine.id
+      document.querySelector('#idDomaine').value = idDomaine
+      if (inputActivity.value.length > 2 && inputActivity.value.length < 40) {
         document.forms.titreActivite.submit()
       }
     })
   })
 
-  champsTitre.addEventListener('keyup', () => {
-    if (champsTitre.value.length < 3 || champsTitre.value.length > 40) {
-      alerteLongeur.classList.remove('is-hidden')
+  inputActivity.addEventListener('keyup', () => {
+    if (inputActivity.value.length < 3 || inputActivity.value.length > 40) {
+      alertLength.classList.remove('is-hidden')
     } else {
-      alerteLongeur.classList.add('is-hidden')
+      alertLength.classList.add('is-hidden')
     }
   })
 }

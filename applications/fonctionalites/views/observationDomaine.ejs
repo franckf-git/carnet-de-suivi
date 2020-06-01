@@ -11,9 +11,9 @@
                 <form id="titreActivite" action="/observation/objectif" method="post">
                     <div class="field">
                         <div class="control">
-                            <input class="input is-font-secondary" type="text" id="champsTitre" name="titre" placeholder="Titre de l'activité (obligatoire)" required>
+                            <input class="input is-font-secondary input-activity" type="text" name="titre" placeholder="Titre de l'activité (obligatoire)" required>
                         </div>
-                        <p class="help is-danger" id="alerteLongeur">Le titre doit comporter au moins 3 lettres et 40
+                        <p class="help is-danger alert-length">Le titre doit comporter au moins 3 lettres et 40
                             maximum.
                         </p>
                     </div>
@@ -22,7 +22,7 @@
                             <textarea class="textarea is-font-secondary" name="description" placeholder="Description (optionnel)"></textarea>
                         </div>
                     </div>
-                    <input type="hidden" id="valeurDomaine" name="domaine">
+                    <input type="hidden" id="idDomaine" name="domaine">
                 </form>
             </div>
         </section>
@@ -30,7 +30,7 @@
         <h3 class="subtitle has-text-centered">Et choisissez un domaine d'évaluation :</h3>
         <div class="columns is-multiline">
             <div class="column is-6 is-4-desktop">
-                <a class="card has-text-centered" id="domaine" data-value="1">
+                <a class="card has-text-centered domaine" id="1">
                     <div class="card-header-title is-centered has-background-grey-light">
                         <figure class="image is-128x128">
                             <img src="/images/illustrations/undraw_happy_music_g6wc.svg" alt="Mobiliser le langage dans toutes ses
@@ -46,7 +46,7 @@
                 </a>
             </div>
             <div class="column is-6 is-4-desktop">
-                <a class="card has-text-centered" id="domaine" data-value="2">
+                <a class="card has-text-centered domaine" id="2">
                     <div class="card-header-title is-centered has-background-grey-lighter">
                         <figure class="image is-128x128">
                             <img src="/images/illustrations/undraw_book_lover_mkck.svg" alt="Mobiliser le langage dans toutes ses
@@ -62,7 +62,7 @@
                 </a>
             </div>
             <div class="column is-6 is-4-desktop">
-                <a class="card has-text-centered" id="domaine" data-value="3">
+                <a class="card has-text-centered domaine" id="3">
                     <div class="card-header-title is-centered has-background-grey-light">
                         <figure class="image is-128x128">
                             <img src="/images/illustrations/undraw_physique.svg" alt="Agir, s'exprimer, comprendre à travers
@@ -78,7 +78,7 @@
                 </a>
             </div>
             <div class="column is-6 is-4-desktop">
-                <a class="card has-text-centered" id="domaine" data-value="4">
+                <a class="card has-text-centered domaine" id="4">
                     <div class="card-header-title is-centered has-background-grey-lighter">
                         <figure class="image is-128x128">
                             <img src="/images/illustrations/undraw_making_art_759c.svg" alt="Agir, s'exprimer, comprendre à travers
@@ -94,7 +94,7 @@
                 </a>
             </div>
             <div class="column is-6 is-4-desktop">
-                <a class="card has-text-centered" id="domaine" data-value="5">
+                <a class="card has-text-centered domaine" id="5">
                     <div class="card-header-title is-centered has-background-grey-light">
                         <figure class="image is-128x128">
                             <img src="/images/illustrations/undraw_game_world_0o6q.svg" alt="Construire les premiers outils pour
@@ -110,7 +110,7 @@
                 </a>
             </div>
             <div class="column is-6 is-4-desktop">
-                <a class="card has-text-centered" id="domaine" data-value="6">
+                <a class="card has-text-centered domaine" id="6">
                     <div class="card-header-title is-centered has-background-grey-lighter">
                         <figure class="image is-128x128">
                             <img src="/images/illustrations/undraw_true_love_cy8x.svg" alt="Explorer le monde">
