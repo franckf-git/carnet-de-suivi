@@ -1,16 +1,16 @@
-const boxEleves = document.querySelectorAll('.box-eleveEval')
+const boxEleves = document.querySelectorAll('.box-eleve')
 const modals = document.querySelectorAll('.modal')
-const precedents = document.querySelectorAll('.precedent')
-const suivants = document.querySelectorAll('.suivant')
-const termines = document.querySelectorAll('.terminee')
+const precedents = document.querySelectorAll('.prev')
+const suivants = document.querySelectorAll('.next')
+const termines = document.querySelectorAll('.end')
 
 boxEleves.forEach((boxEleve, index) => {
   boxEleve.addEventListener('click', () => {
-    ouvrirModalPour(index)
+    ouvrirModalPourEvaluation(index)
   })
 })
 
-const ouvrirModalPour = (index) => {
+const ouvrirModalPourEvaluation = (index) => {
   modals.forEach((modal) => {
     modal.classList.remove('is-active')
   })
@@ -20,12 +20,12 @@ const ouvrirModalPour = (index) => {
 
 suivants.forEach((suivant, index) => suivant.addEventListener('click', () => {
   const modalSuivante = index + 1
-  ouvrirModalPour(modalSuivante)
+  ouvrirModalPourEvaluation(modalSuivante)
 }))
 
 precedents.forEach((precedent, index) => precedent.addEventListener('click', () => {
   const modalPrecedente = index - 1
-  ouvrirModalPour(modalPrecedente)
+  ouvrirModalPourEvaluation(modalPrecedente)
 }))
 
 const affichageDesBouttonsSelonPosition = (index) => {
@@ -53,10 +53,10 @@ const envoiAPIenregistrementEvaluations = async (critere) => {
     const idEleve = critere.parentNode.parentNode.id
     const idObservation = document.querySelector('.idObservation').id
     const evaluationFaite = { idObservation, idEleve, idCritere }
-    const noteModal = critere.parentNode.parentNode.childNodes[13] // pas très propre - les suggestions sont bienvenues
-    const noteModalmaj = critere.parentNode.parentNode.childNodes[15]
+    const tagModal = critere.parentNode.parentNode.childNodes[13] // pas très propre - les suggestions sont bienvenues
+    const tagModalmaj = critere.parentNode.parentNode.childNodes[15]
     const fondEleve = document.getElementById(`box_${idEleve}`)
-    const noteFondEleve = fondEleve.childNodes[1]
+    const tagFondEleve = fondEleve.childNodes[1]
 
     await critere.classList.add('is-loading')
     const poster = await fetch('/observation/enregistrementEvaluations', {
@@ -71,11 +71,11 @@ const envoiAPIenregistrementEvaluations = async (critere) => {
       const retourServeur = await poster.json()
       await critere.classList.remove('is-loading')
 
-      noteModal.classList.remove('is-invisible')
+      tagModal.classList.remove('is-invisible')
       fondEleve.classList.remove('has-background-grey-lighter')
-      noteFondEleve.classList.remove('is-hidden')
+      tagFondEleve.classList.remove('is-hidden')
       if (retourServeur.message === 'maj') {
-        noteModalmaj.classList.remove('is-invisible')
+        tagModalmaj.classList.remove('is-invisible')
       }
     } else {
       critere.classList.add('is-danger')

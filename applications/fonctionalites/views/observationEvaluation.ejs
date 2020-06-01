@@ -9,7 +9,7 @@
         <div class="idObservation" id="<%= idObservation %>"></div>
 
         <% listeEleves.forEach(eleve => { %>
-        <div class="box box-eleveEval has-text-centered has-background-light" id="box_<%= eleve.id %>">
+        <div class="box box-eleve has-text-centered has-background-grey-lighter has-background-light" id="box_<%= eleve.id %>">
             <%= eleve.nom %>
             <span class="tag is-success is-pulled-right is-hidden">Evalué</span>
         </div>
@@ -31,9 +31,9 @@
                     <span class="tag is-info is-pulled-right is-invisible">Mis à jour</span>
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button is-fullwidth precedent">Précédent</button>
-                    <button class="button is-primary is-fullwidth suivant">Suivant</button>
-                    <a href="/acceuil" class="button is-info is-fullwidth terminee is-hidden">Observation
+                    <button class="button is-fullwidth prev">Précédent</button>
+                    <button class="button is-primary is-fullwidth next">Suivant</button>
+                    <a href="/acceuil" class="button is-info is-fullwidth end is-hidden">Observation
                         finie</a>
                 </footer>
             </div>
