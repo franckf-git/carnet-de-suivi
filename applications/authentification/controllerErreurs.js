@@ -3,7 +3,8 @@ const {
   verificationEmail,
   verificationEmailConfirmation,
   verificationMotdePasse,
-  verificationUuid
+  verificationUuid,
+  verificationReinitialisationMDP
 } = require('./model')
 const validator = require('validator')
 const logger = require('./../utils/logger')
@@ -51,6 +52,15 @@ exports.verificationChampsFormulaire = async (champsFormulaire, route) => {
       if (!formatEmail) {
         erreursDuFormulaire
           .push({ messageDAvertissement: 'Le champs email n\'est pas rempli avec un email ou contient des caractères interdits. Merci de le corriger.' })
+      }
+    }
+
+    /* test si une demande de mot de passe a déjà été faite */
+    if (route === 'motdepasseoublie') {
+      const demandeReinitExistante = await verificationReinitialisationMDP(email)
+      if (demandeReinitExistante) {
+        erreursDuFormulaire
+          .push({ messageDAvertissement: 'Vous avez déjà fait une demande de réinitialisation. Merci de vérifier vos spams et de suivre le lien fourni.' })
       }
     }
 

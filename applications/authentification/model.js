@@ -211,6 +211,22 @@ exports.verificationUuid = async (uuid) => {
   }
 }
 
+exports.verificationReinitialisationMDP = async (emailATester) => {
+  try {
+    const idUtilisateur = await recuperationIdUtilisateurParEmail(emailATester)
+    const testReinitialisationMDP = await core('reinitialisationMDP')
+      .select()
+      .where({ idUtilisateur, utilise: 0 })
+    if (testReinitialisationMDP[0] !== undefined) {
+      return true
+    } else {
+      return false
+    }
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
 exports.nettoyageLiensMailsetMdpOublies = async () => {
   try {
     const dateDuJour = new Date()
