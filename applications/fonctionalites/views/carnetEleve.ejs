@@ -1,5 +1,6 @@
 <% include ./../../views/headerConnecte %>
 
+<script src="/javascripts/moment/moment-with-locales.min.js"></script>
 <script src="/javascripts/application/accordions.js" type="module" defer></script>
 <script src="/javascripts/application/affichageCarnetSuivi.js" type="module" defer></script>
 
@@ -54,7 +55,7 @@
             </div>
             <div class="attendu" id="<%= evaluation.attendu.id %>">Ce qui est attendu : <span class="is-pulled-right has-text-weight-bold"><%= evaluation.attendu.attendu %></span></div>
             <div class="observation-description">Description de l'activité : <span class="is-pulled-right has-text-weight-bold"><%= evaluation.observation.description %></span></div>
-            <div class="observation-date">Fait le : <span class="is-pulled-right is-italic">
+            <div>Fait le : <span class="is-pulled-right is-italic observation-date">
                     <%= evaluation.observation.creation %></span>
             </div>
         </div>
