@@ -96,9 +96,14 @@
     })
     const affichageParDomaine = (id) => {
         domaines.forEach((domaine) => {
-            domaine.parentElement.previousElementSibling.classList.add('is-hidden')
             const panels = document.querySelectorAll('.panel')
+            const accordions = document.querySelectorAll('.accordion')
             panels.forEach(panel => panel.style.display = 'none')
+            accordions.forEach(ligne => {
+                ligne.classList.remove('has-background-primary')
+                ligne.classList.remove('has-text-white')
+            })
+            domaine.parentElement.previousElementSibling.classList.add('is-hidden')
             if (domaine.id === id || id === "0") {
                 domaine.parentElement.previousElementSibling.classList.remove('is-hidden')
             }
