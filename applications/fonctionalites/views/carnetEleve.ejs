@@ -1,5 +1,7 @@
 <% include ./../../views/headerConnecte %>
 
+<script src="/javascripts/application/accordions.js" type="module" defer></script>
+
 <section class="section container">
     <div class="columns">
         <div class="column">
@@ -34,18 +36,18 @@
 <section class="section">
     <div class="container">
         <% retourParEvaluation.forEach(evaluation => { %>
-        <div class="box">
-            <div class="domaine is-hidden" id="<%= evaluation.domaine.id %>"><%= evaluation.domaine.domaine %></div>
-            <div class="objectif is-hidden" id="<%= evaluation.objectif.id %>">objectif : <%= evaluation.objectif.objectif %>
+        <button class="accordion has-background-grey-lighter is-large"><%= evaluation.observation.titre %> <span class="is-pulled-right">
+                <div class="evaluation tag" id="<%= evaluation.evaluation %>"></div>
+            </span></button>
+        <div class="panel">
+            <div class="domaine" id="<%= evaluation.domaine.id %>">Domaine d'apprentissage : <%= evaluation.domaine.domaine %></div>
+            <div class="objectif" id="<%= evaluation.objectif.id %>">Objectif visé(s) : <%= evaluation.objectif.objectif %>
             </div>
-            <div class="attendu is-hidden" id="<%= evaluation.attendu.id %>">attendu : <%= evaluation.attendu.attendu %></div>
-            <div class="observation">observation titre : <%= evaluation.observation.titre %></div>
-            <div class="observation-description">observation description : <%= evaluation.observation.description %></div>
-            <div class="observation-date">observation creation : <div class="is-italic">
-                    <%= evaluation.observation.creation %></div>
+            <div class="attendu" id="<%= evaluation.attendu.id %>">Ce qui est attendu : <%= evaluation.attendu.attendu %></div>
+            <div class="observation-description">Description de l'activité : <%= evaluation.observation.description %></div>
+            <div class="observation-date">Fait le : <span class="is-italic">
+                    <%= evaluation.observation.creation %></span>
             </div>
-            <div class="evaluation tag" id="<%= evaluation.evaluation %>"></div>
-            <p><br></p>
         </div>
         <% }); %>
     </div>
@@ -96,9 +98,11 @@
     })
     const affichageParDomaine = (id) => {
         domaines.forEach((domaine) => {
-            domaine.parentElement.classList.add('is-hidden')
+            domaine.parentElement.previousElementSibling.classList.add('is-hidden')
+            const panels = document.querySelectorAll('.panel')
+            panels.forEach(panel => panel.style.display = 'none')
             if (domaine.id === id) {
-                domaine.parentElement.classList.remove('is-hidden')
+                domaine.parentElement.previousElementSibling.classList.remove('is-hidden')
             }
         })
     }
