@@ -28,7 +28,14 @@
 
 <section class="section container">
     <div class="tabs is-centered">
-        <ul class="tabs-domaines">
+        <ul>
+            <li class="is-active"><a class="filtrage-domaine" id="0">Tous</a></li>
+            <li><a class="filtrage-domaine" id="1">Oral</a></li>
+            <li><a class="filtrage-domaine" id="2">Ecrit</a></li>
+            <li><a class="filtrage-domaine" id="3">Physique</a></li>
+            <li><a class="filtrage-domaine" id="4">Arts</a></li>
+            <li><a class="filtrage-domaine" id="5">Construire</a></li>
+            <li><a class="filtrage-domaine" id="6">Explorer</a></li>
         </ul>
     </div>
 </section>
@@ -60,31 +67,8 @@
 </section>
 
 <script>
-    /* Creation des tabulations par Domaines */
+    /* Affichage des observations par Domaines */
     const domaines = document.querySelectorAll('.domaine')
-    const tabsDomaines = document.querySelector('.tabs-domaines')
-
-    const creationDesBouttonsDomainesUniques = () => {
-        const domainesUniques = [
-            { id: 0, texte: "Tous" },
-            { id: 1, texte: "Oral" },
-            { id: 2, texte: "Ecrit" },
-            { id: 3, texte: "Physique" },
-            { id: 4, texte: "Arts" },
-            { id: 5, texte: "Construire" },
-            { id: 6, texte: "Explorer" }
-        ]
-        domainesUniques.forEach(domaine => {
-            const tabDomaine = document.createElement('li')
-            const buttonDomaine = document.createElement('a')
-            tabDomaine.appendChild(buttonDomaine)
-            buttonDomaine.innerHTML = `${domaine.texte}`
-            buttonDomaine.classList.add('filtrage-domaine')
-            buttonDomaine.id = domaine.id
-            tabsDomaines.appendChild(tabDomaine)
-        })
-    }
-    creationDesBouttonsDomainesUniques()
 
     const filtrageDomaines = document.querySelectorAll('.filtrage-domaine')
     filtrageDomaines.forEach(filtrageDomaine => {
