@@ -73,3 +73,4 @@ podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
 - [] application mobile
 - [] refactorisation et normalisation du JS côté client
 - [] repasser sur les ENV pour mettre l'application - production ready -
+- [] Dans observationDomaine.ejs et carnetEleve.ejs, les domaines sont codés en dur - A refaire (texte court et image en base ?)
