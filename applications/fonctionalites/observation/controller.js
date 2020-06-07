@@ -5,10 +5,10 @@ const {
   recuperationObjectifsParDomaine,
   recuperationAttendusParObjectif,
   recuperationAttenduParObservation,
-  recuperationObservationParId
+  recuperationObservationParId,
+  recuperationCriteres
 } = require('./../model')
 const {
-  recuperationCriteres,
   enregistrementNouvelleObservation,
   enregistrementNouvelAttenduPersonnalise,
   enregistrementEvaluations,

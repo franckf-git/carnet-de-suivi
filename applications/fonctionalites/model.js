@@ -85,3 +85,12 @@ exports.recuperationAttenduParObservation = async (idObservation) => {
     logger.error(error)
   }
 }
+
+exports.recuperationCriteres = async () => {
+  try {
+    const recherche = await referentiel('criteres').select()
+    return recherche
+  } catch (error) {
+    logger.error(error)
+  }
+}

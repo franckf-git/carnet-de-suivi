@@ -2,14 +2,15 @@
 const {
   recuperationPseudoParIdUtilisateur,
   recuperationElevesParIdUtilisateur,
-  recuperationElevesDesactivesParIdUtilisateur
+  recuperationElevesDesactivesParIdUtilisateur,
+  recuperationCriteres
 } = require('./../model')
 const {
   recuperationNomEleveParId,
   recuperationEvaluationParEleve,
   verificationLienEleveProf
 } = require('./model')
-const { creationArborescenceCarnetParStructure, creationArborescenceCarnetParEvaluation } = require('./utils')
+const { creationArborescenceCarnetParEvaluation } = require('./utils')
 const logger = require('./../../utils/logger')
 
 exports.exportcsa = async (req, res, next) => {
@@ -41,9 +42,9 @@ exports.carnetdesuivi = async (req, res, next) => {
     const evaluationsDelEleve = await recuperationEvaluationParEleve(idEleve)
 
     const retourParEvaluation = await creationArborescenceCarnetParEvaluation(evaluationsDelEleve)
-    const retourParStructure = await creationArborescenceCarnetParStructure()
+    const criteres = await recuperationCriteres()
 
-    res.render('./applications/fonctionalites/views/carnetEleve', { pseudo, titre, retourParEvaluation, retourParStructure })
+    res.render('./applications/fonctionalites/views/carnetEleve', { pseudo, titre, retourParEvaluation, criteres })
   } catch (error) {
     logger.error(error)
   }
