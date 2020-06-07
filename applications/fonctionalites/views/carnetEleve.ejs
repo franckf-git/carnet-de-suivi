@@ -28,79 +28,20 @@
     <div class="container">
         <% retourParEvaluation.forEach(evaluation => { %>
         <div class="box">
-            <div class="domaine" id="<%= evaluation.domaine.id %>">domaine : <%= evaluation.domaine.domaine %></div>
-            <div class="objectif" id="<%= evaluation.objectif.id %>">objectif : <%= evaluation.objectif.objectif %>
+            <div class="domaine is-hidden" id="<%= evaluation.domaine.id %>"><%= evaluation.domaine.domaine %></div>
+            <div class="objectif is-hidden" id="<%= evaluation.objectif.id %>">objectif : <%= evaluation.objectif.objectif %>
             </div>
-            <div class="attendu" id="<%= evaluation.attendu.id %>">attendu : <%= evaluation.attendu.attendu %></div>
+            <div class="attendu is-hidden" id="<%= evaluation.attendu.id %>">attendu : <%= evaluation.attendu.attendu %></div>
             <div class="observation">observation titre : <%= evaluation.observation.titre %></div>
+            <div class="observation-description">observation description : <%= evaluation.observation.description %></div>
             <div class="observation-date">observation creation : <div class="is-italic">
                     <%= evaluation.observation.creation %></div>
             </div>
-            <div class="evaluation">evaluation : <%= evaluation.evaluation %></div>
+            <div class="evaluation" id="<%= evaluation.evaluation %>"></div>
             <p><br></p>
         </div>
         <% }); %>
     </div>
 </section>
-
-<section class="section">
-    <div class="container">
-        <% retourParStructure.forEach(domaine => { %>
-        <div class="box has-background-info">
-            <div class="domaine" id="<%= domaine.id %>">domaine : <%= domaine.domaine %></div>
-            <% domaine.objectifs.forEach(objectif => { %>
-            <div class="box has-background-warning">
-                <div class="objectif" id="<%= objectif.id %>">objectif : <%= objectif.objectif %></div>
-                <% objectif.attendus.forEach(attendu => { %>
-                <div class="box has-background-grey-light">
-                    <div class="attendu" id="<%= attendu.id %>">attendu : <%= attendu.attendu %></div>
-                    <% attendu.observations.forEach(observation => { %>
-                    <div class="box has-background-danger">
-                        <div class="observation" id="<%= observation.id %>">observation : <%= observation.titre %>
-                        </div>
-                    </div>
-                    <% }); %>
-                </div>
-                <% }); %>
-                <% objectif.attendusPerso.forEach(attenduPerso => { %>
-                <div class="box has-background-grey-light">
-                    <div class="attenduPerso" id="<%= attenduPerso.id %>">attenduPerso :
-                        <%= attenduPerso.attendu %></div>
-                    <% attenduPerso.observations.forEach(observation => { %>
-                    <div class="box has-background-danger">
-                        <div class="observation" id="<%= observation.id %>">observation : <%= observation.titre %>
-                        </div>
-                    </div>
-                    <% }); %>
-                </div>
-                <% }); %>
-            </div>
-            <% }); %>
-        </div>
-        <% }); %>
-    </div>
-</section>
-
-<script src='/javascripts/pdfmake/pdfmake.min.js'></script>
-<script src='/javascripts/pdfmake/vfs_fonts.js'></script>
-<script>
-    const listEvaluations = []
-    const boxEvaluations = document.querySelectorAll('.box').forEach((evaluations) => {
-        listEvaluations.push(evaluations.innerText)
-    })
-
-    const docDefinition = {
-        content: [
-            `${document.querySelector('.title').innerHTML}`,
-            `${document.querySelectorAll('.subtitle')[1].innerHTML}`,
-            `${listEvaluations}`
-        ]
-    }
-
-    const exportPdf = document.querySelector('.export-pdf')
-    exportPdf.addEventListener('click', () => {
-        pdfMake.createPdf(docDefinition).open()
-    })
-</script>
 
 <% include ./../../views/footer %>
