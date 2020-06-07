@@ -46,9 +46,7 @@
         <h2 class="title is-italic has-text-centered">Il n'y a pas d'observations pour cet élève.</h2>
         <% } else { %>
         <% retourParEvaluation.forEach(evaluation => { %>
-        <button class="accordion has-background-grey-lighter is-large"><%= evaluation.observation.titre %> <span class="is-pulled-right">
-                <div class="evaluation tag" id="<%= evaluation.evaluation %>"></div>
-            </span></button>
+        <button class="accordion has-background-grey-lighter is-large"><%= evaluation.observation.titre %><span class="is-pulled-right evaluation tag" id="<%= evaluation.evaluation %>"></span></button>
         <div class="panel">
             <div class="domaine" id="<%= evaluation.domaine.id %>">Domaine d'apprentissage : <span class="is-pulled-right has-text-weight-bold"><%= evaluation.domaine.domaine %></span></div>
             <div class="objectif" id="<%= evaluation.objectif.id %>">Objectif visé(s) : <span class="is-pulled-right has-text-weight-bold"><%= evaluation.objectif.objectif %></span>
