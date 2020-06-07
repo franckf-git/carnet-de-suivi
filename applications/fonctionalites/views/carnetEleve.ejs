@@ -40,12 +40,12 @@
                 <div class="evaluation tag" id="<%= evaluation.evaluation %>"></div>
             </span></button>
         <div class="panel">
-            <div class="domaine" id="<%= evaluation.domaine.id %>">Domaine d'apprentissage : <%= evaluation.domaine.domaine %></div>
-            <div class="objectif" id="<%= evaluation.objectif.id %>">Objectif visé(s) : <%= evaluation.objectif.objectif %>
+            <div class="domaine" id="<%= evaluation.domaine.id %>">Domaine d'apprentissage : <span class="is-pulled-right has-text-weight-bold"><%= evaluation.domaine.domaine %></span></div>
+            <div class="objectif" id="<%= evaluation.objectif.id %>">Objectif visé(s) : <span class="is-pulled-right has-text-weight-bold"><%= evaluation.objectif.objectif %></span>
             </div>
-            <div class="attendu" id="<%= evaluation.attendu.id %>">Ce qui est attendu : <%= evaluation.attendu.attendu %></div>
-            <div class="observation-description">Description de l'activité : <%= evaluation.observation.description %></div>
-            <div class="observation-date">Fait le : <span class="is-italic">
+            <div class="attendu" id="<%= evaluation.attendu.id %>">Ce qui est attendu : <span class="is-pulled-right has-text-weight-bold"><%= evaluation.attendu.attendu %></span></div>
+            <div class="observation-description">Description de l'activité : <span class="is-pulled-right has-text-weight-bold"><%= evaluation.observation.description %></span></div>
+            <div class="observation-date">Fait le : <span class="is-pulled-right is-italic">
                     <%= evaluation.observation.creation %></span>
             </div>
         </div>
