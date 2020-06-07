@@ -44,14 +44,21 @@
             <div class="observation-date">observation creation : <div class="is-italic">
                     <%= evaluation.observation.creation %></div>
             </div>
-            <div class="evaluation" id="<%= evaluation.evaluation %>"></div>
+            <div class="evaluation tag" id="<%= evaluation.evaluation %>"></div>
             <p><br></p>
         </div>
         <% }); %>
     </div>
 </section>
 
+<section class="is-hidden">
+    <% criteres.forEach(critere => { %>
+    <div class="critere" data-value="<%= critere.couleur %>" id="<%= critere.id %>"><%= critere.critere %></div>
+    <% }); %>
+</section>
+
 <script>
+    /* Creation des tabulations par Domaines */
     const domaines = document.querySelectorAll('.domaine')
     const tabsDomaines = document.querySelector('.tabs-domaines')
 
@@ -96,13 +103,20 @@
         })
     }
 
-    const objectifs = document.querySelectorAll('.objectif')
-    const attendus = document.querySelectorAll('.attendu')
+    // const objectifs = document.querySelectorAll('.objectif')
+    // const attendus = document.querySelectorAll('.attendu')
+
+    /* affectation des criteres aux evaluations */
     const evaluations = document.querySelectorAll('.evaluation')
-
+    const criteres = document.querySelectorAll('.critere')
     evaluations.forEach(evaluation => {
-        // console.log(evaluation.id);
-
+        criteres.forEach(critere => {
+            if (critere.id === evaluation.id) {
+                const couleur = critere.getAttribute('data-value')
+                evaluation.classList.add(couleur)
+                evaluation.innerHTML = critere.innerHTML
+            }
+        })
     });
 
 </script>
