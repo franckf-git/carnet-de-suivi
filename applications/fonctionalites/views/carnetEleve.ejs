@@ -42,6 +42,9 @@
 
 <section class="section">
     <div class="container">
+        <% if ( typeof retourParEvaluation[0] === 'undefined') { %>
+        <h2 class="title is-italic has-text-centered">Il n'y a pas d'observations pour cet élève.</h2>
+        <% } else { %>
         <% retourParEvaluation.forEach(evaluation => { %>
         <button class="accordion has-background-grey-lighter is-large"><%= evaluation.observation.titre %> <span class="is-pulled-right">
                 <div class="evaluation tag" id="<%= evaluation.evaluation %>"></div>
@@ -57,6 +60,7 @@
             </div>
         </div>
         <% }); %>
+        <% } %>
     </div>
 </section>
 
