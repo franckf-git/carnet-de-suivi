@@ -24,6 +24,13 @@
     </div>
 </section>
 
+<section class="section container">
+    <div class="tabs is-centered">
+        <ul class="tabs-domaines">
+        </ul>
+    </div>
+</section>
+
 <section class="section">
     <div class="container">
         <% retourParEvaluation.forEach(evaluation => { %>
@@ -43,5 +50,83 @@
         <% }); %>
     </div>
 </section>
+
+<script>
+    const domaines = document.querySelectorAll('.domaine')
+    const tabsDomaines = document.querySelector('.tabs-domaines')
+
+    const creationDesBouttonsDomainesUniques = () => {
+        const domainesUniques = []
+        domaines.forEach((domaineAtrier) => {
+            const infosUtiles = {
+                id: domaineAtrier.id, texte: domaineAtrier.innerHTML
+            }
+            const infosUtilesPourUniq = JSON.stringify(infosUtiles)
+            if (!domainesUniques.includes(infosUtilesPourUniq)) {
+                domainesUniques.push(infosUtilesPourUniq)
+            }
+        })
+        domainesUniques.forEach(domaine => {
+            const tabDomaine = document.createElement('li')
+            const buttonDomaine = document.createElement('a')
+            tabDomaine.appendChild(buttonDomaine)
+            const domaineObject = JSON.parse(domaine)
+            buttonDomaine.innerHTML = `${domaineObject.texte}`
+            buttonDomaine.classList.add('filtrage-domaine')
+            buttonDomaine.id = domaineObject.id
+            tabsDomaines.appendChild(tabDomaine)
+        })
+    }
+    creationDesBouttonsDomainesUniques()
+
+    const filtrageDomaines = document.querySelectorAll('.filtrage-domaine')
+    filtrageDomaines.forEach(filtrageDomaine => {
+        filtrageDomaine.addEventListener('click', () => {
+            filtrageDomaines.forEach(filtrageDomaine => filtrageDomaine.parentElement.classList.remove('is-active'))
+            filtrageDomaine.parentElement.classList.add('is-active')
+            affichageParDomaine(filtrageDomaine.id)
+        })
+    })
+    const affichageParDomaine = (id) => {
+        domaines.forEach((domaine) => {
+            domaine.parentElement.classList.add('is-hidden')
+            if (domaine.id === id) {
+                domaine.parentElement.classList.remove('is-hidden')
+            }
+        })
+    }
+
+    const objectifs = document.querySelectorAll('.objectif')
+    const attendus = document.querySelectorAll('.attendu')
+    const evaluations = document.querySelectorAll('.evaluation')
+
+    evaluations.forEach(evaluation => {
+        // console.log(evaluation.id);
+
+    });
+
+</script>
+
+<script src='public/javascripts/pdfmake/pdfmake.min.js'></script>
+<script src='public/javascripts/pdfmake/vfs_fonts.js'></script>
+<script>
+    const listEvaluations = []
+    const boxEvaluations = document.querySelectorAll('.box').forEach((evaluations) => {
+        listEvaluations.push(evaluations.innerText)
+    })
+
+    const docDefinition = {
+        content: [
+            `${document.querySelector('.title').innerHTML}`,
+            `${document.querySelectorAll('.subtitle')[1].innerHTML}`,
+            `${listEvaluations}`
+        ]
+    }
+
+    const exportPdf = document.querySelector('.export-pdf')
+    exportPdf.addEventListener('click', () => {
+        pdfMake.createPdf(docDefinition).open()
+    })
+</script>
 
 <% include ./../../views/footer %>
