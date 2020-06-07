@@ -65,24 +65,22 @@
     const tabsDomaines = document.querySelector('.tabs-domaines')
 
     const creationDesBouttonsDomainesUniques = () => {
-        const domainesUniques = []
-        domaines.forEach((domaineAtrier) => {
-            const infosUtiles = {
-                id: domaineAtrier.id, texte: domaineAtrier.innerHTML
-            }
-            const infosUtilesPourUniq = JSON.stringify(infosUtiles)
-            if (!domainesUniques.includes(infosUtilesPourUniq)) {
-                domainesUniques.push(infosUtilesPourUniq)
-            }
-        })
+        const domainesUniques = [
+            { id: 0, texte: "Tous" },
+            { id: 1, texte: "Oral" },
+            { id: 2, texte: "Ecrit" },
+            { id: 3, texte: "Physique" },
+            { id: 4, texte: "Arts" },
+            { id: 5, texte: "Construire" },
+            { id: 6, texte: "Explorer" }
+        ]
         domainesUniques.forEach(domaine => {
             const tabDomaine = document.createElement('li')
             const buttonDomaine = document.createElement('a')
             tabDomaine.appendChild(buttonDomaine)
-            const domaineObject = JSON.parse(domaine)
-            buttonDomaine.innerHTML = `${domaineObject.texte}`
+            buttonDomaine.innerHTML = `${domaine.texte}`
             buttonDomaine.classList.add('filtrage-domaine')
-            buttonDomaine.id = domaineObject.id
+            buttonDomaine.id = domaine.id
             tabsDomaines.appendChild(tabDomaine)
         })
     }
@@ -101,7 +99,7 @@
             domaine.parentElement.previousElementSibling.classList.add('is-hidden')
             const panels = document.querySelectorAll('.panel')
             panels.forEach(panel => panel.style.display = 'none')
-            if (domaine.id === id) {
+            if (domaine.id === id || id === "0") {
                 domaine.parentElement.previousElementSibling.classList.remove('is-hidden')
             }
         })
