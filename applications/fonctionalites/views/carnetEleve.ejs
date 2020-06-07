@@ -70,11 +70,11 @@
     <% }); %>
 </section>
 
-<script src='public/javascripts/pdfmake/pdfmake.min.js'></script>
-<script src='public/javascripts/pdfmake/vfs_fonts.js'></script>
+<script src='/javascripts/pdfmake/pdfmake.min.js'></script>
+<script src='/javascripts/pdfmake/vfs_fonts.js'></script>
 <script>
     const listEvaluations = []
-    const boxEvaluations = document.querySelectorAll('.box').forEach((evaluations) => {
+    const boxEvaluations = document.querySelectorAll('.accordion').forEach((evaluations) => {
         listEvaluations.push(evaluations.innerText)
     })
 
