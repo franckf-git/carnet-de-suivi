@@ -15,16 +15,14 @@
     </div>
 </section>
 
-<section class="hero is-bold has-background-grey-lighter">
+<section class="hero is-bold has-background-grey-lighter container">
     <div class="hero-body">
-        <div class="container">
-            <h2 class="title">
-                <%= typeof titre != 'undefined' ? titre : 'Carnet de Suivi' %>
-            </h2>
-            <h3 class="subtitle">
-                Elève de <%= typeof pseudo != 'undefined' ? pseudo : 'pseudo' %>
-            </h3>
-        </div>
+        <h2 class="title">
+            <%= typeof titre != 'undefined' ? titre : 'Carnet de Suivi' %>
+        </h2>
+        <h3 class="subtitle">
+            Elève de <%= typeof pseudo != 'undefined' ? pseudo : 'pseudo' %>
+        </h3>
     </div>
 </section>
 
