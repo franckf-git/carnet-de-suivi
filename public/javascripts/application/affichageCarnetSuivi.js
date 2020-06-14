@@ -41,6 +41,6 @@ evaluations.forEach(evaluation => {
 /* affichage lisible des dates */
 const observationDates = document.querySelectorAll('.observation-date')
 observationDates.forEach(observationDate => {
-  const dateFormatMoment = moment.utc(observationDate.innerHTML).locale('fr').add(2, 'hours').calendar()
+  const dateFormatMoment = moment.utc(observationDate.innerHTML).locale('fr').add(2, 'hours').format('dddd Do MMMM YYYY')
   observationDate.innerHTML = dateFormatMoment
 })
