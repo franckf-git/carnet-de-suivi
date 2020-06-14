@@ -86,24 +86,6 @@
 
 <script src='/javascripts/pdfmake/pdfmake.min.js'></script>
 <script src='/javascripts/pdfmake/vfs_fonts.js'></script>
-<script>
-    const listEvaluations = []
-    const boxEvaluations = document.querySelectorAll('.accordion').forEach((evaluations) => {
-        listEvaluations.push(evaluations.innerText)
-    })
-
-    const docDefinition = {
-        content: [
-            `${document.querySelector('.title').innerHTML}`,
-            `${document.querySelectorAll('.subtitle')[1].innerHTML}`,
-            `${listEvaluations}`
-        ]
-    }
-
-    const exportPdf = document.querySelector('.export-pdf')
-    exportPdf.addEventListener('click', () => {
-        pdfMake.createPdf(docDefinition).open()
-    })
-</script>
+<script src='/javascripts/application/exportPDF.js'></script>
 
 <% include ./../../views/footer %>
