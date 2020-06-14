@@ -20,11 +20,5 @@ impression.addEventListener('click', () => {
 })
 
 window.onafterprint = (event) => {
-  document.querySelector('.footer').classList.remove('is-hidden')
-  document.querySelector('.navbar').classList.remove('is-hidden')
-  document.querySelector('.tabs').classList.remove('is-hidden')
-  document.querySelector('.buttons-export').classList.remove('is-hidden')
-  document.querySelector('.button-backtotop').classList.remove('is-hidden')
-  const panels = document.querySelectorAll('.panel')
-  panels.forEach(panel => panel.style.display = 'none')
+  location.reload()
 }
