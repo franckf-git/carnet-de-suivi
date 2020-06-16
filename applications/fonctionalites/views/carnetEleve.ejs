@@ -3,6 +3,10 @@
 <script src="/javascripts/moment/moment-with-locales.min.js"></script>
 <script src="/javascripts/application/accordions.js" type="module" defer></script>
 <script src="/javascripts/application/affichageCarnetSuivi.js" type="module" defer></script>
+<script src="/javascripts/pdfmake/pdfmake.min.js"></script>
+<script src="/javascripts/pdfmake/vfs_fonts.js"></script>
+<script src="/javascripts/application/exportPDF.js" type="module" defer></script>
+<script src="/javascripts/application/impressionCarnet.js" type="module" defer></script>
 
 <section class="section container">
     <div class="columns buttons-export">
@@ -86,10 +90,5 @@
     <div class="critere" data-value="<%= critere.couleur %>" id="<%= critere.id %>"><%= critere.critere %></div>
     <% }); %>
 </section>
-
-<script src='/javascripts/pdfmake/pdfmake.min.js'></script>
-<script src='/javascripts/pdfmake/vfs_fonts.js'></script>
-<script src='/javascripts/application/exportPDF.js'></script>
-<script src='/javascripts/application/impressionCarnet.js'></script>
 
 <% include ./../../views/footer %>
