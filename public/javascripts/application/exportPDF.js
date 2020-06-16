@@ -10,7 +10,7 @@ exportPdf.addEventListener('click', () => {
     const observationDetailsObjectif = observationDetails.querySelector('.objectif').childNodes[1].innerHTML
     const observationDetailsAttendu = observationDetails.querySelector('.attendu').childNodes[1].innerHTML
     const observationDetailsDescription = observationDetails.querySelector('.observation-description').childNodes[1].innerHTML
-    const observationDetailsDate = observationDetails.childNodes[9].childNodes[1].innerHTML
+    const observationDetailsDate = observationDetails.querySelector('.observation-date').innerHTML
 
     const observationTable = {
       table: {
