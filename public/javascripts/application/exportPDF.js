@@ -6,10 +6,10 @@ exportPdf.addEventListener('click', () => {
     const observationTitre = observation.innerText.split(/\n/)[0]
     const observationEvaluation = observation.innerText.split(/\n/)[1]
     const observationDetails = observation.nextElementSibling
-    const observationDetailsDomaine = observationDetails.querySelector('.domaine').childNodes[1].innerHTML
-    const observationDetailsObjectif = observationDetails.querySelector('.objectif').childNodes[1].innerHTML
-    const observationDetailsAttendu = observationDetails.querySelector('.attendu').childNodes[1].innerHTML
-    const observationDetailsDescription = observationDetails.querySelector('.observation-description').childNodes[1].innerHTML
+    const observationDetailsDomaine = observationDetails.querySelector('.domaine').parentNode.nextElementSibling.innerHTML.split(/\n/)
+    const observationDetailsObjectif = observationDetails.querySelector('.objectif').parentNode.nextElementSibling.innerHTML.split(/\n/)
+    const observationDetailsAttendu = observationDetails.querySelector('.attendu').parentNode.nextElementSibling.innerHTML.split(/\n/)
+    const observationDetailsDescription = observationDetails.querySelector('.observation-description').parentNode.nextElementSibling.innerHTML.split(/\n/)
     const observationDetailsDate = observationDetails.querySelector('.observation-date').innerHTML
 
     const observationTable = {
@@ -23,10 +23,12 @@ exportPdf.addEventListener('click', () => {
           ['Ce qui est attendu : ', '', observationDetailsAttendu],
           ['Description de l\'activité : ', '', observationDetailsDescription],
           ['Fait le : ', '', observationDetailsDate],
-          [{ text: '', fillColor: '#dbdbdb' }, { text: '', fillColor: '#dbdbdb' }, { text: '', fillColor: '#dbdbdb' }]
+          [{ text: '', fillColor: '#dbdbdb' }, { text: '', fillColor: '#dbdbdb' }, { text: '', fillColor: '#dbdbdb' }],
+          ['', '', '']
         ]
       },
-      layout: 'headerLineOnly'
+      layout: 'noBorders'
+
     }
 
     listeObservations.push(observationTable)
