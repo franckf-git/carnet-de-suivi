@@ -41,6 +41,7 @@ exportPdf.addEventListener('click', () => {
           ['Fait le : ', '', observationDetailsDate]
         ]
       },
+      unbreakable: true,
       layout: 'headerLineOnly'
     }
 
