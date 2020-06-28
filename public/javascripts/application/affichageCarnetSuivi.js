@@ -18,9 +18,9 @@ const affichageParDomaine = (id) => {
       ligne.classList.remove('has-background-primary')
       ligne.classList.remove('has-text-white')
     })
-    domaine.parentElement.previousElementSibling.classList.add('is-hidden')
+    domaine.parentElement.parentElement.parentElement.previousElementSibling.classList.add('is-hidden')
     if (domaine.id === id || id === '0') {
-      domaine.parentElement.previousElementSibling.classList.remove('is-hidden')
+      domaine.parentElement.parentElement.parentElement.previousElementSibling.classList.remove('is-hidden')
     }
   })
 }
