@@ -6,29 +6,36 @@ exportPdf.addEventListener('click', () => {
     const observationTitre = observation.innerText.split(/\n/)[0]
     const observationEvaluation = observation.innerText.split(/\n/)[1]
     const observationDetails = observation.nextElementSibling
-    const observationDetailsDomaine = observationDetails.querySelector('.domaine').parentNode.nextElementSibling.innerHTML.split(/\n/)
-    const observationDetailsObjectif = observationDetails.querySelector('.objectif').parentNode.nextElementSibling.innerHTML.split(/\n/)
-    const observationDetailsAttendu = observationDetails.querySelector('.attendu').parentNode.nextElementSibling.innerHTML.split(/\n/)
-    const observationDetailsDescription = observationDetails.querySelector('.observation-description').parentNode.nextElementSibling.innerHTML.split(/\n/)
+    const observationDetailsDomaine = observationDetails.querySelector('.domaine').parentNode.nextElementSibling.innerHTML.split(/\n/)[1]
+    const observationDetailsObjectif = observationDetails.querySelector('.objectif').parentNode.nextElementSibling.innerHTML.split(/\n/)[1]
+    const observationDetailsAttendu = observationDetails.querySelector('.attendu').parentNode.nextElementSibling.innerHTML.split(/\n/)[1]
+    const observationDetailsDescription = observationDetails.querySelector('.observation-description').parentNode.nextElementSibling.innerHTML.split(/\n/)[1]
     const observationDetailsDate = observationDetails.querySelector('.observation-date').innerHTML
 
     const observationTable = {
+      style: 'observationTable',
       table: {
         headerRows: 1,
         widths: ['*', 10, '*'],
         body: [
-          [observationTitre, '', observationEvaluation],
+          [{
+            text: observationTitre,
+            fontSize: 16,
+            bold: true,
+            color: '#b04027'
+          }, '', {
+            text: observationEvaluation,
+            fontSize: 12,
+            color: '#7a0a00'
+          }],
           ['Domaine dapprentissage : ', '', observationDetailsDomaine],
           ['Objectif visé(s) : ', '', observationDetailsObjectif],
           ['Ce qui est attendu : ', '', observationDetailsAttendu],
           ['Description de l\'activité : ', '', observationDetailsDescription],
-          ['Fait le : ', '', observationDetailsDate],
-          [{ text: '', fillColor: '#dbdbdb' }, { text: '', fillColor: '#dbdbdb' }, { text: '', fillColor: '#dbdbdb' }],
-          ['', '', '']
+          ['Fait le : ', '', observationDetailsDate]
         ]
       },
-      layout: 'noBorders'
-
+      layout: 'headerLineOnly'
     }
 
     listeObservations.push(observationTable)
@@ -92,6 +99,10 @@ exportPdf.addEventListener('click', () => {
     styles: {
       heroTitre: {
         alignment: 'center', fillColor: '#dbdbdb'
+      },
+      observationTable: {
+        fontSize: 8,
+        margin: [0, 5, 0, 15]
       }
     },
     defaultStyle: {
