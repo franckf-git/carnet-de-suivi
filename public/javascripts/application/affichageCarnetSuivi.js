@@ -1,6 +1,4 @@
 /* Affichage des observations par Domaines */
-const domaines = document.querySelectorAll('.domaine')
-
 const filtrageDomaines = document.querySelectorAll('.filtrage-domaine')
 filtrageDomaines.forEach(filtrageDomaine => {
   filtrageDomaine.addEventListener('click', () => {
@@ -10,6 +8,7 @@ filtrageDomaines.forEach(filtrageDomaine => {
   })
 })
 const affichageParDomaine = (id) => {
+  const domaines = document.querySelectorAll('.domaine')
   domaines.forEach((domaine) => {
     const panels = document.querySelectorAll('.panel')
     const accordions = document.querySelectorAll('.accordion')
@@ -24,6 +23,7 @@ const affichageParDomaine = (id) => {
     }
   })
 }
+export { affichageParDomaine }
 
 /* affectation des criteres aux evaluations */
 const evaluations = document.querySelectorAll('.evaluation')

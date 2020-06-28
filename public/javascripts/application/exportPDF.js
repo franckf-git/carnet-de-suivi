@@ -1,5 +1,11 @@
+import { affichageParDomaine } from './affichageCarnetSuivi.js'
 const exportPdf = document.querySelector('.export-pdf')
 exportPdf.addEventListener('click', () => {
+  const filtrageDomaines = document.querySelectorAll('.filtrage-domaine')
+  filtrageDomaines.forEach(filtrageDomaine => filtrageDomaine.parentElement.classList.remove('is-active'))
+  filtrageDomaines[0].parentElement.classList.add('is-active')
+  affichageParDomaine('0')
+
   const listeObservations = []
   const observations = document.querySelectorAll('.accordion')
   observations.forEach((observation) => {
