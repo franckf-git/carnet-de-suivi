@@ -8,7 +8,7 @@ if (cardsDomaine && inputActivity && alertLength) {
     cardDomaine.addEventListener('click', () => {
       const idDomaine = cardDomaine.id
       document.querySelector('#idDomaine').value = idDomaine
-      if (inputActivity.value.length > 2 && inputActivity.value.length < 40) {
+      if (inputActivity.value.length > 2 && inputActivity.value.length <= 40) {
         document.forms.titreActivite.submit()
       }
     })
