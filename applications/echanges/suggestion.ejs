@@ -1,0 +1,15 @@
+<% if ( connecte ) { %>
+<% include ./../views/headerConnecte %>
+<% } else { %>
+<% include ./../views/header %>
+<% } %>
+
+<section class="section">
+    <% if ( connecte ) { %>
+    je suis connecté
+    <% } else { %>
+    je ne suis pas connecté
+    <% } %>
+</section>
+
+<% include ./../views/footer %>
