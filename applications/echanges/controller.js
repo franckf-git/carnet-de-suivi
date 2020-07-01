@@ -1,7 +1,7 @@
 'use strict'
-const {
-  recuperationPseudoParIdUtilisateur
-} = require('./../fonctionalites/model')
+const { recuperationPseudoParIdUtilisateur } = require('./../fonctionalites/model')
+const { enregistrementSuggestion } = require('./model')
+const { nettoyageTotal } = require('./../utils')
 const logger = require('./../utils/logger')
 
 exports.suggestion = async (req, res, next) => {
@@ -11,13 +11,22 @@ exports.suggestion = async (req, res, next) => {
       const connecte = true
       const idUtilisateur = req.session.utilisateur
       const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
-      console.log("connecte", connecte)
-      res.render('./echanges/suggestion', { pseudo, titre, connecte })
+      res.render('./applications/echanges/suggestion', { pseudo, titre, connecte })
     } else {
       const connecte = false
-      console.log("connecte", connecte)
-      res.render('./echanges/suggestion', { titre, connecte })
+      res.render('./applications/echanges/suggestion', { titre, connecte })
     }
+  } catch (error) {
+    logger.error(error)
+  }
+}
+
+exports.nouvelleSuggestion = async (req, res, next) => {
+  try {
+    const texteSuggestion = nettoyageTotal(req.body.texteSuggestion)
+    const idUtilisateur = req.session.utilisateur
+    await enregistrementSuggestion(texteSuggestion, idUtilisateur)
+    res.redirect('/acceuil')
   } catch (error) {
     logger.error(error)
   }

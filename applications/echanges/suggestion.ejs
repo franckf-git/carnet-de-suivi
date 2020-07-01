@@ -4,11 +4,27 @@
 <% include ./../views/header %>
 <% } %>
 
-<section class="section">
+<section class="section container has-text-justified">
+    <p class="subtitle">
+        Vous pouvez faire une suggestion pour de nouvelles fonctionnalités ou pour améliorer l'expérience utilisateur de notre application.
+    </p>
+    <p>Vérifiez en revanche que cette fonctionnalité ne fait pas déjà partie de l'application en vérifiant nos <a href="/versions">notes de versions</a> ou que votre suggestion n'a pas déjà été prise en compte et sera <a href="https://gitlab.com/franckf/carnet-de-suivi/-/blob/master/README.md">prochainement dans l'application</a>.</p>
+    <hr>
     <% if ( connecte ) { %>
-    je suis connecté
+    <form action="/suggestion" method="post">
+        <div class="field">
+            <div class="control">
+                <textarea class="textarea" name="texteSuggestion" placeholder="Faire une suggestion"></textarea>
+            </div>
+        </div>
+        <div class="control">
+            <button class="button is-primary is-fullwidth">Envoyer cette suggestion</button>
+        </div>
+    </form>
     <% } else { %>
-    je ne suis pas connecté
+    <p class="is-italic">
+        Vous devez être <a href="/connexion">connecté</a> pour faire une suggestion.
+    </p>
     <% } %>
 </section>
 

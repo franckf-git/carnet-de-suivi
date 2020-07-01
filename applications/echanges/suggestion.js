@@ -1,8 +1,9 @@
 'use strict'
 const express = require('express')
 const router = express.Router()
-const { suggestion } = require('./controller')
+const { suggestion, nouvelleSuggestion } = require('./controller')
 
 router.get('/', suggestion)
+router.post('/', nouvelleSuggestion)
 
 module.exports = router
