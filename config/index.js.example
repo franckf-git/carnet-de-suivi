@@ -7,6 +7,7 @@ module.exports = {
   SQLITE_CORE: './basededonnees/core.sqlite',
   SQLITE_STATS: './basededonnees/statistiques.sqlite',
   SQLITE_CARNETDESUIVI: './basededonnees/carnetdesuivi.sqlite',
+  SQLITE_ECHANGES: './basededonnees/echanges.sqlite',
   SQLITE_REFERENTIEL: './basededonnees/referentiel.sqlite'
 }
 

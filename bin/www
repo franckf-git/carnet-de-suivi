@@ -11,6 +11,7 @@ const debug = require('debug')(`${config.DOMAIN}:server`)
 const { initialisationBDDAuthentification } = require('./../applications/authentification/initialisationBDD')
 const { initialisationBDDStatistiques } = require('./../applications/statistiques/initialisationBDD')
 const { initialisationBDDAide } = require('./../applications/aide/initialisationBDD')
+const { initialisationBDDechanges } = require('./../applications/echanges/initialisationBDD')
 const { initialisationBDDcarnetdesuivi, initialisationBDDReferentiel } = require('./../applications/fonctionalites/initialisationBDD')
 const { nettoyageLiensMailsetMdpOublies, nettoyageStatistiques, sauvegardeBasedeDonnees } = require(
   './../applications/utils/crontab')
@@ -31,6 +32,7 @@ initialisationBDDAuthentification()
 initialisationBDDStatistiques()
 initialisationBDDAide()
 initialisationBDDcarnetdesuivi()
+initialisationBDDechanges()
 initialisationBDDReferentiel()
 
 /**
