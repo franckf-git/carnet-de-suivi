@@ -23,10 +23,11 @@ exports.suggestion = async (req, res, next) => {
 
 exports.nouvelleSuggestion = async (req, res, next) => {
   try {
-    const texteSuggestion = nettoyageTotal(req.body.texteSuggestion)
+    const texteSuggestion = req.body.texteSuggestion
     const idUtilisateur = req.session.utilisateur
+    const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
     await enregistrementSuggestion(texteSuggestion, idUtilisateur)
-    res.redirect('/acceuil')
+    res.render('./applications/echanges/suggestionEnvoyee', { pseudo, titre: 'Merci' })
   } catch (error) {
     logger.error(error)
   }
