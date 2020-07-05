@@ -25,6 +25,8 @@ exports.initialisationBDDechanges = () => {
             .index()
           table.integer('idUtilisateur')
           table.string('texteMessage')
+          table.boolean('annonce')
+            .defaultTo(0)
           table.timestamp('enregistrement')
             .defaultTo(echanges.fn.now())
         })
