@@ -1,6 +1,6 @@
 # carnet-de-suivi
 
-Ce dépôt abrite le code pour l'application d'évaluation en ligne des élèves de Cycle 1 [carnet-de-suivi.net](carnet-de-suivi.net).
+Ce dépôt abrite le code pour l'application d'évaluation en ligne des élèves de Cycle 1 [carnet-de-suivi.net](https://carnet-de-suivi.net).
 
 [Document de référence](https://eduscol.education.fr/cid97131/suivi-et-evaluation-a-l-ecole-maternelle.html)
 
