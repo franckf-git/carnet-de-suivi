@@ -5,7 +5,7 @@ Ce dépôt abrite le code pour l'application d'évaluation en ligne des élèves
 [Document de référence](https://eduscol.education.fr/cid97131/suivi-et-evaluation-a-l-ecole-maternelle.html)
 
 ## Bugs (aka feature)
-- [] les retours à la ligne ne sont pas pris en compte dans la description de l'activité
+- [ ] les retours à la ligne ne sont pas pris en compte dans la description de l'activité
 - [x] titre activité : sanitize "<"
 
 ## Fonctionnalitées PMV
@@ -17,47 +17,47 @@ Ce dépôt abrite le code pour l'application d'évaluation en ligne des élèves
 
 ## Fonctionnalitées à venir
 
-- [] message premiere fois avec tuto rapide
-- [] sur l'évaluation des eleves, passez directement à la modal suivante une fois le critère choisi ?
+- [ ] message premiere fois avec tuto rapide
+- [ ] sur l'évaluation des eleves, passez directement à la modal suivante une fois le critère choisi ?
 - [x] permettre de proposer des fonctionnalités par "karma"
 - [x] partie communautaire (forum ou message board interne)
-- [] gestion des parents (invitation à créer un compte spécial ou envoi de mails ? lien pour PDF ?)
-- [] interface parent simplifiée
-- [] recherche de profs de la même école (par UAI ou code generé alétoirement)
-- [] partager mes élèves à un prof
-- [] voir et évaluer les élèves partagés avec moi (module séparé)
-- [] transmettre des élèves désactivés à un collègue (changement de classe)
-- [] désactiver tous mes élèves (changement de classe)
+- [ ] gestion des parents (invitation à créer un compte spécial ou envoi de mails ? lien pour PDF ?)
+- [ ] interface parent simplifiée
+- [ ] recherche de profs de la même école (par UAI ou code generé alétoirement)
+- [ ] partager mes élèves à un prof
+- [ ] voir et évaluer les élèves partagés avec moi (module séparé)
+- [ ] transmettre des élèves désactivés à un collègue (changement de classe)
+- [ ] désactiver tous mes élèves (changement de classe)
 - [x] supprimer des élèves (préciser qu'il s'agit d'une desactivation le carnet est toujours disponible)
-- [] supprimer des observations (ou les editer ?)
-- [] import onde
+- [ ] supprimer des observations (ou les editer ?)
+- [ ] import onde
 - [x] exporter le carnet de suivi des élèves supprimés
-- [] exporter le carnet de suivi en mode parent / administration / tableau de bord
-- [] exporter le carnet de suivi en mode économe (noir et blanc, sans photo)
-- [] ajout des points de suivi
-- [] les parents voient le dernier point de suivi par défaut
-- [] intégration des points de suivis au carnet de suivi (option ou imposé ?)
-- [] ajout de multimédia aux observations (photo, audio, video)
-- [] sur modal critère : trois grosses icones photo/micro/commentaires(optionnel avec alerte modifiable dans le carnet)
-- [] carnet de suivi ajout de commentaires possible
-- [] ajout de photos aux domaines / sousdomaines
-- [] tableau de bord classe (avec filtres domaines / sousdomaines)
-- [] tableau de bord eleve (avec filtres domaines / sousdomaines)
-- [] compte demo/test
+- [ ] exporter le carnet de suivi en mode parent / administration / tableau de bord
+- [ ] exporter le carnet de suivi en mode économe (noir et blanc, sans photo)
+- [ ] ajout des points de suivi
+- [ ] les parents voient le dernier point de suivi par défaut
+- [ ] intégration des points de suivis au carnet de suivi (option ou imposé ?)
+- [ ] ajout de multimédia aux observations (photo, audio, video)
+- [ ] sur modal critère : trois grosses icones photo/micro/commentaires(optionnel avec alerte modifiable dans le carnet)
+- [ ] carnet de suivi ajout de commentaires possible
+- [ ] ajout de photos aux domaines / sousdomaines
+- [ ] tableau de bord classe (avec filtres domaines / sousdomaines)
+- [ ] tableau de bord eleve (avec filtres domaines / sousdomaines)
+- [ ] compte demo/test
 
 ## Todo technique
 
-- [] mise en place de pm2 (multitreads)
-- [] intégration avec nginx en reverse proxy
-- [] pages statiques gérés par le serveur web
+- [ ] mise en place de pm2 (multitreads)
+- [ ] intégration avec nginx en reverse proxy
+- [ ] pages statiques gérés par le serveur web
 - [x] gestion des logs
-- [] passage à mariadb
-- [] tests unitaires
-- [] api de maintenance/administration (dump, stats, changement de niveau de logs)
-- [] application mobile
+- [ ] passage à mariadb
+- [ ] tests unitaires
+- [ ] api de maintenance/administration (dump, stats, changement de niveau de logs)
+- [ ] application mobile
 - [x] refactorisation et normalisation du JS côté client
-- [] repasser sur les ENV pour mettre l'application - production ready -
-- [] Dans observationDomaine.ejs et carnetEleve.ejs, les domaines sont codés en dur - A refaire (texte court et image en base ?)
+- [ ] repasser sur les ENV pour mettre l'application - production ready -
+- [ ] Dans observationDomaine.ejs et carnetEleve.ejs, les domaines sont codés en dur - A refaire (texte court et image en base ?)
 
 ---
 
