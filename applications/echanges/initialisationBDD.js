@@ -16,4 +16,18 @@ exports.initialisationBDDechanges = () => {
         })
       }
     })
+  echanges.schema.hasTable('messages')
+    .then((exists) => {
+      if (!exists) {
+        return echanges.schema.createTable('messages', (table) => {
+          table.increments()
+            .primary()
+            .index()
+          table.integer('idUtilisateur')
+          table.string('texteMessage')
+          table.timestamp('enregistrement')
+            .defaultTo(echanges.fn.now())
+        })
+      }
+    })
 }

@@ -10,3 +10,12 @@ exports.enregistrementSuggestion = async (texteSuggestion, idUtilisateur) => {
     logger.error(error)
   }
 }
+
+exports.enregistrementMessage = async (texteMessage, idUtilisateur) => {
+  try {
+    await echanges('messages')
+      .insert({ texteMessage, idUtilisateur })
+  } catch (error) {
+    logger.error(error)
+  }
+}

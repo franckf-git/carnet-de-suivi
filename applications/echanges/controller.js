@@ -1,6 +1,7 @@
 'use strict'
 const { recuperationPseudoParIdUtilisateur } = require('./../fonctionalites/model')
-const { enregistrementSuggestion } = require('./model')
+const { enregistrementSuggestion, enregistrementMessage } = require('./model')
+const { nettoyageTotal } = require('./../utils')
 const logger = require('./../utils/logger')
 
 exports.suggestion = async (req, res, next) => {
@@ -51,7 +52,10 @@ exports.messages = async (req, res, next) => {
 
 exports.nouveauMessage = async (req, res, next) => {
   try {
+    const texteMessage = nettoyageTotal(req.body.texteMessage)
     const idUtilisateur = req.session.utilisateur
+    await enregistrementMessage(texteMessage, idUtilisateur)
+    res.redirect('./messages')
   } catch (error) {
     logger.error(error)
   }
