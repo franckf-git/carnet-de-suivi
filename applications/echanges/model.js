@@ -19,3 +19,12 @@ exports.enregistrementMessage = async (texteMessage, idUtilisateur) => {
     logger.error(error)
   }
 }
+
+exports.recuperationMessages = async () => {
+  try {
+    const recherche = await echanges('messages').select()
+    return recherche
+  } catch (error) {
+    logger.error(error)
+  }
+}

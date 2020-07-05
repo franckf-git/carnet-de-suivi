@@ -5,22 +5,21 @@
 <% } %>
 
 <section class="section container">
+
+    <% messagesFormates.forEach(message => { %>
     <div class="media-content">
         <div class="content">
             <p>
-                <strong>Sean Brown</strong>
-                <small>4 hrs</small>
+                <strong><%= message.pseudo %></strong>
+                <small class="is-italic"><%= message.enregistrement %></small>
                 <br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec
-                ultricies
-                elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum.
-                Nunc in
-                tempus
-                turpis.
+                <%= message.texteMessage %>
                 <br>
             </p>
         </div>
     </div>
+    <% }); %>
+
     <hr class="has-background-primary">
     <% if ( connecte ) { %>
     <div class="field">

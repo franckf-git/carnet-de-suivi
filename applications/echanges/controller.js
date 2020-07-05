@@ -1,6 +1,6 @@
 'use strict'
 const { recuperationPseudoParIdUtilisateur } = require('./../fonctionalites/model')
-const { enregistrementSuggestion, enregistrementMessage } = require('./model')
+const { enregistrementSuggestion, enregistrementMessage, recuperationMessages } = require('./model')
 const { nettoyageTotal } = require('./../utils')
 const logger = require('./../utils/logger')
 
@@ -36,14 +36,26 @@ exports.nouvelleSuggestion = async (req, res, next) => {
 exports.messages = async (req, res, next) => {
   try {
     const titre = 'Tableau des messages'
+
+    const messages = await recuperationMessages()
+    const messagesPseudo = async (messages) => {
+      const messagesFormatage = await messages.map(async (message) => {
+        message.pseudo = await recuperationPseudoParIdUtilisateur(message.idUtilisateur)
+        return message
+      })
+      const messagesComplets = await Promise.all(messagesFormatage)
+      return messagesComplets
+    }
+    const messagesFormates = await messagesPseudo(messages)
+
     if (req.session.utilisateur && req.session.cookie) {
       const connecte = true
       const idUtilisateur = req.session.utilisateur
       const pseudo = await recuperationPseudoParIdUtilisateur(idUtilisateur)
-      res.render('./applications/echanges/messages', { pseudo, titre, connecte })
+      res.render('./applications/echanges/messages', { pseudo, titre, connecte, messagesFormates })
     } else {
       const connecte = false
-      res.render('./applications/echanges/messages', { titre, connecte })
+      res.render('./applications/echanges/messages', { titre, connecte, messagesFormates })
     }
   } catch (error) {
     logger.error(error)
