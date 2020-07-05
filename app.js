@@ -57,6 +57,7 @@ app.use('/reinitialisationmotdepasse', require('./applications/authentification/
 app.use('/statsutilisation', require('./applications/statistiques/statsutilisation'))
 app.use('/aide', require('./applications/aide/api'))
 app.use('/suggestion', require('./applications/echanges/suggestion'))
+app.use('/messages', require('./applications/echanges/messages'))
 // ROUTES siAuthentifie
 app.use('/acceuil', require('./applications/fonctionalites/acceuil'))
 app.use('/observation', require('./applications/fonctionalites/observation/'))

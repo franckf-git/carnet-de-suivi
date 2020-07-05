@@ -1,0 +1,43 @@
+<% if ( connecte ) { %>
+<% include ./../views/headerConnecte %>
+<% } else { %>
+<% include ./../views/header %>
+<% } %>
+
+<section class="section container">
+    <div class="media-content">
+        <div class="content">
+            <p>
+                <strong>Sean Brown</strong>
+                <small>4 hrs</small>
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec
+                ultricies
+                elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum.
+                Nunc in
+                tempus
+                turpis.
+                <br>
+            </p>
+        </div>
+    </div>
+    <hr class="has-background-primary">
+    <% if ( connecte ) { %>
+    <div class="field">
+        <form method="post" action="/messages">
+            <a class="navbar-item">
+                <input class="input is-font-secondary" type="text" placeholder="Quel est votre message ?" required>
+                <button class="button is-info" type="submit">
+                    Envoyer
+                </button>
+            </a>
+        </form>
+    </div>
+    <% } else { %>
+    <p class="is-italic">
+        Vous devez être <a href="/connexion">connecté</a> pour envoyer un message.
+    </p>
+    <% } %>
+</section>
+
+<% include ./../views/footer %>
