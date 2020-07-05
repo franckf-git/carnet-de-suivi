@@ -4,6 +4,9 @@
 <% include ./../views/header %>
 <% } %>
 
+<script src="/javascripts/moment/moment-with-locales.min.js"></script>
+<script src="/javascripts/application/tableauMessages.js" type="module" defer></script>
+
 <section class="section container">
 
     <% messagesFormates.forEach(message => { %>
@@ -11,7 +14,7 @@
         <div class="content">
             <p>
                 <strong><%= message.pseudo %></strong>
-                <small class="is-italic"><%= message.enregistrement %></small>
+                <small class="is-italic message-date"><%= message.enregistrement %></small>
                 <br>
                 <%= message.texteMessage %>
                 <br>
