@@ -25,12 +25,12 @@
     <% if ( connecte ) { %>
     <div class="field">
         <form method="post" action="/messages">
-            <a class="navbar-item">
+            <div class="columns is-mobile">
                 <input class="input is-font-secondary" type="text" placeholder="Quel est votre message ?" required>
                 <button class="button is-info" type="submit">
                     Envoyer
                 </button>
-            </a>
+            </div>
         </form>
     </div>
     <% } else { %>
