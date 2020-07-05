@@ -61,18 +61,60 @@ Ce dépôt abrite le code pour l'application d'évaluation en ligne des élèves
 
 ---
 
-```
-git clone https://gitlab.com/franckf/carnet-de-suivi.git
-cd carnet-de-suivi
-cp config/index.js.example config/index.js
-vim config/index.js
+# Installation
+
+1 - Prendre une instance Public Cloud chez OVH (nous conseillons fedora)
+
+2 - Se connecter en ssh (après avoir fourni une clé ssh à OVH)
+
+```bash
+ssh fedora@XXX.XXX.XXX.XXX
 ```
 
-Lancer en utilisant le Dockerfile :
+3 - Installer un pare-feu et bloquer les entrées sauf pour ssh
 
+```bash
+sudo ufw enable
+sudo ufw status verbose
+# De base la configuration de OVH est correcte
+# Mais on peut supprimer ces règles et les remplacer par les notres
+sudo ufw default deny incoming
+sudo ufw allow proto tcp from VOTRE_IP to any port 22
+sudo ufw reload
 ```
-podman build --tag=carnet-de-suivi .
-podman run --detach --interactive --tty --publish=5500:5500/tcp carnet-de-suivi
+
+4 - Installer les paquets nécessaires
+
+```bash
+sudo dnf install nodejs sqlite redis nginx git
 ```
+
+5 - Fortement recommandé : Certificat https avec LetsEncrypt
+
+```bash
+# installer le client certbot
+sudo dnf install certbot-nginx
+sudo vi /etc/nginx/nginx.conf
+# changer server_name _ par votre domaine. ex : server_name  carnet-de-suivi.net www.carnet-de-suivi.net;
+# tester la configuration
+sudo nginx -t
+# relancer le serveur et ouvrir les ports web
+sudo systemctl reload nginx
+sudo ufw allow proto tcp to any port 80
+sudo ufw allow proto tcp to any port 443
+
+# obtenir un certificat
+# renseigner une adresse mail si demandé (la première fois)
+sudo certbot --nginx -d carnet-de-suivi.net -d www.carnet-de-suivi.net
+# vous pouvez tester le certificat sur https://www.ssllabs.com/ssltest/analyze.html?d=carnet%2dde%2dsuivi.net&latest
+```
+
+Le certificat dure 90 jours, il peut être renouvelé simplement avec :
+```
+sudo crontab -e
+15 3 * * * /usr/bin/certbot renew --quiet
+```
+
+...
 
 ---
