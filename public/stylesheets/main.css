@@ -1,0 +1,83 @@
+/* Imports framework et icones */
+/* http://bulma.io/ */
+@import "./bulma.css";
+
+/* Custom css */
+
+/* position du bouton retour en haut */
+.button-backtotop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 30;
+}
+
+.box-eleve {
+  cursor: pointer;
+}
+
+/* position du button aide */
+.button-help {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 20;
+}
+
+/* Polices personnalisées */
+@font-face {
+  font-family: "comfortaa";
+  src: local('Arial'), url('./../fonts/Comfortaa-Regular.ttf') format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "opensans";
+  src: local('Arial'), url('./../fonts/OpenSans-Regular.ttf') format("truetype");
+  font-display: swap;
+}
+
+.is-font-primary {
+  font-family: comfortaa !important;
+}
+
+.is-font-secondary {
+  font-family: opensans !important;
+}
+
+* {
+  font-family: comfortaa !important;
+}
+
+/* element personnalisé Accordeon https://www.w3schools.com/howto/howto_js_accordion.asp */
+.accordion {
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+/* transition: 0.4s;*/
+}
+
+.panel {
+  padding: 18px 18px;
+  display: none;
+  overflow: hidden;
+}
+
+/* accessibilité */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000000;
+  color: white;
+  padding: 8px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}

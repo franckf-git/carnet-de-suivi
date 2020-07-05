@@ -1,0 +1,131 @@
+<% include ./../../views/headerConnecte %>
+
+<script src="/javascripts/application/formulaireTitreObservable.js" type="module" defer></script>
+
+<section class="section">
+    <div class="container has-text-centered">
+
+        <section class="section">
+            <div class="container">
+                <h3 class="subtitle has-text-centered">Entrez votre nouvelle activité :</h3>
+                <form id="titreActivite" action="/observation/objectif" method="post">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-font-secondary input-activity" type="text" name="titre" placeholder="Titre de l'activité (obligatoire)" required>
+                        </div>
+                        <p class="help is-danger alert-length">Le titre doit comporter au moins 3 lettres et 40
+                            maximum.
+                        </p>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <textarea class="textarea is-font-secondary" name="description" placeholder="Description (optionnel)"></textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" id="idDomaine" name="domaine">
+                </form>
+            </div>
+        </section>
+
+        <h3 class="subtitle has-text-centered">Et choisissez un domaine d'évaluation :</h3>
+        <div class="columns is-multiline">
+            <div class="column is-6 is-4-desktop">
+                <a class="card has-text-centered domaine" id="1">
+                    <div class="card-header-title is-centered has-background-grey-light">
+                        <figure class="image is-128x128">
+                            <img src="/images/illustrations/undraw_happy_music_g6wc.svg" alt="Mobiliser le langage dans toutes ses
+                            dimensions : l'oral">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="content">
+                            <span class="has-text-weight-light has-text-primary">Mobiliser le langage dans toutes ses
+                                dimensions : l'oral</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="column is-6 is-4-desktop">
+                <a class="card has-text-centered domaine" id="2">
+                    <div class="card-header-title is-centered has-background-grey-lighter">
+                        <figure class="image is-128x128">
+                            <img src="/images/illustrations/undraw_book_lover_mkck.svg" alt="Mobiliser le langage dans toutes ses
+                            dimensions : l'écrit">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="content">
+                            <span class="has-text-weight-light has-text-primary">Mobiliser le langage dans toutes ses
+                                dimensions : l'écrit</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="column is-6 is-4-desktop">
+                <a class="card has-text-centered domaine" id="3">
+                    <div class="card-header-title is-centered has-background-grey-light">
+                        <figure class="image is-128x128">
+                            <img src="/images/illustrations/undraw_physique.svg" alt="Agir, s'exprimer, comprendre à travers
+                            l'activité physique">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="content">
+                            <span class="has-text-weight-light has-text-primary">Agir, s'exprimer, comprendre à travers
+                                l'activité physique</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="column is-6 is-4-desktop">
+                <a class="card has-text-centered domaine" id="4">
+                    <div class="card-header-title is-centered has-background-grey-lighter">
+                        <figure class="image is-128x128">
+                            <img src="/images/illustrations/undraw_making_art_759c.svg" alt="Agir, s'exprimer, comprendre à travers
+                            les activités artistiques">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="content">
+                            <span class="has-text-weight-light has-text-primary">Agir, s'exprimer, comprendre à travers
+                                les activités artistiques</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="column is-6 is-4-desktop">
+                <a class="card has-text-centered domaine" id="5">
+                    <div class="card-header-title is-centered has-background-grey-light">
+                        <figure class="image is-128x128">
+                            <img src="/images/illustrations/undraw_game_world_0o6q.svg" alt="Construire les premiers outils pour
+                            structurer sa pensée">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="content">
+                            <span class="has-text-weight-light has-text-primary">Construire les premiers outils pour
+                                structurer sa pensée</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="column is-6 is-4-desktop">
+                <a class="card has-text-centered domaine" id="6">
+                    <div class="card-header-title is-centered has-background-grey-lighter">
+                        <figure class="image is-128x128">
+                            <img src="/images/illustrations/undraw_true_love_cy8x.svg" alt="Explorer le monde">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="content">
+                            <span class="has-text-weight-light has-text-primary">Explorer le monde</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<% include ./../../views/footer %>

@@ -1,0 +1,122 @@
+<% include ./../../views/headerConnecte %>
+
+<script src="/javascripts/moment/moment-with-locales.min.js"></script>
+<script src="/javascripts/application/accordions.js" type="module" defer></script>
+<script src="/javascripts/application/affichageCarnetSuivi.js" type="module" defer></script>
+<script src="/javascripts/pdfmake/pdfmake.min.js"></script>
+<script src="/javascripts/pdfmake/vfs_fonts.js"></script>
+<script src="/javascripts/application/exportPDF.js" type="module" defer></script>
+<script src="/javascripts/application/impressionCarnet.js" type="module" defer></script>
+
+<section class="section container">
+    <div class="columns buttons-export">
+        <div class="column">
+            <a class="button is-primary is-fullwidth" href="/exportcsa">Retour</a>
+        </div>
+        <div class="column">
+            <a class="button export-pdf is-fullwidth">Exporter en PDF</a>
+        </div>
+        <div class="column">
+            <a class="button print is-fullwidth">Impression</a>
+        </div>
+    </div>
+</section>
+
+<section class="section container">
+    <section class="hero is-bold has-background-grey-lighter">
+        <div class="hero-body">
+            <h2 class="title">
+                <%= typeof titre != 'undefined' ? titre : 'Carnet de Suivi' %>
+            </h2>
+            <h3 class="subtitle">
+                Elève de <%= typeof pseudo != 'undefined' ? pseudo : 'pseudo' %>
+            </h3>
+        </div>
+    </section>
+</section>
+
+<section class="section container">
+    <div class="tabs is-fullwidth is-boxed is-centered is-hidden-mobile">
+        <ul>
+            <li class="is-active"><a class="filtrage-domaine" id="0">Tous</a></li>
+            <li><a class="filtrage-domaine" id="1">Oral</a></li>
+            <li><a class="filtrage-domaine" id="2">Ecrit</a></li>
+            <li><a class="filtrage-domaine" id="3">Physique</a></li>
+            <li><a class="filtrage-domaine" id="4">Arts</a></li>
+            <li><a class="filtrage-domaine" id="5">Construire</a></li>
+            <li><a class="filtrage-domaine" id="6">Explorer</a></li>
+        </ul>
+    </div>
+
+    <div class="tabs is-fullwidth is-boxed is-centered is-hidden-tablet">
+        <ul>
+            <li class="is-active"><a class="filtrage-domaine" id="0">Tous</a></li>
+            <li><a class="filtrage-domaine" id="1">Oral</a></li>
+            <li><a class="filtrage-domaine" id="2">Ecrit</a></li>
+            <li><a class="filtrage-domaine" id="3">Physique</a></li>
+        </ul>
+    </div>
+    <div class="tabs is-fullwidth is-boxed is-centered is-hidden-tablet">
+        <ul>
+            <li><a class="filtrage-domaine" id="4">Arts</a></li>
+            <li><a class="filtrage-domaine" id="5">Construire</a></li>
+            <li><a class="filtrage-domaine" id="6">Explorer</a></li>
+        </ul>
+    </div>
+</section>
+
+<section class="section container">
+    <% if ( typeof retourParEvaluation[0] === 'undefined') { %>
+    <h2 class="title is-italic has-text-centered">Il n'y a pas d'observations pour cet élève.</h2>
+    <% } else { %>
+    <% retourParEvaluation.forEach(evaluation => { %>
+    <button class="accordion has-background-grey-lighter is-large"><%= evaluation.observation.titre %><span class="is-pulled-right evaluation tag" id="<%= evaluation.evaluation %>"></span></button>
+    <div class="panel">
+        <div class="columns">
+            <div class="column">
+                <div class="domaine" id="<%= evaluation.domaine.id %>">Domaine d'apprentissage :</div>
+            </div>
+            <div class="column has-text-weight-bold">
+                <%= evaluation.domaine.domaine %>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="objectif" id="<%= evaluation.objectif.id %>">Objectif visé(s) :</div>
+            </div>
+            <div class="column has-text-weight-bold">
+                <%= evaluation.objectif.objectif %>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="attendu" id="<%= evaluation.attendu.id %>">Ce qui est attendu :</div>
+            </div>
+            <div class="column has-text-weight-bold">
+                <%= evaluation.attendu.attendu %>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="observation-description">Description de l'activité :</div>
+            </div>
+            <div class="column has-text-weight-bold">
+                <%= evaluation.observation.description %>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">Fait le :</div>
+            <div class="column is-italic observation-date"><%= evaluation.observation.creation %></div>
+        </div>
+    </div>
+    <% }); %>
+    <% } %>
+</section>
+
+<section class="is-hidden">
+    <% criteres.forEach(critere => { %>
+    <div class="critere" data-value="<%= critere.couleur %>" id="<%= critere.id %>"><%= critere.critere %></div>
+    <% }); %>
+</section>
+
+<% include ./../../views/footer %>

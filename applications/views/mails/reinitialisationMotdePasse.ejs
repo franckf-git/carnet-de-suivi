@@ -1,0 +1,18 @@
+<% include ./../headerMails %>
+
+<section class="section">
+  <div class="container has-text-centered">
+    <h2 class="title">Réinitialisation de votre mot de passe pour le compte
+      <%= typeof email != 'undefined' ? email : '' %>.</h2>
+    <h3 class="subtitle">Pour définir un nouveau mot de passe, suivez le lien et entrez votre nouveau mot de passe.
+    </h3>
+    <div class="buttons is-centered">
+      <a class="button is-primary"
+        href="<%= typeof urluuid != 'undefined' ? urluuid : 'Erreur URL manquante' %>">Définir un nouveau mot de
+        passe</a>
+    </div>
+    <p class="has-text-grey">Ce lien ne sera actif que 3 jours.</p>
+  </div>
+</section>
+
+<% include ./../footer %>

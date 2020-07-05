@@ -1,0 +1,49 @@
+<% if ( connecte ) { %>
+<% include ./../views/headerConnecte %>
+<% } else { %>
+<% include ./../views/header %>
+<% } %>
+
+<script src="/javascripts/moment/moment-with-locales.min.js"></script>
+<script src="/javascripts/application/tableauMessages.js" type="module" defer></script>
+
+<section class="section container">
+
+    <% messagesFormates.forEach(message => { %>
+    <div class="content">
+        <p>
+            <% if ( message.annonce === 1) { %>
+        <div class="media-content has-background-primary has-text-centered has-text-white subtitle">
+            <% } else { %>
+            <div class="media-content">
+                <strong><%= message.pseudo %></strong>
+                <small class="is-italic message-date"><%= message.enregistrement %></small>
+                <br>
+                <% } %>
+                <%= message.texteMessage %>
+                <br>
+                </p>
+            </div>
+        </div>
+        <% }); %>
+
+        <hr class="has-background-primary">
+        <% if ( connecte ) { %>
+        <div class="field">
+            <form method="post" action="/messages">
+                <div class="columns is-mobile">
+                    <input class="input is-font-secondary" type="text" name="texteMessage" placeholder="Quel est votre message ?" required>
+                    <button class="button is-info" type="submit">
+                        Envoyer
+                    </button>
+                </div>
+            </form>
+        </div>
+        <% } else { %>
+        <p class="is-italic">
+            Vous devez être <a href="/connexion">connecté</a> pour envoyer un message.
+        </p>
+        <% } %>
+</section>
+
+<% include ./../views/footer %>

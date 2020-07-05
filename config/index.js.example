@@ -1,0 +1,19 @@
+module.exports = {
+  DOMAIN: 'carnet-de-suivi.net',
+  PORT: process.env.PORT || 5500,
+  ENV: process.env.NODE_ENV || 'production',
+  SECRET_SESSION: 'toRandomize',
+  SQLITE_AIDE: './basededonnees/aide.sqlite',
+  SQLITE_CORE: './basededonnees/core.sqlite',
+  SQLITE_STATS: './basededonnees/statistiques.sqlite',
+  SQLITE_CARNETDESUIVI: './basededonnees/carnetdesuivi.sqlite',
+  SQLITE_ECHANGES: './basededonnees/echanges.sqlite',
+  SQLITE_REFERENTIEL: './basededonnees/referentiel.sqlite'
+}
+
+module.exports.MAIL = {
+  SMTP: '',
+  PORT: 465,
+  USER: '',
+  PASS: ''
+}

@@ -1,5 +1,6 @@
 # Logs
 logs
+!logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -67,9 +68,15 @@ fontawesome-free-5.13.0-web
 config/index.js
 
 # SQlite file for bdd
-basededonnees/aide.sqlite
-basededonnees/core.sqlite
-basededonnees/statistiques.sqlite
+basededonnees/*.sqlite
+basededonnees/dumps/*.sql
+!basededonnees/referentiel.sqlite
+!basededonnees/aide.sqlite
 
 # Dump Redis
 dump.rdb
+
+# Working Docs (référentiels, tableurs, ....)
+documents-de-travail
+
+test.html

@@ -1,0 +1,49 @@
+<% include ./../../views/headerConnecte %>
+
+<section class="section">
+    <div class="container has-text-centered">
+        <div class="columns">
+
+            <div class="column">
+                <h3 class="subtitle">Carnets de toute la classe (temp)</h3>
+                <a class="box">Exporter le carnet de tous les élèves en PDF</a>
+                <a class="box">Exporter le carnet de tous les élèves en PDF <br>
+                    (version légère pour impression rapide)</a>
+                <a class="box">Export administratif</a>
+                <a class="box">Tableau de bord</a>
+                <a class="box">Synthèse des acquis</a>
+            </div>
+
+            <div class="column">
+                <h3 class="subtitle">Voir le carnet de chaque élève :</h3>
+                <% if ( typeof listeEleves[0] === 'undefined') { %>
+                <h2 class="title is-italic has-text-centered">Vous n'avez pas d'élèves actifs
+                    actuellement.</h2>
+                <% } else { %>
+                <% listeEleves.forEach(eleve => { %>
+                <a href="/exportcsa/eleve/<%= eleve.id %>" class="box has-background-light">
+                    <%= eleve.nom %>
+                </a>
+                <% }); %>
+                <% } %>
+                <hr class="has-background-primary">
+                <h3 class="subtitle">Elèves désactivés :</h3>
+                <% if ( typeof listeElevesDesactives[0] === 'undefined') { %>
+                <h3 class="subtitle is-italic has-text-centered">Vous n'avez pas d'élèves
+                    inactifs
+                    actuellement.
+                </h3>
+                <% } else { %>
+                <% listeElevesDesactives.forEach(eleve => { %>
+                <a href="/exportcsa/eleve/<%= eleve.id %>" class="box has-background-grey-lighter">
+                    <%= eleve.nom %>
+                </a>
+                <% }); %>
+                <% } %>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<% include ./../../views/footer %>

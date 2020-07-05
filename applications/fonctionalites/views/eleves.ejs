@@ -1,0 +1,95 @@
+<% include ./../../views/headerConnecte %>
+
+<script src="/javascripts/application/gestionEleves.js" type="module" defer></script>
+
+<section class="section">
+  <div class="container has-text-centered">
+
+    <div class="columns">
+      <div class="column is-10">
+        <figure class="image is-48x48 is-hidden-tablet is-pulled-right button-add-eleve">
+          <img src="/images/icones/plus-circle-solid-success.svg" alt="ajouter un élève">
+        </figure>
+      </div>
+      <div class="column">
+        <button class="button is-success is-hidden-mobile button-add-eleve">Ajouter un élève</button>
+      </div>
+    </div>
+
+    <hr class="has-background-primary">
+
+    <div class="modal modal-add-eleve">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <form action="/eleves/ajout" method="post">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Nouvel élève</p>
+          </header>
+          <section class="modal-card-body">
+            <p class="control is-expanded">
+              <input class="input is-font-secondary input-eleve" name="nom" type="text" placeholder="Prénom de l'élève">
+            </p>
+            <p class="help is-danger alert-nom">Le nom doit comporter au moins 3 lettres et 32 maximum.
+            </p>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success is-fullwidth button-save-eleve" disabled>Ajouter</button>
+          </footer>
+        </form>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <% if ( typeof listeEleves[0] === 'undefined') { %>
+    <h2 class="title is-italic has-text-centered">Vous n'avez pas d'élèves actifs actuellement.</h2>
+    <% } else { %>
+
+    <% listeEleves.forEach(eleve => { %>
+    <div class="box box-eleve has-background-light" id="<%= eleve.id %>">
+      <%= eleve.nom %>
+    </div>
+
+    <div class="modal" id="modal-eleve_<%= eleve.id %>">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <form action="/eleves/edition/<%= eleve.id %>" method="post">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Edition de l'élève</p>
+          </header>
+          <section class="modal-card-body">
+            <p class="control is-expanded">
+              <input class="input is-font-secondary input-eleve" name="nom" type="text" value="<%= eleve.nom %>">
+            </p>
+            <p class="help is-danger is-hidden alert-nom">Le nom doit comporter au moins 3 lettres et 32 maximum.</p>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success is-fullwidth button-save-eleve" name="sauver">Sauver</button>
+            <button class="button is-danger is-fullwidth button-save-eleve" name="desactivation">Désactiver</button>
+          </footer>
+          <p class="is-italic has-text-danger">Désactiver un élève ne supprime pas son carnet.</p>
+        </form>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <% }); %>
+    <% } %>
+
+    <hr class="has-background-primary">
+    <h3 class="subtitle">Elèves désactivés :</h3>
+    <% if ( typeof listeElevesDesactives[0] === 'undefined') { %>
+    <h3 class="subtitle is-italic has-text-centered">Vous n'avez pas d'élèves inactifs actuellement.</h3>
+    <% } else { %>
+    <% listeElevesDesactives.forEach(eleve => { %>
+    <div class="box has-background-grey-lighter">
+      <form action="/eleves/edition/<%= eleve.id %>" method="post">
+        <%= eleve.nom %>
+        <button class="button is-small is-info is-pulled-right" name="reactivation">Réactiver</button>
+      </form>
+    </div>
+    <% }); %>
+    <% } %>
+
+  </div>
+</section>
+
+<% include ./../../views/footer %>

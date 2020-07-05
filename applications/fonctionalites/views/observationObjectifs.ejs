@@ -1,0 +1,44 @@
+<% include ./../../views/headerConnecte %>
+
+<script src="/javascripts/application/accordions.js" type="module" defer></script>
+<script src="/javascripts/application/choixAttendus.js" type="module" defer></script>
+
+<section class="section">
+    <div class="container has-text-centered">
+        <h3 class="subtitle">Choisissez votre objectif et ce qui est attendu des élèves :</h3>
+
+        <% arborescenceReferentiel.forEach(objectif => { %>
+        <button class="accordion has-background-grey-lighter"><%= objectif.objectif.objectif %></button>
+        <div class="panel">
+            <form action="/observation/evaluation" method="post">
+                <a class="navbar-item">
+                    <input class="input is-font-secondary" type="text" name="attenduPersonnalise" placeholder="Votre attendu personnalisé" required>
+                    <button class="button is-info" type="submit">
+                        Evaluer avec cet attendu
+                    </button>
+                </a>
+                <input type="hidden" value="<%= objectif.objectif.id %>" name="idObjectif">
+                <input type="hidden" value="<%= idObservation %>" name="idObservation">
+            </form>
+            <p class="has-text-primary">
+                ou utilisez un élément recommandé :
+            </p>
+            <% objectif.attendusDelObjectif.forEach(attendu => { %>
+            <a class="navbar-item has-text-left attenduReferentiel" id="<%= attendu.id %>">
+                <%= attendu.attendu %>
+            </a>
+            <hr class="navbar-divider">
+            <% }); %>
+        </div>
+        <hr class="has-background-primary">
+        <% }); %>
+
+    </div>
+</section>
+
+<form id="choixAttendus" action="/observation/evaluation/" method="post">
+    <input type="hidden" name="idAttendu" class="choixAttendu">
+    <input type="hidden" value="<%= idObservation %>" name="idObservation">
+</form>
+
+<% include ./../../views/footer %>

@@ -1,0 +1,8 @@
+<% if(typeof erreursDuFormulaire != 'undefined'){ %>
+<% erreursDuFormulaire.forEach( (erreur) => { %>
+<div class="notification is-warning">
+  <button class="delete delete-notif"></button>
+  <%= erreur.messageDAvertissement %>
+</div>
+<% }) %>
+<% } %>
