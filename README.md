@@ -115,6 +115,14 @@ sudo crontab -e
 15 3 * * * /usr/bin/certbot renew --quiet
 ```
 
-...
+6 - Récupérer le code
 
----
+```bash
+git clone https://gitlab.com/franckf/carnet-de-suivi.git
+cd carnet-de-suivi
+npm install --production
+npm audit fix
+cp config/index.js.example config/index.js
+vi config/index.js
+# pour mettre une clé de session secrète et ajouter les informations du compte mail
+```
