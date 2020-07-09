@@ -120,7 +120,7 @@ sudo crontab -e
 ```bash
 git clone https://gitlab.com/franckf/carnet-de-suivi.git
 cd carnet-de-suivi
-npm install --production
+npm install --production --save
 npm audit fix
 cp config/index.js.example config/index.js
 vi config/index.js
