@@ -87,6 +87,7 @@ sudo ufw reload
 
 ```bash
 sudo dnf install nodejs sqlite redis nginx git
+sudo systemctl enable nginx
 ```
 
 5 - Fortement recommandé : Certificat https avec LetsEncrypt
@@ -115,6 +116,60 @@ sudo crontab -e
 15 3 * * * /usr/bin/certbot renew --quiet
 ```
 
-...
+6 - Récupérer le code
 
+```bash
+git clone https://gitlab.com/franckf/carnet-de-suivi.git
+cd carnet-de-suivi
+npm install --production --save
+npm audit fix
+cp config/index.js.example config/index.js
+vi config/index.js
+# pour mettre une clé de session secrète et ajouter les informations du compte mail
+```
+
+7 - Mise en production
+
+```bash
+sudo npm install pm2 --global
+redis-server & pm2 start ~/carnet-de-suivi/bin/www
+```
+
+On désactive selinux pour permettre le proxy node/nginx (manque de sécurité - à optimiser)
+```bash
+sudo sed -i 's/SELINUX=.*/SELINUX=permissive/' /etc/selinux/config
+sudo systemctl restart selinux-basics.service
+```
+
+```bash
+sudo nginx -t
+sudo vi /etc/nginx/nginx.conf
+```
+
+```config
+server {
+...
+    location / {
+        proxy_pass http://localhost:5500;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+...
+}
+```
+
+```bash
+sudo systemctl restart nginx
+```
+
+X - Mettre à jour le code
+
+```bash
+cd carnet-de-suivi
+git pull
+npm update
+```
 ---
