@@ -9,7 +9,7 @@ exports.infos = async (req, res, next) => {
     const remoteAddress = req.connection.remoteAddress
     const aSauvegarder = { ip, remoteAddress, ...infosClient }
     await enregistrementInfos(aSauvegarder)
-    res.json({ message: 'ok' })
+    res.status(201).json({ message: 'ok' })
   } catch (error) {
     logger.error(error)
   }

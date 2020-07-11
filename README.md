@@ -58,6 +58,7 @@ Ce dépôt abrite le code pour l'application d'évaluation en ligne des élèves
 - [x] refactorisation et normalisation du JS côté client
 - [ ] repasser sur les ENV pour mettre l'application - production ready -
 - [ ] Dans observationDomaine.ejs et carnetEleve.ejs, les domaines sont codés en dur - A refaire (texte court et image en base ?)
+- [ ] [Mettre un délai entre deux tentatives de connexion](https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/security/login-rate-limit.md)
 
 ---
 
