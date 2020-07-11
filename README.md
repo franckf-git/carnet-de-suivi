@@ -47,8 +47,8 @@ Ce dépôt abrite le code pour l'application d'évaluation en ligne des élèves
 
 ## Todo technique
 
-- [ ] mise en place de pm2 (multitreads)
-- [ ] intégration avec nginx en reverse proxy
+- [x] mise en place de pm2 (multitreads)
+- [x] intégration avec nginx en reverse proxy
 - [ ] pages statiques gérés par le serveur web
 - [x] gestion des logs
 - [ ] passage à mariadb
@@ -132,7 +132,7 @@ vi config/index.js
 
 ```bash
 sudo npm install pm2 --global
-redis-server & pm2 start ~/carnet-de-suivi/bin/www
+redis-server & pm2 start ~/carnet-de-suivi/bin/www --name server
 ```
 
 On désactive selinux pour permettre le proxy node/nginx (manque de sécurité - à optimiser)
@@ -142,7 +142,6 @@ sudo systemctl restart selinux-basics.service
 ```
 
 ```bash
-sudo nginx -t
 sudo vi /etc/nginx/nginx.conf
 ```
 
@@ -162,6 +161,7 @@ server {
 ```
 
 ```bash
+sudo nginx -t
 sudo systemctl restart nginx
 ```
 
