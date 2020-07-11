@@ -9,7 +9,7 @@ export function envoiInfosAnomyniseesSurUtilisation() {
     const uuid = Math.random()
       .toString(16)
       .slice(2)
-    document.cookie = `uuidStatsAnonym=${uuid}`
+    document.cookie = `uuidStatsAnonym=${uuid}; SameSite=Strict`
   }
 
   const intervalSec = 15
@@ -50,7 +50,7 @@ export function envoiInfosAnomyniseesSurUtilisation() {
   buttonRefusStats.addEventListener('click', () => {
     refusStats = true
     buttonRefusStats.classList.add('is-hidden')
-    document.cookie = 'refusStatistiques=1'
+    document.cookie = 'refusStatistiques=1; SameSite=Strict'
   })
   const refusStatsCookie = decodeURIComponent(document.cookie).split('; ').includes('refusStatistiques=1')
   if (refusStatsCookie) {
