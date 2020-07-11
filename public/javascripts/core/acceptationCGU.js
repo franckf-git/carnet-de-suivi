@@ -6,7 +6,7 @@ export function acceptationCGU() {
   if (acceptationCGU && buttonCookie) {
     buttonCookie.addEventListener('click', () => {
       acceptationCGU.classList.add('is-hidden')
-      document.cookie = 'acceptationCGU=1'
+      document.cookie = 'acceptationCGU=1; SameSite=Strict'
     })
     if (decodedCookie.split('; ')
       .includes('acceptationCGU=1')) {
