@@ -157,6 +157,7 @@ server {
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
+    client_max_body_size 1m;
 ...
 }
 ```
