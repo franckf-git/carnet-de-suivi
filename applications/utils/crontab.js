@@ -12,6 +12,7 @@ exports.sauvegardeBasedeDonnees = () => {
         await exec(
           `sqlite3 basededonnees/${basededonnees}.sqlite .dump > basededonnees/dumps/${basededonnees}_$(date +%Y-%m-%d).sql`
         )
+        logger.info(`Sauvegarde de ${basededonnees}`)
       } catch (error) {
         logger.error(`error: ${error.message}`)
       }
