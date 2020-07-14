@@ -70,17 +70,20 @@ Ce dépôt abrite le code pour l'application d'évaluation en ligne des élèves
 
 ```bash
 ssh fedora@XXX.XXX.XXX.XXX
+sudo dnf upgrade
+reboot
 ```
 
 3 - Installer un pare-feu et bloquer les entrées sauf pour ssh
 
 ```bash
+sudo dnf install ufw
 sudo ufw enable
 sudo ufw status verbose
 # De base la configuration de OVH est correcte
 # Mais on peut supprimer ces règles et les remplacer par les notres
 sudo ufw default deny incoming
-sudo ufw allow proto tcp from VOTRE_IP to any port 22
+sudo ufw allow proto tcp from XXX.VOTRE_IP.XXX to any port 22
 sudo ufw reload
 ```
 
@@ -89,6 +92,7 @@ sudo ufw reload
 ```bash
 sudo dnf install nodejs sqlite redis nginx git
 sudo systemctl enable nginx
+sudo systemctl start nginx
 ```
 
 5 - Fortement recommandé : Certificat https avec LetsEncrypt
@@ -133,13 +137,13 @@ vi config/index.js
 
 ```bash
 sudo npm install pm2 --global
-redis-server & pm2 start ~/carnet-de-suivi/bin/www --name server
+redis-server & NODE_ENV=production pm2 start ~/carnet-de-suivi/bin/www --name server
 ```
 
 On désactive selinux pour permettre le proxy node/nginx (manque de sécurité - à optimiser)
 ```bash
 sudo sed -i 's/SELINUX=.*/SELINUX=permissive/' /etc/selinux/config
-sudo systemctl restart selinux-basics.service
+sudo reboot
 ```
 
 ```bash
@@ -149,6 +153,7 @@ sudo vi /etc/nginx/nginx.conf
 ```config
 server {
 ...
+#        root         /usr/share/nginx/html;
     location / {
         proxy_pass http://localhost:5500;
         proxy_http_version 1.1;
