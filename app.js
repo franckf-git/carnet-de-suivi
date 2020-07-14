@@ -39,7 +39,7 @@ const optionsSession = {
   }
 }
 if (app.get('env') === 'production') {
-  app.set('trust proxy', 1)
+  app.set('trust proxy', true)
   optionsSession.cookie.secure = true // only on https
 }
 app.use(session(optionsSession))
