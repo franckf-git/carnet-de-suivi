@@ -1,6 +1,7 @@
 import { affichageParDomaine } from './affichageCarnetSuivi.js'
 const exportPdf = document.querySelector('.export-pdf')
-exportPdf.addEventListener('click', () => {
+
+const recupInfosEtCreationPDF = () => {
   const filtrageDomaines = document.querySelectorAll('.filtrage-domaine')
   filtrageDomaines.forEach(filtrageDomaine => filtrageDomaine.parentElement.classList.remove('is-active'))
   filtrageDomaines[0].parentElement.classList.add('is-active')
@@ -118,5 +119,7 @@ exportPdf.addEventListener('click', () => {
   }
 
   listeObservations.forEach(listeObservation => docDefinition.content.push(listeObservation))
-  pdfMake.createPdf(docDefinition).open()
-})
+  pdfMake.createPdf(docDefinition).download(titreDuCarnet.trim())
+}
+
+exportPdf.addEventListener('click', () => recupInfosEtCreationPDF())
