@@ -27,15 +27,15 @@ app.use(express.static(path.join(__dirname, 'public')))
 // cookies sessions
 const optionsSession = {
   key: `cookies_${config.DOMAIN}`,
-  secret: config.SECRET_SESSION,
+  secret: config.SESSION_SECRET,
   store: new RedisStore({ client: redisClient }),
   resave: false,
   saveUninitialized: true,
   cookie: {
     sameSite: true,
     httpOnly: true,
-    expires: 60000000,
-    maxAge: 60000000
+    expires: config.SESSION_DUREE,
+    maxAge: config.SESSION_DUREE
   }
 }
 if (app.get('env') === 'production') {
