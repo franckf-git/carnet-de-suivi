@@ -6,7 +6,7 @@ Ce dépôt abrite le code pour l'application d'évaluation en ligne des élèves
 
 ## Bugs (aka feature)
 - [ ] les retours à la ligne ne sont pas pris en compte dans la description de l'activité
-- [ ] dysfonctionnement exports pdf
+- [x] dysfonctionnement exports pdf
 - [x] titre activité : sanitize "<"
 
 ## Fonctionnalitées PMV
