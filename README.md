@@ -137,8 +137,10 @@ vi config/index.js
 7 - Mise en production
 
 ```bash
-sudo npm install pm2 --global
-redis-server & NODE_ENV=production pm2 start ~/carnet-de-suivi/bin/www --name server
+sudo mv /home/fedora/carnet-de-suivi/nodeserver.service /etc/systemd/system/nodeserver.service
+sudo systemctl daemon-reload
+sudo systemctl enable nodeserver.service
+sudo systemctl start nodeserver.service
 ```
 
 On désactive selinux pour permettre le proxy node/nginx (manque de sécurité - à optimiser)
@@ -187,5 +189,6 @@ X - Mettre à jour le code
 cd carnet-de-suivi
 git pull
 npm update
+sudo systemctl restart nodeserver.service
 ```
 ---
