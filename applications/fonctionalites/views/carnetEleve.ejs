@@ -15,6 +15,7 @@
         </div>
         <div class="column">
             <a class="button export-pdf is-fullwidth">Exporter en PDF</a>
+            <a class="button export-pdf2 is-fullwidth">Exporter en PDF-2</a>
         </div>
         <div class="column">
             <a class="button print is-fullwidth">Impression</a>
@@ -118,5 +119,21 @@
     <div class="critere" data-value="<%= critere.couleur %>" id="<%= critere.id %>"><%= critere.critere %></div>
     <% }); %>
 </section>
+
+<script src="/javascripts/html2pdf/es6-promise.auto.min.js"></script>
+<script src="/javascripts/html2pdf/jspdf.min.js"></script>
+<script src="/javascripts/html2pdf/html2canvas.min.js"></script>
+<script src="/javascripts/html2pdf/html2pdf.min.js"></script>
+
+<script>
+
+    const exportPdf2 = document.querySelector('.export-pdf2')
+    exportPdf2.addEventListener('click', () => {
+        console.log('click');
+        var element = document.querySelector('.hero');
+        html2pdf(element)
+    })
+
+</script>
 
 <% include ./../../views/footer %>
