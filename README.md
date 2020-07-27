@@ -89,9 +89,21 @@ sudo systemctl enable nodeserver.service
 sudo systemctl start nodeserver.service
 ```
 
-On désactive selinux pour permettre le proxy node/nginx (manque de sécurité - à optimiser)
+On intègre nginx à la politique selinux
 ```bash
-sudo sed -i 's/SELINUX=.*/SELINUX=permissive/' /etc/selinux/config
+sudo dnf install policycoreutils-python-utils
+# permettre le proxy node/nginx
+sudo semanage port -a -t http_port_t -p tcp 5500
+# vérification
+sudo semanage port -l | grep http
+# étendre les permissions de nginx
+sudo grep nginx /var/log/audit/audit.log | audit2allow -m nginx > nginx.te
+cat nginx.te
+# compilation du module
+sudo grep nginx /var/log/audit/audit.log | audit2allow -M nginx
+# chargement du module
+sudo semodule -i nginx.pp
+sudo semodule -l | grep nginx
 sudo reboot
 ```
 
