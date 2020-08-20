@@ -1,5 +1,9 @@
 # carnet-de-suivi
 
+**Le développement de carnet-de-suivi est actuellement à l'arrêt. En effet produire une application vraiment utile pour les enseignants prend plus de temps que prévu, et il n'est pas possible de continuer dans l'immédiat.**
+
+---
+
 Ce dépôt abrite le code pour l'application d'évaluation en ligne des élèves de Cycle 1 [carnet-de-suivi.net](https://carnet-de-suivi.net).
 
 [Document de référence](https://eduscol.education.fr/cid97131/suivi-et-evaluation-a-l-ecole-maternelle.html)
